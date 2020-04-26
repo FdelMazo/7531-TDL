@@ -16,6 +16,68 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme">
   <!-- Printing and PDF exports -->
@@ -117,6 +179,103 @@ Dvorkin, Camila - XXXXX</div></p>
 </ul></li>
 </ul>
 </section></section>
+<section>
+<section id="sintaxis" class="title-slide slide level1">
+<h1>Sintaxis</h1>
+<p><a href="http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf">LISP 1.5 Programmer’s Manual</a></p>
+<p><a href="http://clhs.lisp.se/Front/index.htm">Common Lisp HyperSpec</a></p>
+<p><a href="https://learnxinyminutes.com/docs/common-lisp/">Learn X in Y minutes, Where X=Common Lisp</a></p>
+</section>
+<section id="expresiones---átomos-y-listas" class="slide level2">
+<h2>Expresiones -&gt; átomos y listas</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">;; Todo en LISP se compone de symbolic expressions</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="dv">1</span> <span class="co">; Una s-expression puede ser un átomo -&gt; irreducible</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="co">; Una s-expression puede ser una lista -&gt; partible</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">;; Las s-expressions evaluan a valores</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="dv">2</span> <span class="co">; evalua a 2</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>(<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; evalua a 5</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>(<span class="op">+</span> (<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="dv">2</span>) <span class="co">; (+ 2 3) evalua a 5 -&gt; todo evalua a 7</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">;; Acá comienza la dualidad entre código (la lista) y data (el átomo)</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">;; Ambos son S-expressions</span></span></code></pre></div>
+</section>
+<section id="code-data---eval-quote" class="slide level2">
+<h2>Code &amp; Data -&gt; <code>eval</code>, <code>quote</code></h2>
+<p><a href="https://youtu.be/dw-y3vNDRWk">Code vs Data (Metaprogramming) ~ Computerphile</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">;; El operador quote toma una s-expression y devuelve el código</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>) <span class="co">; evalua a 2</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>(<span class="kw">quote</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a (+ 1 1)</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>(&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; quote se abrevia a &#39;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">;; El operador eval toma una s-expresion y devuelve su valor</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>(<span class="kw">eval</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a 2</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>(<span class="kw">eval</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a 2</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>(<span class="kw">eval</span> &#39;&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a (+ 1 1)</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">;; 1 + 1 es 2</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">;; &quot;1 + 1&quot; es el código 1 + 1</span></span></code></pre></div>
+<p>Puedo hacer un programa entero, ponerle un <code>'</code> adelante, y estoy tratando con el <strong>código</strong> de mi programa.</p>
+</section>
+<section id="chequeando-valores---atom-listp" class="slide level2">
+<h2>Chequeando Valores -&gt; <code>atom</code>, <code>listp</code></h2>
+<p>¿Es código o data?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">;; atom devuelve si algo es un átomo o no</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>(<span class="kw">atom</span> <span class="dv">1</span>) <span class="co">; True (el valor de la expresion 1 es un átomo)</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>(<span class="kw">atom</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; True (el valor de la expresion (+ 1 2) es un átomo)</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>(<span class="kw">atom</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; Nil (la expresion (+ 1 2) es una lista)</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">;; listp devuelve si algo es una lista o no</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>(<span class="kw">listp</span> <span class="dv">1</span>) <span class="co">; Nil (1 no es una lista)</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>(<span class="kw">listp</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; Nil (la expresion evalua a 3, no es una lista)</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>(<span class="kw">listp</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; True (estoy hablando del código de la expresion, la lista)</span></span></code></pre></div>
+</section>
+<section id="procesar-listas---car-cdr-cons-y-list" class="slide level2">
+<h2>Procesar listas -&gt; <code>car</code>, <code>cdr</code>, <code>cons</code> y <code>list</code></h2>
+<ul>
+<li><p>Las listas en LISP son listas enlazadas</p></li>
+<li><p>Los “nodos” (dato y prox) se llaman <strong>cons cells</strong></p>
+<ul>
+<li><p>El dato actual es el <strong>car</strong></p></li>
+<li><p>El resto es otra lista, el <strong>cdr</strong></p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">;; car recibe una lista y devuelve su primer elemento</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>(<span class="kw">car</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; explota, no recibio una lista</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>(<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; devuelve +</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">;; cdr recibe una lista y devuelve el resto (todo menos el primer elemento)</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>(<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; devuelve (1 2)</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">;; cons crea un cons de un valor seguido de una lista</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">;; AKA agrega un valor al principio de la lista</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>(<span class="kw">cons</span> &#39;<span class="dv">1</span> &#39;(<span class="dv">2</span> <span class="dv">3</span>)) <span class="co">; devuelve (1 2 3)</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>(<span class="kw">cons</span> &#39;+ &#39;(<span class="dv">2</span> <span class="dv">3</span>)) <span class="co">; devuelve (+ 2 3)</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">;; list compone una lista de sus argumentos</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>(<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (1 2 3)</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>(<span class="kw">list</span> &#39;+ <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (+ 2 3)</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">;; si tan solo hubiese una manera de ejecutar esta expresion!</span></span></code></pre></div>
+</section>
+<section id="procesar-una-s-expression---programming-bottom-up" class="slide level2">
+<h2>Procesar una s-expression -&gt; Programming Bottom Up</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">;; Partimos de la expresion (+ 1 2)</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">;; La convertimos en el código de la expresion</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">;; Sacamos su operador -&gt; el +</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>(<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">;; Sacamos los operandos -&gt; el (1 2)</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>(<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))</span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">;; Empaquetamos esto nuevamente -&gt; (+ 1 2)</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>(<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)))</span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">;; Evaluamos la expresion</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>(<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))))</span></code></pre></div>
+</section></section>
+<section id="preguntas" class="title-slide slide level1">
+<h1>Preguntas</h1>
+<p>¿? ¿? ¿?</p>
+</section>
     </div>
   </div>
 
