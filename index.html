@@ -180,6 +180,25 @@ Dvorkin, Camila - XXXXX</div></p>
 </ul>
 </section></section>
 <section>
+<section id="caracteristicas-del-lenguaje" class="title-slide slide level1">
+<h1>Caracteristicas del Lenguaje</h1>
+
+</section>
+<section id="pionero" class="slide level2">
+<h2>Pionero</h2>
+<p><a href="http://www.paulgraham.com/diff.html">What Made Lisp Different ~ Paul Graham</a></p>
+<p><a href="https://www.informit.com/articles/article.aspx?p=1671639">Influential Programming Languages, Lisp ~ David Chisnall</a></p>
+<ul>
+<li><p><strong>if-then-else</strong>: Las expresiones condicionales fueron definidas en el paper de 1960, con <code>cond</code>.</p></li>
+<li><p><strong>Funciones</strong>: Las funciones como ciudadanos de primera clase</p></li>
+<li><p><strong>Recursión</strong>: Ya existía matemáticamente, pero nunca en un lenguaje de programación</p></li>
+<li><p><strong>Garbarge Collection</strong>: Con un diseño primitivo (no era concurrente), LISP fue el primer lenguaje en utilizar garbage collection automático.</p></li>
+<li><p><strong>Tipado dinámico</strong>: No hay que explicitar si algo es un átomo o una lista.</p></li>
+<li><p><strong>Interactividad</strong>: Gracias al interprete REPL se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente.</p></li>
+<li><p><strong>Map y Reduce</strong>: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.</p></li>
+</ul>
+</section></section>
+<section>
 <section id="sintaxis" class="title-slide slide level1">
 <h1>Sintaxis</h1>
 <p><a href="http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf">LISP 1.5 Programmer’s Manual</a></p>
@@ -271,6 +290,73 @@ Dvorkin, Camila - XXXXX</div></p>
 <span id="cb5-10"><a href="#cb5-10"></a>(<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)))</span>
 <span id="cb5-11"><a href="#cb5-11"></a><span class="co">;; Evaluamos la expresion</span></span>
 <span id="cb5-12"><a href="#cb5-12"></a>(<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))))</span></code></pre></div>
+</section></section>
+<section>
+<section id="desglosando-eval" class="title-slide slide level1">
+<h1>Desglosando <code>eval</code></h1>
+<p><a href="http://www.paulgraham.com/rootsoflisp.html">The Roots of LISP ~ Paul Graham</a></p>
+<p><a href="https://youtu.be/OyfBQmvr2Hc">The Most Beautiful Program Ever Written ~ William Byrd</a></p>
+<ul>
+<li><p>La magía de LISP es el <strong>read–eval–print loop</strong>: un entorno donde se toma lo escrito por el programador, se lee, se evalua, se imprime, y luego se vuelve a pedir input</p></li>
+<li><p>Este self-interpreter es un <strong>evaluador meta-circular</strong>, esta escrito en LISP y puede evaluar código de LISP.</p></li>
+<li><p>¿Cómo? Gracias a la función <code>eval</code>, definida por McCarthy en base a 7 operadores que toma como axiomas: <code>quote</code>, <code>atom</code>, <code>eq</code>, <code>car</code>, <code>cdr</code>, <code>cons</code> y <code>cond</code></p></li>
+</ul>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<blockquote>
+<p>That was the big revelation to me when I was in graduate school—when I finally understood that the half page of code on the bottom of page 13 of the Lisp 1.5 manual was Lisp in itself. These were “Maxwell’s Equations of Software!” This is the whole world of programming in a few lines that I can put my hand over.</p>
+</blockquote>
+<p>~ Alan Kay, <a href="https://queue.acm.org/detail.cfm?id=1039523">A Conversation with Alan Kay</a></p>
+<p><img data-src="eval.png" /></p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">;; Anotaciones sobre el código de Paul Graham en Roots of Lisp</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">; The Lisp defined in McCarthy&#39;s 1960 paper, translated into Common Lisp.</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">; eval recibe una expresion `e` y una lista de argumentos `a` -&gt; El &quot;entorno&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">; Básicamente, recibe todo el scope donde estoy parado</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>(<span class="kw">defun</span><span class="fu"> eval </span>(e a)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="co">; Es todo un if grande de 4 condiciones que chequean el tipo de la expresion</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  (<span class="kw">cond</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="co">; Si es un atomo -&gt; Devuelvo su valor en el entorno</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    ((<span class="kw">atom</span> e) (<span class="kw">assoc</span> e a))</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="co">; Si no es un atomo tiene que ser una lista</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="co">; Si es una lista del tipo (atomo...resto) -&gt; Es una función!</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>    <span class="co">; (car e) es el operador</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co">; (cadr e) es (car (cdr e)) que es el primero de los argumentos</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>    ((<span class="kw">atom</span> (<span class="kw">car</span> e))</span>
+<span id="cb6-16"><a href="#cb6-16"></a>     <span class="co">; Si Es una funcion, ¿que funcion es?</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>     (<span class="kw">cond</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>       <span class="co">; Si es quote, solo devuelvo los argumentos de la funcion</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;quote) (<span class="kw">cadr</span> e))</span>
+<span id="cb6-20"><a href="#cb6-20"></a>       <span class="co">; Para el resto de los axiomas, llamo a esa funcion contra los argumentos</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>       <span class="co">; Como quiero llamar a la operacion contra los valores de los argumentos, llamo a eval</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;atom)  (<span class="kw">atom</span>   (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
+<span id="cb6-23"><a href="#cb6-23"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;eq)    (<span class="kw">eq</span>     (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)</span>
+<span id="cb6-24"><a href="#cb6-24"></a>                                    (<span class="kw">eval</span> (<span class="kw">caddr</span> e) a)))</span>
+<span id="cb6-25"><a href="#cb6-25"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;car)   (<span class="kw">car</span>    (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
+<span id="cb6-26"><a href="#cb6-26"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cdr)   (<span class="kw">cdr</span>    (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
+<span id="cb6-27"><a href="#cb6-27"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cons)  (<span class="kw">cons</span>   (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)</span>
+<span id="cb6-28"><a href="#cb6-28"></a>                                    (<span class="kw">eval</span> (<span class="kw">caddr</span> e) a)))</span>
+<span id="cb6-29"><a href="#cb6-29"></a>       <span class="co">; cond tiene que evaluar recursivamente todas las condiciones, hasta encontrar el primer true</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a>       <span class="co">; para eso, se define una funcion auxiliar, `evcon` que recorre la lista de parametros y los evalua</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cond)  (evcon (<span class="kw">cdr</span> e) a))</span>
+<span id="cb6-32"><a href="#cb6-32"></a>       <span class="co">; el caso final es recibir una funcion definida por el usuario</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a>       (&#39;t (<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">assoc</span> (<span class="kw">car</span> e) a)</span>
+<span id="cb6-34"><a href="#cb6-34"></a>                        (<span class="kw">cdr</span> e))</span>
+<span id="cb6-35"><a href="#cb6-35"></a>                  a))))</span>
+<span id="cb6-36"><a href="#cb6-36"></a>    <span class="co">; Si no es un atomo ni una lista que comienza por un atomo, entonces es una lista que comienza por otra cosa</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a>    <span class="co">; Si es una lista que comienza con label, evaluo la funcion a la que refiere</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a>    ((<span class="kw">eq</span> (<span class="kw">caar</span> e) &#39;label)</span>
+<span id="cb6-39"><a href="#cb6-39"></a>     (<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">caddar</span> e) (<span class="kw">cdr</span> e))</span>
+<span id="cb6-40"><a href="#cb6-40"></a>            (<span class="kw">cons</span> (<span class="kw">list</span> (<span class="kw">cadar</span> e) (<span class="kw">car</span> e)) a)))</span>
+<span id="cb6-41"><a href="#cb6-41"></a>    <span class="co">; Si es una lista que comienza con lambda, evaluo sus parametros</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a>    ((<span class="kw">eq</span> (<span class="kw">caar</span> e) &#39;lambda)</span>
+<span id="cb6-43"><a href="#cb6-43"></a>     (<span class="kw">eval</span> (<span class="kw">caddar</span> e)</span>
+<span id="cb6-44"><a href="#cb6-44"></a>            (<span class="kw">append</span> (pair (<span class="kw">cadar</span> e) (evlis  (<span class="kw">cdr</span> e) a))</span>
+<span id="cb6-45"><a href="#cb6-45"></a>                     a)))))</span></code></pre></div>
 </section></section>
 <section id="preguntas" class="title-slide slide level1">
 <h1>Preguntas</h1>

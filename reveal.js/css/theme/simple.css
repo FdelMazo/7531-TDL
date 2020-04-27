@@ -32,7 +32,7 @@ body {
 
 .reveal {
   font-family: "Lato", sans-serif;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: normal;
   color: #000;
 }
@@ -163,7 +163,6 @@ code {
 .reveal blockquote {
   display: block;
   position: relative;
-  width: 70%;
   margin: 20px auto;
   padding: 5px;
   font-style: italic;
@@ -183,7 +182,6 @@ code {
 .reveal pre {
   display: block;
   position: relative;
-  width: 90%;
   margin: 20px auto;
   text-align: left;
   font-size: 0.55em;
