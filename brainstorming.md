@@ -4,7 +4,7 @@
 
   - Una variable
   - Una clase
-  - Una función
+  - Una funciÃ³n
   - Un operador especial
   - Un macro
 
@@ -13,9 +13,11 @@
   - Function namespace: funciones, operadores especiales, macros
 
   - Variable namespace: variables, clases
+  
+- Lisp-1 (scheme) vs. Lisp-2 (clisp) debate
 
 ```lisp
-;; Defino una variable y una función con el mismo nombre
+;; Defino una variable y una funciÃ³n con el mismo nombre
 (setq X 1)
 (defun X (arg) (+ 10 arg))
 
