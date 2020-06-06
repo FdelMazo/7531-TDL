@@ -4,9 +4,10 @@ author: |
   | del Mazo, Federico - 100029
   | di Santo, Javier - XXXXXX
   | Dvorkin, Camila - XXXXX
+  | Secchi, Anita - XXXXXX
 ---
 
-[![](lisp.png)](https://github.com/FdelMazo/7531-TDL)
+[![](img/lisp.png)](https://github.com/FdelMazo/7531-TDL)
 
 # Historia
 
@@ -20,7 +21,7 @@ author: |
 
 ##
 
-![](mccarthy.png)
+![](img/mccarthy.png)
 
 > "Programming is the problem of describing procedures or algorithms to an electronic calculator."
 
@@ -280,7 +281,3 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
             (append (pair (cadar e) (evlis  (cdr e) a))
                      a)))))
 ```
-
-# Preguntas
-
-¿? ¿? ¿?
