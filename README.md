@@ -2,8 +2,8 @@
 title: "LISP"
 author: |
   | del Mazo, Federico - 100029
-  | di Santo, Javier - XXXXXX
-  | Dvorkin, Camila - XXXXX
+  | di Santo, Javier - 101696
+  | Dvorkin, Camila - 101109
   | Secchi, Anita - XXXXXX
 ---
 
@@ -83,6 +83,10 @@ author: |
 
   - Funciones compiladas e interpretadas pueden ser intercambiadas libremente.
 
+# Para qué sirve (y para qué no)
+
+*Se explica en qué casos es bueno y malo el lenguaje con los motivos*
+
 # Caracteristicas del Lenguaje
 
 ## Pionero
@@ -91,19 +95,94 @@ author: |
 
 [Influential Programming Languages, Lisp ~ David Chisnall](https://www.informit.com/articles/article.aspx?p=1671639)
 
-- **if-then-else**: Las expresiones condicionales fueron definidas en el paper de 1960, con `cond`.
+- **if-then-else**: Las expresiones condicionales fueron definidas en el paper de 1960, con `cond`. Un condicional es un una construcción if-then-else; hoy en día los damos por hecho. Fueron inventados por McCarthy en el transcurso de desarrollo de Lisp.
 
-- **Funciones**: Las funciones como ciudadanos de primera clase
+- **Funciones**: Las funciones son objectos de primera clase, son un tipo de dato como lo son los enteros, cadenas, etc. Tienen una representación literal, pueden ser asignadas a variables, pasadas como argumentos (parámetros)...
 
 - **Recursión**: Ya existía matemáticamente, pero nunca en un lenguaje de programación
 
+- **Un nuevo concepto en variables**: Todas las variables son efectivamente punteros. Los valores son aquellos que _tienen tipos_, no variables. Asignar variables significa copiar punteros, y no aquello a lo que apuntan.
+
 - **Garbarge Collection**: Con un diseño primitivo (no era concurrente), LISP fue el primer lenguaje en utilizar garbage collection automático.
+
+- **Programas compuestos por expresiones**: Los programas en Lisp son árboles de expresiones, cada uno devuelve un valor. (En otras expresiones de Lisp, puede devolver múltiples valores). Esto es en contraste con los lenguajes más exitosos, que distinguen entre _expresión_ y _declaración_. Cuando un lenguaje está hecho enteramente de expresiones, uno puede componer expresiones como uno quiera:
+  Puede ser (en syntaxis de _Arc_):
+  
+```lisp
+  (if foo (= x 1) (= x 2))
+```
+o
+
+```lisp
+(= x (if foo 1 2))
+```
 
 - **Tipado dinámico**: No hay que explicitar si algo es un átomo o una lista.
 
 - **Interactividad**: Gracias al interprete REPL se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente.
 
+- **El lenguaje completo está siempre disponible**: No hay una distinción real entre tiempo de lectura, tiempo de compilación y tiempo de ejecución. Uno puede compilar o ejecutar mientras lee, leer o ejecutar código mientras compila, leer o compilar mientras se ejecuta el código.
+
 - **Map y Reduce**: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.
+
+## Paradigma
+
+Lisp es un lenguaje de programacón de tipo multiparadigma, esto quiere decir que soporta más de un paradigma de programación. Lisp es orientado a objetos, reflexivo(capacidad de un programa de observar y modificar su estructura de alto nivel, como Lisp no distingue entre tiempo de ejecución y tiempo de compilación, no va a haber diferencia entre compilación o interpretación de código y reflexión), imperativo(instrucciones en forma de algoritmos) y funcional. Por lo tanto el programador será capaz de crear programas usando más de un estilo de programación, sin estar forzado a tomar un estilo en particular. 
+Existen otros lenguajes multiparadigma como Python, este además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones. Oz tambien es un lenguaje de programación multiparadigma que incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
+
+## Compilado/interpretado
+
+Varias implementaciones de dialectos anteriores de Lisp proporcionaron tanto un intérprete como un compilador. En cuanto a Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos. Ademas el compilador puede recibir instrucciones sobre qué tan dinámico debe ser el código compilado.
+Gracias al interprete REPL(Read-Eval-Print-Loop) se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente. La función *eval*, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario.
+No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura: 
+
+- Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
+- Ejecutar código en tiempo de compilación es la base de las macros.
+- Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
+- Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
+
+[Compilado e interpretado](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
+
+## Tipado Dinámico
+
+Lisp es un lenguaje de tipado dinámico porque las verificaciones de tipo se realizan en tiempo de ejecución y las variables se pueden configurar de forma predeterminada para todo tipo de objetos. 
+
+*Dato*: Ademas de ser de tipado dinámico, Lisp es dinámico, porque tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución: se le prermite al usuario agregar, cambiar y eliminar funciones, construcciones sintácticas, tipos de datos, se podrá cambiar la sintaxis de superficie de Lisp de varias maneras. Esto facilite a que Lisp se tipee dinámicamente para proporcionar algunas de estas características.
+
+## Control de flujo
+
+Common Lisp proporciona una variedad de estructuras especiales para organizar programas. Las mismas se implementan como formas especiales o como macros. En general, los programas Lisp se escriben como una gran colección de pequeñas funciones, cada una de las cuales implementa una operación simple. Estas funciones funcionan llamándose entre sí, por lo que las operaciones más grandes se definen en términos de las más pequeñas. Las funciones de Lisp pueden recurrir a sí mismas de forma recursiva, ya sea directa o indirectamente.
+
+Las funciones definidas localmente (flet, etiquetas) y macros (macrolet) son bastante versátiles. La nueva función de macro de símbolos permite una flexibilidad aún más sintáctica.
+
+Si bien el lenguaje Lisp tiene un estilo más aplicativo que orientado a declaraciones, proporciona muchas operaciones que producen efectos secundarios y, en consecuencia, requiere construcciones para controlar la secuencia de los efectos secundarios. `progn`, es más o menos equivalente a un bloque de inicio-fin con todos sus puntos y comas, ejecuta varias formas secuencialmente, descartando los valores de todos menos el último. Muchas construcciones de control de Lisp incluyen secuenciación implícita, en cuyo caso se dice que proporcionan un `implicit progn`.
+
+Para los ciclos, Common Lisp proporciona la facilidad de iteración general y nos facilita la iteración y mapeo especificamente sobre varias estructuras de datos.
+
+Common Lisp proporciona los condicionales unidireccionales simples `when` y `unless`, el condicional bidireccional simple `if`, y los condicionales multidireccionales más generales como `cond` y `case`.
+
+Se proporcionan construcciones para realizar salidas no locales con diversas disciplinas de alcance: `block`, `return`, `return-from`, `catch`, y `throw`.
+
+[Control de flujo](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node76.html)
+[funciones y macros ejemplos](https://mr.gy/ansi-common-lisp/Data-and-Control-Flow.html#Data-and-Control-Flow)
+
+## TDA
+
+## Parámetros
+
+## Manejo de memoria
+
+## Manejo de concurrencia
+
+## Manejo de errores
+
+(Error)[https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000]
+
+## Paralelismo
+
+## Code vs Data
+
+[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
 
 # Sintaxis
 
@@ -130,8 +209,6 @@ author: |
 ```
 
 ## Code & Data -> `eval`, `quote`
-
-[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
 
 ```lisp
 ;; El operador quote toma una s-expression y devuelve el código
@@ -212,6 +289,44 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 (eval (cons (car '(+ 1 2)) (cdr '(+ 1 2))))
 ```
 
+## Namespaces
+
+- Un simbolo puede referirse a:
+
+  - Una variable
+  - Una clase
+  - Una función
+  - Un operador especial
+  - Un macro
+
+- Hay dos namespaces en LISP:
+
+  - Function namespace: funciones, operadores especiales, macros
+
+  - Variable namespace: variables, clases
+  
+- Lisp-1 (scheme) vs. Lisp-2 (clisp) debate
+
+```lisp
+;; Defino una variable y una función con el mismo nombre
+(setq X 1)
+(defun X (arg) (+ 10 arg))
+
+; Un simbolo por defecto evalua al variable namespace
+X ; => 3
+; Para referirme explicitamente al function namespace, llamo a `(function symbol)`
+(function X) ; => #<FUNCTION X>
+; #' es syntactic sugar de function
+(#'X) ; => #<FUNCTION X>
+
+; Hay que tener cuidado con lo que quiero
+(funcall X 3) ; Explota. Estoy llamando a la variable X
+(funcall #'X 3) ; => 13
+```
+
+https://wiki.c2.com/?SingleNamespaceLisp
+
+
 # Desglosando `eval`
 
 [The Roots of LISP ~ Paul Graham](http://www.paulgraham.com/rootsoflisp.html)
@@ -226,7 +341,7 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 
 ##
 
-> That was the big revelation to me when I was in graduate school—when I finally understood that the half page of code on the bottom of page 13 of the Lisp 1.5 manual was Lisp in itself. These were “Maxwell’s Equations of Software!” This is the whole world of programming in a few lines that I can put my hand over.
+> That was the big revelation to me when I was in graduate school—when I finally understood that the half page of code on the bottom of page 13 of the Lisp 1.5 manual was Lisp in itself. These were "Maxwell's Equations of Software!" This is the whole world of programming in a few lines that I can put my hand over.
 
 ~ Alan Kay, [A Conversation with Alan Kay](https://queue.acm.org/detail.cfm?id=1039523)
 
@@ -281,3 +396,25 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
             (append (pair (cadar e) (evlis  (cdr e) a))
                      a)))))
 ```
+
+# Estadísticas
+
+*Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en los últimos años. Para lenguajes antiguos se incluye información sobre qué lenguajes o técnicas se vieron influenciadas por este lenguaje*
+
+# Comparaciones
+
+*Se destacan las diferencias del lenguaje contra otros con propósito similar, se incluyen además benchmarks o ejemplos que identifiquen diferencias.*
+
+## Scheme
+
+Los dos dialectos principales a elegir son Common Lisp y Scheme, ambos tienen ventajas y desventajas, pero las diferencias entre ellos sigue siendo chica que comparando contra otros lenguajes, así que no importa cual elejas para empezar. ¿Cuál debería aprender, Common Lisp o Scheme? Cuál es la diferencia?
+
+- Common Lisp: Es poderoso pero feo
+- Scheme: Es chiquito y limpio, pero el estándar solamente define es inner core del lenguaje.
+- Si tuviera que crear una aplicación, probablemente es mejor ir por Common Lisp.
+- Si tuviera que enseniar (no tengo enie) en un curso, usaria Scheme (pero con macros de Common Lisp)
+
+
+# Casos de estudio
+
+*Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje*
