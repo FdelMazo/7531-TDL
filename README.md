@@ -4,7 +4,7 @@ author: |
   | del Mazo, Federico - 100029
   | di Santo, Javier - 101696
   | Dvorkin, Camila - 101109
-  | Secchi, Anita - XXXXXX
+  | Secchi, Anita - 99131
 ---
 
 [![](img/lisp.png)](https://github.com/FdelMazo/7531-TDL)
