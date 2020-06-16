@@ -141,7 +141,7 @@ No existe una distinción entre el tiempo de compilación, tiempo de ejecución 
 - Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
 - Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
 
-[Compilado e interpretado](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
+[How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
 
 ## Tipado Dinámico
 
@@ -163,8 +163,8 @@ Common Lisp proporciona los condicionales unidireccionales simples `when` y `unl
 
 Se proporcionan construcciones para realizar salidas no locales con diversas disciplinas de alcance: `block`, `return`, `return-from`, `catch`, y `throw`.
 
-[Control de flujo](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node76.html)
-[funciones y macros ejemplos](https://mr.gy/ansi-common-lisp/Data-and-Control-Flow.html#Data-and-Control-Flow)
+[Common Lisp the Language - Control Structure](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node76.html)
+[Data and Control Flow (ejemplos de funciones y macros)](https://mr.gy/ansi-common-lisp/Data-and-Control-Flow.html#Data-and-Control-Flow)
 
 ## TDA
 
@@ -176,7 +176,7 @@ Se proporcionan construcciones para realizar salidas no locales con diversas dis
 
 ## Manejo de errores
 
-(Error)[https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000]
+[Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
 
 ## Paralelismo
 
