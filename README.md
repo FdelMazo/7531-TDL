@@ -533,6 +533,10 @@ _Se destacan las diferencias del lenguaje contra otros con propósito similar, s
 
 https://wiki.c2.com/?LispSchemeDifferences
 
+http://www.norvig.com/python-lisp.html
+
+https://hyperpolyglot.org/lisp
+
 ## Scheme
 
 Los dos dialectos principales a elegir son Common Lisp y Scheme, ambos tienen ventajas y desventajas, pero las diferencias entre ellos sigue siendo chica que comparando contra otros lenguajes, así que no importa cual elejas para empezar. ¿Cuál debería aprender, Common Lisp o Scheme? Cuál es la diferencia?
@@ -545,3 +549,5 @@ Los dos dialectos principales a elegir son Common Lisp y Scheme, ambos tienen ve
 # Casos de estudio
 
 _Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje_
+
+https://github.com/CodyReichert/awesome-cl
