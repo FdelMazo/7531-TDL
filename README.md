@@ -451,6 +451,10 @@ X ; => 3
 
 https://wiki.c2.com/?SingleNamespaceLisp
 
+## Sistemas
+
+https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s30-modern-common-lisp
+
 # Desglosando `eval`
 
 [The Roots of LISP ~ Paul Graham](http://www.paulgraham.com/rootsoflisp.html)
