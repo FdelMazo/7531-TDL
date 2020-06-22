@@ -188,6 +188,8 @@ _Dato_: Ademas de ser de tipado dinámico, Lisp es dinámico, porque tanto el le
 
 ## Metaprogramming / Extensibilidad / Macros
 
+https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
+
 cahpter 4 de practical common lisp
 
 Further, because Lisp code has the same structure as lists, macros can be built with any of the list-processing functions in the language. In short, anything that Lisp can do to a data structure, Lisp macros can do to code. In contrast, in most other languages, the parser's output is purely internal to the language implementation and cannot be manipulated by the programmer.
