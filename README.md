@@ -329,7 +329,7 @@ NIL
 #### Contar entradas
 No hay necesidad de usar tus dedos! Common Lisp posee una función que lo hace por vos: `hash-table-count`. Recibe la tabla por parámetro.
 ```lisp
-* (setf (gethash "clave1" tabla) 3
+* (setf (gethash "clave1" tabla) 3)
 3
 * (setf (gethash "clave2" tabla) "estoesunstring")
 "estoesunstring"
@@ -467,10 +467,86 @@ NIL
 Solamente necesitamos una redimensión, pero mucho màs realocamiento (41,943,107 bytes consed) porque casi toda la tabla (menos los 16 elementos iniciales) tuvieron que se construídos durante la iteración.
 
 #### Fun stuff e iteradores del hash
-- A agregar -
 
-HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.htmt
-https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
+Si se quiere realizar una acción sobre cada par clave-valor en la tabla de hash, existen múltiples opciones:
+
+  - `maphash`: itera sobre todas las claves de la tabla. Su primer argumento debe ser una función que acepte dos parámetros: la clave y el valor. Muy importante notar y recordar que, dado la naturaleza de las tablas de hash, uno no puede controlar el orden en el cual las claves son devueltas. `maphash` devuelve siemple `NIL`.
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D0E3}>
+* (setf (gethash "clave1" tabla) 1)
+1
+* (setf (gethash "clave2" tabla) 2)
+2
+* (setf (gethash "clave3" tabla) 3)
+3
+* (defun imprimir-entrada (clave valor) (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
+IMPRIMIR-ENTRADA
+* (maphash #'imprimir-entrada tabla)
+El valor asociado a la clave "clave1" es 1
+El valor asociado a la clave "clave2" es 2
+El valor asociado a la clave "clave3" es 3
+NIL
+*
+```
+  - `wish-hash-table-iterator`: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve tres valores cada clave-valor del hash: un booleano generalizado que es `true` si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve `NIL`
+  
+```lisp
+* (with-hash-table-iterator (iterador tabla)
+	(loop
+		(multiple-value-bind (entrada clave valor)
+			(iterador)
+		(if entrada
+			(imprimir-entrada clave valor)
+			(return)))))
+El valor asociado a la clave "clave1" es 1
+El valor asociado a la clave "clave2" es 2
+El valor asociado a la clave "clave3" es 3
+NIL
+```
+
+  - `loop`: ~~la vieja confiable~~
+  
+```lisp
+  * (loop for clave being the hash-keys of tabla do (print clave))
+"clave1"
+"clave2"
+"clave3"
+NIL
+```
+Formateado clave-valor:
+
+```lisp
+* (loop for clave being the hash-keys of tabla using (hash-value valor)
+	do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
+El valor asociado a la clave "clave1" es 1
+El valor asociado a la clave "clave2" es 2
+El valor asociado a la clave "clave3" es 3
+NIL
+```
+Solo el valor:
+
+```lisp
+* (loop for valor being the hash-values of tabla do (print valor))
+1
+2
+3
+NIL
+```
+Clave y valor:
+
+```lisp
+* (loop for valor being the hash-values of tabla using (hash-key clave) do (format t "~&~S -> ~S" clave valor))
+"clave1" -> 1
+"clave2" -> 2
+"clave3" -> 3
+NIL
+```
+
+HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
 
 ## Parámetros
 
