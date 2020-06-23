@@ -264,6 +264,9 @@ Se proporcionan construcciones para realizar salidas no locales con diversas dis
 [Data and Control Flow (ejemplos de funciones y macros)](https://mr.gy/ansi-common-lisp/Data-and-Control-Flow.html#Data-and-Control-Flow)
 
 ## TDA
+- Trabajo en curso -
+HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.htmt
+https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
 
 ## Parámetros
 
