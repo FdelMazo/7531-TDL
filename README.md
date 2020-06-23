@@ -264,7 +264,211 @@ Se proporcionan construcciones para realizar salidas no locales con diversas dis
 [Data and Control Flow (ejemplos de funciones y macros)](https://mr.gy/ansi-common-lisp/Data-and-Control-Flow.html#Data-and-Control-Flow)
 
 ## TDA
-- Trabajo en curso -
+### Tablas de hash
+#### Introducción
+Las tablas de hash son una importante estructura de datos, que asocian claves con valores de una manera muy eficiente. Los hashes son preferibles por sobre listas cuando se le da importancia a los tiempos de búsqueda, pero son más complejos lo cual hace que las listas sean las elegidas cuando solamente hay unos pocos pares clave-valor a mantener.
+
+#### Crear una tabla de hash en Common Lisp
+
+Las tablas de hash son creadas usando la función `make-hash-table`. No requiere ningún argumento.
+Ejemplo: 
+```lisp
+(defvar tabla)
+(setq tabla (make-hash-table))
+```
+Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la función utilizada para testear claves iguales.
+```lisp
+(defvar tabla)
+(setq tabla (make-hash-table: test 'equal))
+```
+
+#### Agregar un elemento a la tabla
+
+Se utiliza la función `gethash`, que es la función que se encarga de devolver el elemento (mencionada previamente), en conjunto con la función `setf`
+
+#### Obtener un valor
+
+La función `gethash` toma dos argumentos obligatorios: una clave y una tabla de hash. Devuelve dos valores: el valor que corresponde a la clave en la tabla de hash (ó `NIL` en caso de que no se encuentre), y un booleano que indica si la clave fue encontrada en la tabla.
+El booleano es necesario ya que `NIL` es un valor válido en in par clave-valor. Es decir que obtener un `NIL` como primer valor de `gethash` no significa necesariamente que la clave no se encuentra en la tabla.
+
+Ejemplo:
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
+* (setf (gethash "clave1" tabla) 3)
+3
+* (gethash "clave1" tabla)
+3
+T
+```
+En el siguiente ejemplo, guardamos NIL en el hash:
+```lisp
+* (setf (gethash "clave2" tabla) nil)
+NIL
+* (gethash "clave2" tabla)
+NIL
+T ; T indica True, existe la clave.
+```
+#### Borrar de la tabla de hash
+
+Se utiliza la función `remhash` para eliminar el par clave-valor. Es decir, la clave y su valor asociado serán eliminados por completo de la tabla. `remhash` devuelve `T` si dicho par existe, `NIL` en otro caso.
+
+```lisp
+* (remhash "clave1" tabla) ; elimino el par: "clave"-3
+T
+* (remhash "clave2" tabla) ; elimino el par: "clave2"-nil
+T
+* (gethash "clave1" tabla) ; trato de obtener el valor de algo que fue eliminado
+NIL
+NIL
+* (remhash "clave3" tabla) ; trato de borrar una clave que no existe
+NIL
+```
+#### Contar entradas
+No hay necesidad de usar tus dedos! Common Lisp posee una función que lo hace por vos: `hash-table-count`. Recibe la tabla por parámetro.
+```lisp
+* (setf (gethash "clave1" tabla) 3
+3
+* (setf (gethash "clave2" tabla) "estoesunstring")
+"estoesunstring"
+* (setf (gethash "clave3" tabla) 2)
+2
+* (hash-table-count tabla)
+3 ; 3 elementos en mi hash.
+```
+#### El tamaño del hash
+
+La función `make-hash-table` tiene algunos parámetros opcionales que controlan el tamaño inicial del hash y como crecerá en caso de que necesite hacerlo. Esto puede ser un gran problema de performance si se trabajo con tablas muy grandes.
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
+*(hash-table-size tabla)
+16 ; por default
+*(hash-table-rehash-size tabla)
+1.5 ; indica que la tabla se agrandará en un 50% cada vez que necesite crecer.
+```
+
+Los valores para `hash-table-size` y `hash-table-rehash-size` dependen de la implementación. En este caso, la implementación de Common Lisp con la cual contamos, elige un tamaño inicial de 16, y aumentará el tamaño en un 50% (1.5) cada vez que el hash necesite crecer.
+
+Veamos que sucede cuando agregamos un total de un millón* de pares clave-valor al hash:
+```lisp
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n))) ; le tomo el tiempo que tarda
+Evaluation took:
+  0.162 seconds of real time
+  0.161954 seconds of total run time (0.137696 user, 0.024258 system)
+  [ Run times consist of 0.015 seconds GC time, and 0.147 seconds non-GC time. ]
+  100.00% CPU
+  355,501,132 processor cycles
+  83,836,896 bytes consed
+NIL
+* (hash-table-count tabla)
+1000000
+* (hash-table-size tabla)
+1048576
+```
+*_Se eligió un millón para resaltar los tiempos que tardan_
+
+Y si piso todas las claves y tomo el tiempo nuevamente:
+
+```lisp
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
+Evaluation took:
+  0.088 seconds of real time
+  0.088449 seconds of total run time (0.088449 user, 0.000000 system)
+  100.00% CPU
+  194,161,741 processor cycles
+  0 bytes consed
+NIL
+```
+Veamos cuantas veces temenos que redimensionar para llegar al tamaño final:
+
+```lisp
+* (log (/ 1000000 16) 1.5)
+27.235197
+* (let ((size 16)) (dotimes (n 29) (print (list n size)) (setq size (* 1.5 size))))
+(0 16)
+(1 24.0)
+(2 36.0)
+(3 54.0)
+(4 81.0)
+(5 121.5)
+(6 182.25)
+(7 273.375)
+(8 410.0625)
+(9 615.09375)
+(10 922.6406)
+(11 1383.9609)
+(12 2075.9414)
+(13 3113.912)
+(14 4670.868)
+(15 7006.3022)
+(16 10509.453)
+(17 15764.18)
+(18 23646.27)
+(19 35469.406)
+(20 53204.11)
+(21 79806.164)
+(22 119709.25)
+(23 179563.88)
+(24 269345.8)
+(25 404018.72)
+(26 606028.06)
+(27 909042.1)
+(28 1363563.3)
+NIL
+```
+El hash se redimensiona 28 veces hasta que sea lo suficientemente grande para contener 1,000,000 de claves con sus respectivos valores. Esto explica por qué tardó bastante en rellenar la tabla. También explica por qué la segunda guardada tardó considerablemente menos: el hash ya poseía el tamaño correcto.
+
+Acá está la manera de hacerlo más rápido: Si ya sabemos con anticipación que tan grande nuestro hash será, podemos comenzar con el tamaño correcto desde el vamos:
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal :size 1000000))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {10039B0043}>
+* (hash-table-size tabla)
+1000000
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
+Evaluation took:
+  0.086 seconds of real time
+  0.085881 seconds of total run time (0.085881 user, 0.000000 system)
+  100.00% CPU
+  188,651,959 processor cycles
+  0 bytes consed
+NIL
+```
+Allí se prueba que tarda considerablemente menos tiempo. Tampoco hubo alocamientos involucrados ya que no hubo que redimensionar en absoluto. Si no sabemos el tamañop final de antemano, pero podemos anticipar el comportamiento de crecimiento que tendrá el hash, podemos utilizar sin duda el parámetro `:rehash-size` en la función `make-hash-table`. Usamos un entero para especificar cremiento absoluto, o un float para especificar crecimiento relativo.
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal :rehash-size 1000000))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D563}>
+* (hash-table-size tabla)
+16
+* (hash-table-rehash-size tabla)
+1000000
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
+Evaluation took:
+  0.120 seconds of real time
+  0.120026 seconds of total run time (0.116221 user, 0.003805 system)
+  [ Run times consist of 0.017 seconds GC time, and 0.104 seconds non-GC time. ]
+  100.00% CPU
+  263,851,583 processor cycles
+  41,943,104 bytes consed
+NIL
+```
+
+Solamente necesitamos una redimensión, pero mucho màs realocamiento (41,943,107 bytes consed) porque casi toda la tabla (menos los 16 elementos iniciales) tuvieron que se construídos durante la iteración.
+
+#### Fun stuff e iteradores del hash
+- A agregar -
+
 HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.htmt
 https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
 
