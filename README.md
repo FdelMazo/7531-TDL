@@ -279,7 +279,7 @@ Ejemplo:
 Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la función utilizada para testear claves iguales.
 ```lisp
 (defvar tabla)
-(setq tabla (make-hash-table: test 'equal))
+(setq tabla (make-hash-table :test 'equal))
 ```
 
 #### Agregar un elemento a la tabla
