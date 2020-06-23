@@ -284,7 +284,12 @@ Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la func
 
 #### Agregar un elemento a la tabla
 
-Se utiliza la función `gethash`, que es la función que se encarga de devolver el elemento (mencionada previamente), en conjunto con la función `setf`
+Se utiliza la función `gethash`, que es la función que se encarga de devolver el elemento, en conjunto con la función `setf`
+
+```lisp
+* (setf (gethash "clave1" tabla) 3) ; gethash recibe dos argumentos: la clave y el hash
+3
+```
 
 #### Obtener un valor
 
