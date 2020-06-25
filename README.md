@@ -164,6 +164,29 @@ No existe una distinción entre el tiempo de compilación, tiempo de ejecución 
 - Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
 - Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
 
+#### Closures
+
+- La variable debe persistir mientras la función lo haga
+- Lisp permite devolver una función como valor como cualquier otro objeto. 
+
+Las variables léxicas solo son válidas dentro del
+contexto donde se definen y continuarán siendo válidos mientras se continue usando el contexto.
+Si una función se define dentro del alcance de una variable léxica, puede continuar haciendo referencia a esa variable, incluso si se devuelve como un valor fuera de contexto donde se creó la variable.  Cuando una función se refiere a una variables definida por fuera, se llama *variable libre*, y si una función se refiere a un variable léxica libre, es un *closure*.
+
+A continuación se muestra un ejemplo. Por un lado, la función combine toma argumentos de cualquier tipo y los combina de forma apropiada. combiner toma un argumento y devuelve una función para combinar argumentos de cualquier tipo.
+
+```
+(defun combiner (x)
+    (typecase x
+        (number #'+)
+        (list #'append)
+        (t #'list))) 
+
+(defun combine (&rest args)
+    (apply (combiner (car args)) 
+    args)) 
+```
+
 [How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
 
 (Interpretado || Compilado) -> True
@@ -171,6 +194,7 @@ No existe una distinción entre el tiempo de compilación, tiempo de ejecución 
 << es interactivo o interpretado???>>
 
 <<<ver ansi common lisp 6.6 closures / 6.7 dynamic scope / 6.8 compilation / 6.9 recursion >>>
+
 
 ## Tipado
 
@@ -244,7 +268,24 @@ This feature makes it easy to develop efficient languages within languages. For 
 
 ## Manejo de memoria
 
-ver ansi common lisp 3.3 y 3.16
+- Las variables de Lisp apuntan a sus valores.
+- La razon por la cual Lisp no tiene punteros es que todos los valores son conceptualmente un puntero.
+- Manejo de memoria automática.
+- Lisp cuenta con un sistema de garbage collection.
+- Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero. 
+- Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).
+
+Las variables tienen valores de la misma manera que las listas tienen elementos, es decir que las variables tienen apuntan al valor. Lisp se va a ocupar de manipular estos punteros, el usuario no debe preocuparse por ello.
+Si el programador setea una variable *X* con un valor *Y*, en la ubicación de memoria asociada al valor *Y* se encuentra un puntero al mismo y Lisp va a copiar ese puntero en la variable *X*.
+La razon por la cual Lisp no tiene punteros es que todos los valores son conceptualmente un puntero.
+
+Las listas son una estructura de datos un poco lenta cuando se trata de recuperar un valor en especifico, ya que la busqueda es secuencial. Sin embargo este costo pueden ser pequeño en comparación con el costo
+de asignación y reciclaje de *cons cell*.
+Lisp cuenta con un manejo de memoria automatico compuesto por un heap en el que lleva un seguimiento de la memoria que no esta en uso y lo distribuye a medida que se crean nuevos objetos. El sistema esta buscando constantemente de la memoria que ya no se necesita, *garabage* para poder reutilizar los *cons cells*. La alocación de memoria en el heap se conoce como *consing* y la busqueda de basura, *garbage collection*.
+Como ventaja, el programador no va a tener que encargarse jamas de alocar y desalocar memoria, y todos los problemas que en general conllevan esas tareas. Como desventaja, el costo asociado a usar, reciclar  los espacios de memoria y constantemente recorrer en busca de basura podría ser costoso.
+
+
+[Ansi common lisp cap 3 (link de descarga pdf)](https://mafiadoc.com/ansi-common-lisp-paul-grahampdf_59b625c51723dddcc6daf94d.html)
 
 ## Control de flujo
 
