@@ -155,6 +155,9 @@ Existen otros lenguajes multiparadigma como Python, este además de programació
 
 ## Compilado/interpretado
 
+- Las funciones pueden ser compiladas de forma individual o por el archivo. 
+- Funciones compiladas o interpretadas se comportan de la misma forma, excepto con el comando `compiled-f unction-p` que verifica si la función pasada por parámetro fue compilada.
+
 Varias implementaciones de dialectos anteriores de Lisp proporcionaron tanto un intérprete como un compilador. En cuanto a Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos. Ademas el compilador puede recibir instrucciones sobre qué tan dinámico debe ser el código compilado.
 Gracias al interprete REPL(Read-Eval-Print-Loop) se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente. La función _eval_, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario.
 No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura:
@@ -164,7 +167,23 @@ No existe una distinción entre el tiempo de compilación, tiempo de ejecución 
 - Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
 - Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
 
-#### Closures
+(Interpretado || Compilado) -> True
+
+<< es interactivo o interpretado???>>
+
+## Tipado
+
+Lisp es un lenguaje de tipado dinámico porque las verificaciones de tipo se realizan en tiempo de ejecución y las variables se pueden configurar de forma predeterminada para todo tipo de objetos.
+
+_Dato_: Ademas de ser de tipado dinámico, Lisp es dinámico, porque tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución: se le prermite al usuario agregar, cambiar y eliminar funciones, construcciones sintácticas, tipos de datos, se podrá cambiar la sintaxis de superficie de Lisp de varias maneras. Esto facilite a que Lisp se tipee dinámicamente para proporcionar algunas de estas características.
+
+- Explota en runtime
+
+  - Tipado fuerte: explota
+
+  - Tipado dinamico: en runtime
+
+## Closures
 
 - La variable debe persistir mientras la función lo haga
 - Lisp permite devolver una función como valor como cualquier otro objeto. 
@@ -189,26 +208,43 @@ A continuación se muestra un ejemplo. Por un lado, la función combine toma arg
 
 [How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
 
-(Interpretado || Compilado) -> True
-
-<< es interactivo o interpretado???>>
-
-<<<ver ansi common lisp 6.6 closures / 6.7 dynamic scope / 6.8 compilation / 6.9 recursion >>>
-
-
-## Tipado
-
-Lisp es un lenguaje de tipado dinámico porque las verificaciones de tipo se realizan en tiempo de ejecución y las variables se pueden configurar de forma predeterminada para todo tipo de objetos.
-
-_Dato_: Ademas de ser de tipado dinámico, Lisp es dinámico, porque tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución: se le prermite al usuario agregar, cambiar y eliminar funciones, construcciones sintácticas, tipos de datos, se podrá cambiar la sintaxis de superficie de Lisp de varias maneras. Esto facilite a que Lisp se tipee dinámicamente para proporcionar algunas de estas características.
-
-- Explota en runtime
-
-  - Tipado fuerte: explota
-
-  - Tipado dinamico: en runtime
-
 ## Lexical/Static Scoping
+
+## Dynamic scoping
+Cuando se habla de variables de ambito léxico, se habla de un nombre que siempre refiere a su entorno léxico local, es decir que si yo defino una variable *X* dentro de una función, esa será su definción adentro sin importar cualquier valor que podría tener por fuera. 
+En cambio, con dynamic scoping, se refiere al identificador asociado con el entorno más reciente. En otras palabras, se busca a la variable en el ambiente en el que la función se llama y no en dónde se define. Para que esto suceda es necesario declararla con `special`:
+```
+(le t ((x 20))
+    (declare (specia l x))
+    (foo)) 
+```
+## Recursión
+
+La recursión en este lenguaje es muy importante por diversas razones:
+- Evita errores por efectos secundarios.
+- La estructura de datos de Lisp es más sencilla de utilizar con recursión. Las listas son o `nil` o `cons`.
+- Código más elegante y limpio.
+
+Sin embargo, tener en cuenta que las solución recursiva más obvio no necesariamente es la más eficiente. Por ejemplo, la función de Fibonacci, que se define recursivamente de la siguiente forma:
+1. Fib(0) = Fib(l)=l.
+2. Fib(n) = Fib(n-1) + Fib(rc-2)
+Al traducir esta idea a Lisp, nos encontramos con una idea poco eficiente(repite constantemente instrucciones que ya se resolvieron):
+```
+(defun fi b (n)
+    (if « = n 1)
+        1
+        (+ (fib (- n 1))
+            (fib (- n 2)))))    
+```
+Por otro lado, se puede resolver de forma iterativa de esta forma:
+```
+(defun fi b (n)
+    (do ((i n (- i 1))
+        (fl 1 (+ fl f2))
+        (f2 1 fl))
+        ( « = i 1) fl))) 
+```
+
 
 ## Metaprogramming / Extensibilidad / Macros
 
