@@ -2,7 +2,7 @@
 title: "LISP"
 author: |
   | del Mazo, Federico - 100029
-  | di Santo, Javier - 101696
+  | Di Santo, Javier - 101696
   | Dvorkin, Camila - 101109
   | Secchi, Anita - 99131
 ---
@@ -265,6 +265,138 @@ Further, because Lisp code has the same structure as lists, macros can be built 
 https://youtu.be/dw-y3vNDRWk
 
 The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.
+
+
+### Macros
+
+- En Lisp, una macro es una función que genera código de Lisp. La forma más sencilla de pensarlo sería como una transformación de código. Cuando se llama a una macro en el código:
+1. Se arma el código en base a la definición `defmacro` de la misma.
+2. Se evalúa el nuevo código en el lugar de la llamada a la macro.
+
+A partir de esto, se pueden usar macros para simplificar y reutilizar código, o hasta manipular la sintaxis del lenguaje.
+
+- Algunos operadores:
+  - ``Backquote ` ``: Funciona similar a `quote`. (se explica antes?)
+```lisp
+`(a, b, c)
+; equivalente a escribir
+'(a b c)
+(list 'a 'b 'c)
+```
+  - `Comma  , `: Combinado con `backquote` sirve para "activar y desactivar" el efecto de `backquote`. Es útil al escribir macros:
+```lisp
+`(a ,b c ,d)
+; equivalente a escribir
+(list 'a b 'c d)
+```
+  - `Comma-at ,@`: Dada una expresión que resuelve una lista, se puede utilizar `,@` para reemplazar esta lista por la secuencia de sus mismos elementos (elimina el paréntesis):
+```lisp
+`(a b c)    ->  (A (1 2 3) C)
+`(a ,@b c)  ->  (A 1 2 3 C)
+```
+
+- `(nil! x)`: Cambiar el valor de la variable `x` a `nil`. 
+En el ejemplo se puede observar que `var` se expande al valor que corresponde (por el operador `,`), mientras que `setq` y `nil` no se evalúan.
+```lisp
+(defmacro nil! (var)
+  `(setq ,var nil))
+
+; se llama de la forma
+(nil! x)
+
+; genera el código
+(setq x nil)
+```
+
+- `(if test then else)`: Ya se encuentra definida en Lisp. Tiene que ser una macro para evaluar la expresión solo cuando corresponda. Una posible implementación utilizaría la macro `cond`, que evalúa solo la primer expresión cuya condición sea true:
+```lisp
+(defmacro if (condition then else)
+  `(cond (,condition ,then)
+         (t ,else)))
+```
+- `(when test do1 do2 ...)`: Cuando la expresión `test` devuelve `true`, se ejecutan todas las expresiones `do`, devolviendo el valor de la última. Para que se expandan todas las expresiones `do` se las combina en una lista `&rest body` y luego se utiliza el operador `,@`:
+```lisp
+(defmacro our-when (test &rest body)
+  `(if ,test
+    (progn
+      ,@body)))
+
+; se llama de la forma
+(when test do1 do2 do3)
+
+; genera el código
+(if (eligible obj)
+  (progn do1
+    do2
+    do3
+    obj))
+```
+
+- `infix`: Las macros permiten cambiar el orden de las expresiones sin evaluarlas. Entonces, se podría hacer una macro `infix` para tener operadores matemáticos en notación de infijo en vez de la notación polaca de Lisp. Existen implementaciones completas de esta macro para que funcione con más de una operación, pero para mostrar la más simple:
+```lisp
+(defmacro infix (arg1 op arg2)
+  `(,op ,arg1 ,arg2))
+
+; se llama de la forma
+(infix 2 + 3)
+
+; genera el código
+(+ 2 3)
+```
+
+
+- `lcomp`: Replicar la sintaxis de compresión de listas de Python.
+
+```lisp
+(defmacro lcomp (expression for var in list conditional conditional-test)
+  (let ((result (gensym)))
+    `(let ((,result nil))
+       (loop for ,var in ,list
+            ,conditional ,conditional-test
+            do (setq ,result (append ,result (list ,expression))))
+       ,result)))
+
+; se llama de la forma
+(lcomp x for x in (1 2 3 4 5 6 7) if (= (mod x 2) 0))
+
+; una vez generado y ejecutado el código devuelve
+(2 4 6)
+```
+
+- `let`:
+```lisp
+(defmacro let (binds &body body)
+  ‘((lambda ,(mapcar #’(lambda (x)
+                         (if (consp x) (car x) x))
+                        binds)
+      ,@body)
+    ,@(mapcar #’(lambda (x)
+                  (if (consp x) (cadr x) nil))
+              binds)))
+```
+- `while`:
+```lisp
+(defmacro while (test &body body)
+  ‘(do ()
+       ((not ,test))
+       ,@body))
+```
+- `till`:
+```lisp
+(defmacro till (test &body body)
+  ‘(do ()
+       (,test)
+       ,@body))
+```
+- `for`:
+```lisp
+(defmacro for ((var start stop) &body body)
+  (let ((gstop (gensym)))
+    ‘(do ((,var ,start (1+ ,var))
+          (,gstop ,stop))
+         ((> ,var ,gstop))
+       ,@body)))
+```
 
 ## Expression oriented / Simbolico
 
@@ -651,6 +783,14 @@ HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutoria
 ~ Peter Van-Roy, Concepts, Techniques, and Models of Computer Programming
 
 ## Manejo de concurrencia
+
+Solo en librerías.
+
+- [Bordeaux Threads](https://common-lisp.net/project/bordeaux-threads/) para la creación de hilos.
+
+- [lparallel](https://github.com/lmj/lparallel) para una implementación más compleja que incluye comunicación entre hilos (colas, promesas, etc).
+
+- [Blackbird](https://github.com/orthecreedence/blackbird) implementación de promesas (la dejo porque no la encontré en cl-awesole).
 
 ## Cálculo Lambda
 
