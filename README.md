@@ -193,12 +193,10 @@ o
 
 ## Closures
 
-- La variable debe persistir mientras la función lo haga
+- La variable debe persistir mientras la función lo haga.
+- Variables léxicas válidas dentro del contexto en donde son definidas.
+- Variable libre: Se continua haciendo referencia a una variable por fuera (mientras se continue usando el mismo contexto del cual fue definida).
 - Lisp permite devolver una función como valor como cualquier otro objeto. 
-
-Las variables léxicas solo son válidas dentro del
-contexto donde se definen y continuarán siendo válidos mientras se continue usando el contexto.
-Si una función se define dentro del alcance de una variable léxica, puede continuar haciendo referencia a esa variable, incluso si se devuelve como un valor fuera de contexto donde se creó la variable.  Cuando una función se refiere a una variables definida por fuera, se llama *variable libre*, y si una función se refiere a un variable léxica libre, es un *closure*.
 
 A continuación se muestra un ejemplo. Por un lado, la función combine toma argumentos de cualquier tipo y los combina de forma apropiada. combiner toma un argumento y devuelve una función para combinar argumentos de cualquier tipo.
 
@@ -219,42 +217,21 @@ A continuación se muestra un ejemplo. Por un lado, la función combine toma arg
 ## Lexical/Static Scoping
 
 ## Dynamic scoping
-Cuando se habla de variables de ambito léxico, se habla de un nombre que siempre refiere a su entorno léxico local, es decir que si yo defino una variable *X* dentro de una función, esa será su definción adentro sin importar cualquier valor que podría tener por fuera. 
-En cambio, con dynamic scoping, se refiere al identificador asociado con el entorno más reciente. En otras palabras, se busca a la variable en el ambiente en el que la función se llama y no en dónde se define. Para que esto suceda es necesario declararla con `special`:
+- Identificador asociado con el entorno más reciente al declarar con `special`.
+
+Ejemplo:
 ```
 (le t ((x 20))
     (declare (specia l x))
     (foo)) 
 ```
 ## Recursión
+- No siempre es la mejor opción pero su uso trae muchas ventajas: 
+	- Evita errores por efectos secundarios.
+	- Estructura de datos más sencilla.
+	- Código más elegante y limpio.
 
-La recursión en este lenguaje es muy importante por diversas razones:
-- Evita errores por efectos secundarios.
-- La estructura de datos de Lisp es más sencilla de utilizar con recursión. Las listas son o `nil` o `cons`.
-- Código más elegante y limpio.
-
-Sin embargo, tener en cuenta que las solución recursiva más obvio no necesariamente es la más eficiente. Por ejemplo, la función de Fibonacci, que se define recursivamente de la siguiente forma:
-1. Fib(0) = Fib(l)=l.
-2. Fib(n) = Fib(n-1) + Fib(rc-2)
-Al traducir esta idea a Lisp, nos encontramos con una idea poco eficiente(repite constantemente instrucciones que ya se resolvieron):
-```
-(defun fi b (n)
-    (if « = n 1)
-        1
-        (+ (fib (- n 1))
-            (fib (- n 2)))))    
-```
-Por otro lado, se puede resolver de forma iterativa de esta forma:
-```
-(defun fi b (n)
-    (do ((i n (- i 1))
-        (fl 1 (+ fl f2))
-        (f2 1 fl))
-        ( « = i 1) fl))) 
-```
-
-
-## Metaprogramming / Extensibilidad / Macros
+## Metaprogramming / Extensibilidad
 
 https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
 
@@ -445,42 +422,35 @@ This feature makes it easy to develop efficient languages within languages. For 
 ## Manejo de memoria
 
 - Las variables de Lisp apuntan a sus valores.
-- La razon por la cual Lisp no tiene punteros es que todos los valores son conceptualmente un puntero.
-- Manejo de memoria automática.
-- Lisp cuenta con un sistema de garbage collection.
+
+- Todos los valores son conceptualmente un puntero.
+
+- Manejo de memoria automática-> Consing.
+
+- Sistema de garbage collection.
+
 - Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero. 
+
 - Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).
-
-Las variables tienen valores de la misma manera que las listas tienen elementos, es decir que las variables tienen apuntan al valor. Lisp se va a ocupar de manipular estos punteros, el usuario no debe preocuparse por ello.
-Si el programador setea una variable *X* con un valor *Y*, en la ubicación de memoria asociada al valor *Y* se encuentra un puntero al mismo y Lisp va a copiar ese puntero en la variable *X*.
-La razon por la cual Lisp no tiene punteros es que todos los valores son conceptualmente un puntero.
-
-Las listas son una estructura de datos un poco lenta cuando se trata de recuperar un valor en especifico, ya que la busqueda es secuencial. Sin embargo este costo pueden ser pequeño en comparación con el costo
-de asignación y reciclaje de *cons cell*.
-Lisp cuenta con un manejo de memoria automatico compuesto por un heap en el que lleva un seguimiento de la memoria que no esta en uso y lo distribuye a medida que se crean nuevos objetos. El sistema esta buscando constantemente de la memoria que ya no se necesita, *garabage* para poder reutilizar los *cons cells*. La alocación de memoria en el heap se conoce como *consing* y la busqueda de basura, *garbage collection*.
-Como ventaja, el programador no va a tener que encargarse jamas de alocar y desalocar memoria, y todos los problemas que en general conllevan esas tareas. Como desventaja, el costo asociado a usar, reciclar  los espacios de memoria y constantemente recorrer en busca de basura podría ser costoso.
-
-
-[Ansi common lisp cap 3 (link de descarga pdf)](https://mafiadoc.com/ansi-common-lisp-paul-grahampdf_59b625c51723dddcc6daf94d.html)
 
 ## Control de flujo
 
-Common Lisp proporciona una variedad de estructuras especiales para organizar programas. Las mismas se implementan como formas especiales o como macros. En general, los programas Lisp se escriben como una gran colección de pequeñas funciones, cada una de las cuales implementa una operación simple. Estas funciones funcionan llamándose entre sí, por lo que las operaciones más grandes se definen en términos de las más pequeñas. Las funciones de Lisp pueden recurrir a sí mismas de forma recursiva, ya sea directa o indirectamente.
+- Estructuras para organizar programas: formas especiales(flet, etiquetas) o macros(macrolet).
 
-Las funciones definidas localmente (flet, etiquetas) y macros (macrolet) son bastante versátiles. La nueva función de macro de símbolos permite una flexibilidad aún más sintáctica.
+- Versatilidad en funciones definidas localmente y macros.
 
-Si bien el lenguaje Lisp tiene un estilo más aplicativo que orientado a declaraciones, proporciona muchas operaciones que producen efectos secundarios y, en consecuencia, requiere construcciones para controlar la secuencia de los efectos secundarios. `progn`, es más o menos equivalente a un bloque de inicio-fin con todos sus puntos y comas, ejecuta varias formas secuencialmente, descartando los valores de todos menos el último. Muchas construcciones de control de Lisp incluyen secuenciación implícita, en cuyo caso se dice que proporcionan un `implicit progn`.
+- Facilidad de iteración general. 
 
-Para los ciclos, Common Lisp proporciona la facilidad de iteración general y nos facilita la iteración y mapeo especificamente sobre varias estructuras de datos.
+- Facilidad de iteración y mapeo en estructura de datos.
 
-Common Lisp proporciona los condicionales unidireccionales simples `when` y `unless`, el condicional bidireccional simple `if`, y los condicionales multidireccionales más generales como `cond` y `case`.
+- Condicionales unidireccionales simples `when` y `unless`.
 
-Se proporcionan construcciones para realizar salidas no locales con diversas disciplinas de alcance: `block`, `return`, `return-from`, `catch`, y `throw`.
+- Condicional bidireccional simple `if`.
 
-[Common Lisp the Language - Control Structure](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node76.html)
-[Data and Control Flow (ejemplos de funciones y macros)](https://mr.gy/ansi-common-lisp/Data-and-Control-Flow.html#Data-and-Control-Flow)
+- Condicionales multidireccionales `cond` y `case`.
 
 ## TDA
+
 ### Tablas de hash
 #### Introducción
 Las tablas de hash son una importante estructura de datos, que asocian claves con valores de una manera muy eficiente. Los hashes son preferibles por sobre listas cuando se le da importancia a los tiempos de búsqueda, pero son más complejos lo cual hace que las listas sean las elegidas cuando solamente hay unos pocos pares clave-valor a mantener.
@@ -774,14 +744,6 @@ HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutoria
 
 ## Transparencia referencial: equals can be replaced by equals
 
-## Manejo de memoria
-
-## Recursividad
-
-> Recursive computations are at the heart of declarative programming.
-
-~ Peter Van-Roy, Concepts, Techniques, and Models of Computer Programming
-
 ## Manejo de concurrencia
 
 Solo en librerías.
@@ -825,6 +787,16 @@ Los errores puede ser señalizados por una amplia variedad de razones. Muchas fu
 ## Paralelismo
 
 ## Code vs Data
+
+- Dualidad entre el codigo y la data.
+
+- Todo es una lista por ende tanto el código, como la data se escriben de la misma forma
+
+- Toda expresión se puede interpretar de las dos maneras.
+	- Se interpreta como data usando `quote`
+	- Se interpreta como code usando `eval`
+	
+- Misma expresión que se puede leer de ambas formas y permite swapear dependiendo que necesite.
 
 [Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
 
