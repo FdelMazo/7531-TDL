@@ -808,6 +808,11 @@ Los errores puede ser señalizados por una amplia variedad de razones. Muchas fu
 
 [Learn X in Y minutes, Where X=Common Lisp](https://learnxinyminutes.com/docs/common-lisp/)
 
+- notacion polaca
+
+- kebab case
+
+
 ## Expresiones -> átomos y listas
 
 ```lisp
