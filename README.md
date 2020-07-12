@@ -155,6 +155,8 @@ o
 - Existen otros lenguajes multiparadigma como 
 	- Python: éste además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones
 	- Oz: incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
+	
+In func­tional program­ming, func­tions avoid two habits common in other languages: muta­tion (= changing data in-place rather than returning a value) and relying on state (= extra context that’s not provided as input, for instance global vari­ables).
 
 ## Compilado/interpretado
 
@@ -243,8 +245,15 @@ https://youtu.be/dw-y3vNDRWk
 
 The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.
 
+https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_vmsLq
+
+https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_pwJR1
+
+
+"language-oriented program­ming"
 
 ### Macros
+
 
 - En Lisp, una macro es una función que genera código de Lisp. La forma más sencilla de pensarlo sería como una transformación de código. Cuando se llama a una macro en el código:
 1. Se arma el código en base a la definición `defmacro` de la misma.
@@ -377,6 +386,8 @@ En el ejemplo se puede observar que `var` se expande al valor que corresponde (p
 
 ## Expression oriented / Simbolico
 
+https://beautifulracket.com/appendix/why-racket-why-lisp.html
+
 Usa S-Expressions: Simbolic expression
 
 Lisp is an expression oriented language. Unlike most other languages, no distinction is made between "expressions" and "statements";[dubious – discuss] all code and data are written as expressions. When an expression is evaluated, it produces a value (in Common Lisp, possibly multiple values), which can then be embedded into other expressions. Each value can be any data type.
@@ -384,6 +395,8 @@ Lisp is an expression oriented language. Unlike most other languages, no distinc
 https://en.wikipedia.org/wiki/Expression-oriented_programming_language
 
 ## Homoiconicidad ("Code as Data")
+
+"This means that the way you think about a program­ming problem can be quite close to the way you actu­ally program it."
 
 - Gracias a las S-Expressions
 
