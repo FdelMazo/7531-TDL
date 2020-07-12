@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <title>LISP</title>
+  <title>(Common) LISP</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -97,11 +97,11 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">LISP</h1>
+  <h1 class="title">(Common) LISP</h1>
   <p class="author"><div class="line-block">del Mazo, Federico - 100029<br />
-di Santo, Javier - XXXXXX<br />
-Dvorkin, Camila - XXXXX<br />
-Secchi, Anita - XXXXXX</div></p>
+Di Santo, Javier - 101696<br />
+Dvorkin, Camila - 101109<br />
+Secchi, Anita - 99131</div></p>
 </section>
 
 <section class="slide level2">
@@ -109,8 +109,8 @@ Secchi, Anita - XXXXXX</div></p>
 <p><a href="https://github.com/FdelMazo/7531-TDL"><img data-src="img/lisp.png" /></a></p>
 </section>
 <section>
-<section id="historia" class="title-slide slide level1">
-<h1>Historia</h1>
+<section id="historia-fede" class="title-slide slide level1">
+<h1>Historia [Fede]</h1>
 <p><a href="https://campus.hesge.ch/Daehne/2004-2005/Langages/Lisp.htm">Early LISP History (1956 - 1959) ~ Herbert Stoyan</a></p>
 <p><a href="http://www-formal.stanford.edu/jmc/history/lisp/lisp.html">History of Lisp ~ John McCarthy</a></p>
 <p><a href="http://www.paulgraham.com/icad.html">Revenge of the Nerds ~ Paul Graham</a></p>
@@ -179,24 +179,336 @@ Secchi, Anita - XXXXXX</div></p>
 <li><p>Funciones compiladas e interpretadas pueden ser intercambiadas libremente.</p></li>
 </ul></li>
 </ul>
+</section>
+<section id="cálculo-lambda" class="slide level2">
+<h2>Cálculo Lambda</h2>
+<p>https://youtu.be/eis11j_iGMs</p>
+<p>?x. x?x.</p>
+<p>(lambda (x) (x*x))</p>
+<p>The power of the lambda notation is in its generality. The lambda notation will handle the case in which the value of a function is a function. In many computer languages the value of a function must be an element of a set, such as a number or a string or the label of a function. In the lambda notation the value can be a function, not the name or label of a function but a function itself.</p>
+<p>https://www.sjsu.edu/faculty/watkins/lambda.htm</p>
+<ul>
+<li>Calculo Lambda no tipado: expresa <em>mas</em> que el calculo lambda tipado</li>
+</ul>
 </section></section>
 <section>
 <section id="caracteristicas-del-lenguaje" class="title-slide slide level1">
 <h1>Caracteristicas del Lenguaje</h1>
 
 </section>
-<section id="pionero" class="slide level2">
-<h2>Pionero</h2>
+<section id="paradigma-fede" class="slide level2">
+<h2>Paradigma [Fede]</h2>
+<dl>
+<dt><img data-src="img/declarative.png" /></dt>
+<dd><p>Peter Van-Roy, Concepts, Techniques, and Models of Computer Programming</p>
+</dd>
+</dl>
+<ul>
+<li><p>Programación declarativa: definir el <em>qué</em> sin explicar el <em>cómo</em></p>
+<ul>
+<li><p>Programación funcional: los componentes se definen como funciones matemáticas</p>
+<ul>
+<li><p>Determinístico</p></li>
+<li><p>Misma entrada garantiza misma salida</p></li>
+<li><p>No hay estado</p></li>
+<li><p>No hay efectos secundarios</p></li>
+<li><p>Programación de alto orden:</p>
+<ul>
+<li><p>Funciones como ciudadanos de primera clase: se pueden usar en cualquier contexto</p></li>
+<li><p>Funciones de alto orden: poder recibir como parametro o retornar funciones</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Lisp es un lenguaje de programacón de tipo multiparadigma: soporta más de un paradigma de programación</p></li>
+<li><p>Lisp es orientado a objetos, reflexivo, imperativo y funcional: el programador será capaz de crear programas usando más de un estilo de programación, sin estar forzado a tomar un estilo en particular.</p></li>
+<li><p>Existen otros lenguajes multiparadigma como - Python: éste además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones - Oz: incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.</p></li>
+</ul>
+<p>In func­tional program­ming, func­tions avoid two habits common in other languages: muta­tion (= changing data in-place rather than returning a value) and relying on state (= extra context that’s not provided as input, for instance global vari­ables).</p>
+<ul>
+<li>¿¿dataflow vs logicflow??</li>
+</ul>
+</section>
+<section id="pionero-cami" class="slide level2">
+<h2>Pionero [Cami]</h2>
 <p><a href="http://www.paulgraham.com/diff.html">What Made Lisp Different ~ Paul Graham</a></p>
 <p><a href="https://www.informit.com/articles/article.aspx?p=1671639">Influential Programming Languages, Lisp ~ David Chisnall</a></p>
 <ul>
-<li><p><strong>if-then-else</strong>: Las expresiones condicionales fueron definidas en el paper de 1960, con <code>cond</code>.</p></li>
-<li><p><strong>Funciones</strong>: Las funciones como ciudadanos de primera clase</p></li>
+<li><p><strong>if-then-else</strong>: Las expresiones condicionales fueron definidas en el paper de 1960, con <code>cond</code>. Un condicional es un una construcción if-then-else; hoy en día los damos por hecho. Fueron inventados por McCarthy en el transcurso de desarrollo de Lisp.</p></li>
+<li><p><strong>Funciones</strong>: Las funciones son objectos de primera clase, son un tipo de dato como lo son los enteros, cadenas, etc. Tienen una representación literal, pueden ser asignadas a variables, pasadas como argumentos (parámetros)…</p></li>
 <li><p><strong>Recursión</strong>: Ya existía matemáticamente, pero nunca en un lenguaje de programación</p></li>
+<li><p><strong>Un nuevo concepto en variables</strong>: Todas las variables son efectivamente punteros. Los valores son aquellos que <em>tienen tipos</em>, no variables. Asignar variables significa copiar punteros, y no aquello a lo que apuntan.</p></li>
 <li><p><strong>Garbarge Collection</strong>: Con un diseño primitivo (no era concurrente), LISP fue el primer lenguaje en utilizar garbage collection automático.</p></li>
 <li><p><strong>Tipado dinámico</strong>: No hay que explicitar si algo es un átomo o una lista.</p></li>
 <li><p><strong>Interactividad</strong>: Gracias al interprete REPL se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente.</p></li>
+<li><p><strong>El lenguaje completo está siempre disponible</strong>: No hay una distinción real entre tiempo de lectura, tiempo de compilación y tiempo de ejecución. Uno puede compilar o ejecutar mientras lee, leer o ejecutar código mientras compila, leer o compilar mientras se ejecuta el código.</p></li>
 <li><p><strong>Map y Reduce</strong>: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.</p></li>
+</ul>
+</section>
+<section id="evaluacion-cami" class="slide level2">
+<h2>Evaluacion [Cami]</h2>
+<ul>
+<li><p>Eager / Data-driven evaluation</p></li>
+<li><p>Lisp is usually evaluated eagerly. In Common Lisp, arguments are evaluated in applicative order (‘leftmost innermost’).</p></li>
+</ul>
+</section>
+<section id="compiladointerpretado-cami" class="slide level2">
+<h2>Compilado/interpretado [Cami]</h2>
+<p><a href="https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700">How is Lisp dynamic and compiled? - StackOverflow</a></p>
+<ul>
+<li><p>Las funciones pueden ser compiladas de forma individual o por el archivo.</p></li>
+<li><p>Funciones compiladas o interpretadas se comportan de la misma forma, excepto con el comando <code>compiled-f unction-p</code> que verifica si la función pasada por parámetro fue compilada.</p></li>
+<li><p>Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos.</p></li>
+<li><p>El compilador puede recibir instrucciones sobre qué tan dinámico debe ser el código compilado</p></li>
+<li><p>Intérprete REPL(Read-Eval-Print-Loop): se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente</p></li>
+<li><p>La función <em>eval</em>, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario</p></li>
+<li><p>No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura:</p>
+<pre><code>  - Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
+  - Ejecutar código en tiempo de compilación es la base de las macros.
+  - Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
+  - Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
+
+      (Interpretado || Compilado) -&gt; True
+
+      &lt;&lt; es interactivo o interpretado???&gt;&gt;</code></pre></li>
+</ul>
+</section>
+<section id="tipado-cami" class="slide level2">
+<h2>Tipado [Cami]</h2>
+<ul>
+<li><p>Tipado dinámico: las verificaciones de tipo se realizan en tiempo de ejecución y las variables se pueden configurar de forma predeterminada para todo tipo de objetos.</p></li>
+<li><p>Lisp es dinámico: tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución, se le permite al usuario agregar, cambiar y eliminar - funciones - construcciones sintácticas - tipos de datos - sintáxis</p></li>
+<li><p>Explota en runtime</p>
+<ul>
+<li><p>Tipado fuerte: explota</p></li>
+<li><p>Tipado dinamico: en runtime</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="lexicalstaticdynamic-scoping-cami" class="slide level2">
+<h2>Lexical/Static/dynamic scoping [Cami]</h2>
+<ul>
+<li>Identificador asociado con el entorno más reciente al declarar con <code>special</code>.</li>
+</ul>
+<p>Ejemplo:</p>
+<pre><code>(le t ((x 20))
+    (declare (specia l x))
+    (foo))</code></pre>
+</section>
+<section id="expression-oriented-simbolico-fede" class="slide level2">
+<h2>Expression oriented / Simbolico [Fede]</h2>
+<p>https://beautifulracket.com/appendix/why-racket-why-lisp.html</p>
+<p>Usa S-Expressions: Simbolic expression</p>
+<p>Lisp is an expression oriented language. Unlike most other languages, no distinction is made between “expressions” and “statements”;[dubious – discuss] all code and data are written as expressions. When an expression is evaluated, it produces a value (in Common Lisp, possibly multiple values), which can then be embedded into other expressions. Each value can be any data type.</p>
+<p>https://en.wikipedia.org/wiki/Expression-oriented_programming_language</p>
+<p>Transparencia referencial: equals can be replaced by equals</p>
+</section>
+<section id="metaprogramming-extensibilidad-javi" class="slide level2">
+<h2>Metaprogramming / Extensibilidad [Javi]</h2>
+<p>https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&amp;</p>
+<p>cahpter 4 de practical common lisp</p>
+<p>Further, because Lisp code has the same structure as lists, macros can be built with any of the list-processing functions in the language. In short, anything that Lisp can do to a data structure, Lisp macros can do to code. In contrast, in most other languages, the parser’s output is purely internal to the language implementation and cannot be manipulated by the programmer.</p>
+<p>https://youtu.be/dw-y3vNDRWk</p>
+<p>The Lisp feature that makes this trivially easy is its macro system. I can’t emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.</p>
+<p>https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_vmsLq</p>
+<p>https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_pwJR1</p>
+<p>“language-oriented program­ming”</p>
+<ul>
+<li><p>comparar como se extiende python o C normalmente https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s6-extensibility y http://www.gigamonkeys.com/book/macros-standard-control-constructs.html</p></li>
+<li><p>Hablar de extensiones “populares” (importantes) del lenguaje</p>
+<ul>
+<li><p>Darle mucha bola a CLOS! que es importantisimo en la historia de lisp (chusmear relacion con smalltalk!!!) (chusmear como CLOS es de lo mas “puro” en cuanto a Object Oriented)</p></li>
+<li><p>Concurrencia</p></li>
+<li><p>String interpolation</p></li>
+</ul></li>
+</ul>
+<p>Solo en librerías.</p>
+<ul>
+<li><p><a href="https://common-lisp.net/project/bordeaux-threads/">Bordeaux Threads</a> para la creación de hilos.</p></li>
+<li><p><a href="https://github.com/lmj/lparallel">lparallel</a> para una implementación más compleja que incluye comunicación entre hilos (colas, promesas, etc).</p></li>
+<li><p><a href="https://github.com/orthecreedence/blackbird">Blackbird</a> implementación de promesas (la dejo porque no la encontré en cl-awesole).</p></li>
+<li><p>“los macros son <strong>parte</strong> de lo que es la extensibilidad de list” –&gt; pie para entrar a la siguiente seccion</p></li>
+</ul>
+</section>
+<section id="macros-javi" class="slide level2">
+<h2>Macros [Javi]</h2>
+<ul>
+<li><p>Esta seccion que sea bien teorica con codigo (pero poco codigo). Los ejemplos ejemplos van en sintaxis</p></li>
+<li><p>En Lisp, una macro es una función que genera código de Lisp. La forma más sencilla de pensarlo sería como una transformación de código. Cuando se llama a una macro en el código:</p></li>
+</ul>
+<ol type="1">
+<li>Se arma el código en base a la definición <code>defmacro</code> de la misma.</li>
+<li>Se evalúa el nuevo código en el lugar de la llamada a la macro.</li>
+</ol>
+<p>A partir de esto, se pueden usar macros para simplificar y reutilizar código, o hasta manipular la sintaxis del lenguaje.</p>
+<ul>
+<li>Algunos operadores:
+<ul>
+<li><code>Backquote `</code>: Funciona similar a <code>quote</code>. (se explica antes?)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1"></a>`(a, b, c)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">; equivalente a escribir</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>&#39;(a b c)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>(<span class="kw">list</span> &#39;a &#39;b &#39;c)</span></code></pre></div>
+<ul>
+<li><code>Comma ,</code>: Combinado con <code>backquote</code> sirve para “activar y desactivar” el efecto de <code>backquote</code>. Es útil al escribir macros:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1"></a>`(a ,b c ,d)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">; equivalente a escribir</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>(<span class="kw">list</span> &#39;a b &#39;c d)</span></code></pre></div>
+<ul>
+<li><code>Comma-at ,@</code>: Dada una expresión que resuelve una lista, se puede utilizar <code>,@</code> para reemplazar esta lista por la secuencia de sus mismos elementos (elimina el paréntesis):</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1"></a>`(a b c)    -&gt;  (A (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) C)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>`(a ,@b c)  -&gt;  (A <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> C)</span></code></pre></div>
+<ul>
+<li><code>(nil! x)</code>: Cambiar el valor de la variable <code>x</code> a <code>nil</code>. En el ejemplo se puede observar que <code>var</code> se expande al valor que corresponde (por el operador <code>,</code>), mientras que <code>setq</code> y <code>nil</code> no se evalúan.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1"></a>(<span class="kw">defmacro</span><span class="fu"> nil</span>! (var)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  `(<span class="kw">setq</span> ,var <span class="kw">nil</span>))</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">; se llama de la forma</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>(nil! x)</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">; genera el código</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>(<span class="kw">setq</span> x <span class="kw">nil</span>)</span></code></pre></div>
+<ul>
+<li><code>(if test then else)</code>: Ya se encuentra definida en Lisp. Tiene que ser una macro para evaluar la expresión solo cuando corresponda. Una posible implementación utilizaría la macro <code>cond</code>, que evalúa solo la primer expresión cuya condición sea true:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1"></a>(<span class="kw">defmacro</span><span class="fu"> if </span>(<span class="kw">condition</span> then else)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  `(<span class="kw">cond</span> (,<span class="kw">condition</span> ,then)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>         (<span class="kw">t</span> ,else)))</span></code></pre></div>
+<ul>
+<li><code>(when test do1 do2 ...)</code>: Cuando la expresión <code>test</code> devuelve <code>true</code>, se ejecutan todas las expresiones <code>do</code>, devolviendo el valor de la última. Para que se expandan todas las expresiones <code>do</code> se las combina en una lista <code>&amp;rest body</code> y luego se utiliza el operador <code>,@</code>:</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1"></a>(<span class="kw">defmacro</span><span class="fu"> our-when </span>(test &amp;<span class="kw">rest</span> body)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  `(<span class="kw">if</span> ,test</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    (<span class="kw">progn</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>      ,@body)))</span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">; se llama de la forma</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>(<span class="kw">when</span> test do1 do2 do3)</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">; genera el código</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>(<span class="kw">if</span> (eligible obj)</span>
+<span id="cb8-11"><a href="#cb8-11"></a>  (<span class="kw">progn</span> do1</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    do2</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    do3</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    obj))</span></code></pre></div>
+<ul>
+<li><code>infix</code>: Las macros permiten cambiar el orden de las expresiones sin evaluarlas. Entonces, se podría hacer una macro <code>infix</code> para tener operadores matemáticos en notación de infijo en vez de la notación polaca de Lisp. Existen implementaciones completas de esta macro para que funcione con más de una operación, pero para mostrar la más simple:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1"></a>(<span class="kw">defmacro</span><span class="fu"> infix </span>(arg1 op arg2)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  `(,op ,arg1 ,arg2))</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">; se llama de la forma</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>(infix <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">; genera el código</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>(<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>)</span></code></pre></div>
+<ul>
+<li><code>lcomp</code>: Replicar la sintaxis de compresión de listas de Python.</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb10-1"><a href="#cb10-1"></a>(<span class="kw">defmacro</span><span class="fu"> lcomp </span>(expression for var in <span class="kw">list</span> conditional conditional-test)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>  (<span class="kw">let</span> ((result (<span class="kw">gensym</span>)))</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    `(<span class="kw">let</span> ((,result <span class="kw">nil</span>))</span>
+<span id="cb10-4"><a href="#cb10-4"></a>       (<span class="kw">loop</span> for ,var in ,<span class="kw">list</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>            ,conditional ,conditional-test</span>
+<span id="cb10-6"><a href="#cb10-6"></a>            <span class="kw">do</span> (<span class="kw">setq</span> ,result (<span class="kw">append</span> ,result (<span class="kw">list</span> ,expression))))</span>
+<span id="cb10-7"><a href="#cb10-7"></a>       ,result)))</span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co">; se llama de la forma</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>(lcomp x for x in (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span>) <span class="kw">if</span> (<span class="op">=</span> (<span class="kw">mod</span> x <span class="dv">2</span>) <span class="dv">0</span>))</span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="co">; una vez generado y ejecutado el código devuelve</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>(<span class="dv">2</span> <span class="dv">4</span> <span class="dv">6</span>)</span></code></pre></div>
+<ul>
+<li><code>let</code>:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb11-1"><a href="#cb11-1"></a>(<span class="kw">defmacro</span><span class="fu"> let </span>(binds &amp;body body)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  ‘((<span class="kw">lambda</span> ,(<span class="kw">mapcar</span> #’(<span class="kw">lambda</span> (x)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>                         (<span class="kw">if</span> (<span class="kw">consp</span> x) (<span class="kw">car</span> x) x))</span>
+<span id="cb11-4"><a href="#cb11-4"></a>                        binds)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>      ,@body)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    ,@(<span class="kw">mapcar</span> #’(<span class="kw">lambda</span> (x)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>                  (<span class="kw">if</span> (<span class="kw">consp</span> x) (<span class="kw">cadr</span> x) <span class="kw">nil</span>))</span>
+<span id="cb11-8"><a href="#cb11-8"></a>              binds)))</span></code></pre></div>
+<ul>
+<li><code>while</code>:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb12-1"><a href="#cb12-1"></a>(<span class="kw">defmacro</span><span class="fu"> while </span>(test &amp;body body)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  ‘(<span class="kw">do</span> ()</span>
+<span id="cb12-3"><a href="#cb12-3"></a>       ((<span class="kw">not</span> ,test))</span>
+<span id="cb12-4"><a href="#cb12-4"></a>       ,@body))</span></code></pre></div>
+<ul>
+<li><code>till</code>:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb13-1"><a href="#cb13-1"></a>(<span class="kw">defmacro</span><span class="fu"> till </span>(test &amp;body body)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  ‘(<span class="kw">do</span> ()</span>
+<span id="cb13-3"><a href="#cb13-3"></a>       (,test)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>       ,@body))</span></code></pre></div>
+<ul>
+<li><code>for</code>:</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb14-1"><a href="#cb14-1"></a>(<span class="kw">defmacro</span><span class="fu"> for </span>((var start stop) &amp;body body)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  (<span class="kw">let</span> ((gstop (<span class="kw">gensym</span>)))</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    ‘(<span class="kw">do</span> ((,var ,start (<span class="op">1+</span> ,var))</span>
+<span id="cb14-4"><a href="#cb14-4"></a>          (,gstop ,stop))</span>
+<span id="cb14-5"><a href="#cb14-5"></a>         ((<span class="op">&gt;</span> ,var ,gstop))</span>
+<span id="cb14-6"><a href="#cb14-6"></a>       ,@body)))</span></code></pre></div>
+</section>
+<section id="homoiconicidad-code-as-data-javi" class="slide level2">
+<h2>Homoiconicidad (“Code as Data”) [Javi]</h2>
+<p>“This means that the way you think about a program­ming problem can be quite close to the way you actu­ally program it.”</p>
+<ul>
+<li><p>Gracias a las S-Expressions</p></li>
+<li><p>Codigo y estructuras de datos intercambiable</p></li>
+<li><p>La representación interna del programa es la que se lee</p></li>
+<li><p>Todo es una lista -&gt; Code and Data are made out of the same data structures, and the quote operator is the way we distinguish between them</p></li>
+<li><p>Reflexion mucho mas sencilla</p></li>
+<li><p>Lisp functions can be manipulated, altered or even created within a Lisp program without lower-level manipulations</p></li>
+<li><p>Extensibilidad mucho mas facil</p></li>
+<li><p>List of lists ??? Tree!</p></li>
+<li><p>And how do we deal with trees? Recursion!</p></li>
+<li><p>El abstract syntax tree de una funcion se puede manipualr como una estructura de datos y luego evaluar</p></li>
+<li><p>s-expressions can represent arbitrary tree expressions, much like the usual abstract syntax tree</p></li>
+<li><p>anything that Lisp can do to a data structure, Lisp macros can do to code</p></li>
+</ul>
+<p>This feature makes it easy to develop efficient languages within languages. For example, the Common Lisp Object System can be implemented cleanly as a language extension using macros. This means that if an application needs a different inheritance mechanism, it can use a different object system. This is in stark contrast to most other languages; for example, Java does not support multiple inheritance and there is no reasonable way to add it.</p>
+<ul>
+<li><p>Las s-expresiones son binary trees porque son o atomos o (x y) siendo (x . y) un dotted pair (x hijo izq, y hijo der)</p></li>
+<li><p>(hoy por hoy se usa el sintacic sugar LIST, que es nada mas concatenar mil dotted pairs. (x y z) es (x . (y . (z . null))))</p></li>
+<li><p>foto binary tree</p></li>
+<li><p>Dualidad entre el codigo y la data.</p></li>
+<li><p>Todo es una lista por ende tanto el código, como la data se escriben de la misma forma</p></li>
+<li><p>Toda expresión se puede interpretar de las dos maneras. - Se interpreta como data usando <code>quote</code> - Se interpreta como code usando <code>eval</code></p></li>
+<li><p>Misma expresión que se puede leer de ambas formas y permite swapear dependiendo que necesite.</p></li>
+</ul>
+<p><a href="https://youtu.be/dw-y3vNDRWk">Code vs Data (Metaprogramming) ~ Computerphile</a></p>
+</section>
+<section id="manejo-de-memoria-anita" class="slide level2">
+<h2>Manejo de memoria [Anita]</h2>
+<ul>
+<li><p>Las variables de Lisp apuntan a sus valores.</p></li>
+<li><p>Todos los valores son conceptualmente un puntero.</p></li>
+<li><p>Manejo de memoria automática-&gt; Consing.</p></li>
+<li><p>Sistema de garbage collection.</p></li>
+<li><p>Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero.</p></li>
+<li><p>Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).</p></li>
+<li><p>Si o Si hablar de garbage collection aca!!!</p></li>
+</ul>
+</section>
+<section id="manejo-de-errores-anita" class="slide level2">
+<h2>Manejo de errores [Anita]</h2>
+<p>Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.</p>
+<p>-Work in progress, pls do not touch</p>
+<p><a href="https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000">Common Lisp the Language - Errors</a></p>
+</section>
+<section id="tda-anita" class="slide level2">
+<h2>TDA [Anita]</h2>
+<ul>
+<li><p>que te da el lenguaje?</p></li>
+<li><p>“mas tarde vemos un ejemplo concreto: la tabla de hash”</p></li>
 </ul>
 </section></section>
 <section>
@@ -205,50 +517,53 @@ Secchi, Anita - XXXXXX</div></p>
 <p><a href="http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf">LISP 1.5 Programmer’s Manual</a></p>
 <p><a href="http://clhs.lisp.se/Front/index.htm">Common Lisp HyperSpec</a></p>
 <p><a href="https://learnxinyminutes.com/docs/common-lisp/">Learn X in Y minutes, Where X=Common Lisp</a></p>
+<ul>
+<li><p>notacion polaca</p></li>
+<li><p>kebab case</p></li>
+</ul>
 </section>
 <section id="expresiones---átomos-y-listas" class="slide level2">
 <h2>Expresiones -&gt; átomos y listas</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">;; Todo en LISP se compone de symbolic expressions</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="dv">1</span> <span class="co">; Una s-expression puede ser un átomo -&gt; irreducible</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="co">; Una s-expression puede ser una lista -&gt; partible</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">;; Las s-expressions evaluan a valores</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="dv">2</span> <span class="co">; evalua a 2</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>(<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; evalua a 5</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>(<span class="op">+</span> (<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="dv">2</span>) <span class="co">; (+ 2 3) evalua a 5 -&gt; todo evalua a 7</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">;; Acá comienza la dualidad entre código (la lista) y data (el átomo)</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">;; Ambos son S-expressions</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">;; Todo en LISP se compone de symbolic expressions</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="dv">1</span> <span class="co">; Una s-expression puede ser un átomo -&gt; irreducible</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="co">; Una s-expression puede ser una lista -&gt; partible</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co">;; Las s-expressions evaluan a valores</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="dv">2</span> <span class="co">; evalua a 2</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>(<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; evalua a 5</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>(<span class="op">+</span> (<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="dv">2</span>) <span class="co">; (+ 2 3) evalua a 5 -&gt; todo evalua a 7</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">;; Acá comienza la dualidad entre código (la lista) y data (el átomo)</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co">;; Ambos son S-expressions</span></span></code></pre></div>
 </section>
 <section id="code-data---eval-quote" class="slide level2">
 <h2>Code &amp; Data -&gt; <code>eval</code>, <code>quote</code></h2>
-<p><a href="https://youtu.be/dw-y3vNDRWk">Code vs Data (Metaprogramming) ~ Computerphile</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">;; El operador quote toma una s-expression y devuelve el código</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>) <span class="co">; evalua a 2</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>(<span class="kw">quote</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a (+ 1 1)</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>(&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; quote se abrevia a &#39;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">;; El operador eval toma una s-expresion y devuelve su valor</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>(<span class="kw">eval</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a 2</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>(<span class="kw">eval</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a 2</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>(<span class="kw">eval</span> &#39;&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a (+ 1 1)</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">;; 1 + 1 es 2</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">;; &quot;1 + 1&quot; es el código 1 + 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">;; El operador quote toma una s-expression y devuelve el código</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>) <span class="co">; evalua a 2</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>(<span class="kw">quote</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a (+ 1 1)</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>(&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; quote se abrevia a &#39;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="co">;; El operador eval toma una s-expresion y devuelve su valor</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>(<span class="kw">eval</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a 2</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>(<span class="kw">eval</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a 2</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>(<span class="kw">eval</span> &#39;&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)) <span class="co">; evalua a (+ 1 1)</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="co">;; 1 + 1 es 2</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">;; &quot;1 + 1&quot; es el código 1 + 1</span></span></code></pre></div>
 <p>Puedo hacer un programa entero, ponerle un <code>'</code> adelante, y estoy tratando con el <strong>código</strong> de mi programa.</p>
 </section>
 <section id="chequeando-valores---atom-listp" class="slide level2">
 <h2>Chequeando Valores -&gt; <code>atom</code>, <code>listp</code></h2>
 <p>¿Es código o data?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">;; atom devuelve si algo es un átomo o no</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>(<span class="kw">atom</span> <span class="dv">1</span>) <span class="co">; True (el valor de la expresion 1 es un átomo)</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>(<span class="kw">atom</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; True (el valor de la expresion (+ 1 2) es un átomo)</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>(<span class="kw">atom</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; Nil (la expresion (+ 1 2) es una lista)</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">;; listp devuelve si algo es una lista o no</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>(<span class="kw">listp</span> <span class="dv">1</span>) <span class="co">; Nil (1 no es una lista)</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>(<span class="kw">listp</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; Nil (la expresion evalua a 3, no es una lista)</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>(<span class="kw">listp</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; True (estoy hablando del código de la expresion, la lista)</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">;; atom devuelve si algo es un átomo o no</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>(<span class="kw">atom</span> <span class="dv">1</span>) <span class="co">; True (el valor de la expresion 1 es un átomo)</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>(<span class="kw">atom</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; True (el valor de la expresion (+ 1 2) es un átomo)</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>(<span class="kw">atom</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; Nil (la expresion (+ 1 2) es una lista)</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co">;; listp devuelve si algo es una lista o no</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>(<span class="kw">listp</span> <span class="dv">1</span>) <span class="co">; Nil (1 no es una lista)</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>(<span class="kw">listp</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; Nil (la expresion evalua a 3, no es una lista)</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>(<span class="kw">listp</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; True (estoy hablando del código de la expresion, la lista)</span></span></code></pre></div>
 </section>
 <section id="procesar-listas---car-cdr-cons-y-list" class="slide level2">
 <h2>Procesar listas -&gt; <code>car</code>, <code>cdr</code>, <code>cons</code> y <code>list</code></h2>
@@ -260,41 +575,380 @@ Secchi, Anita - XXXXXX</div></p>
 <li><p>El resto es otra lista, el <strong>cdr</strong></p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">;; car recibe una lista y devuelve su primer elemento</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>(<span class="kw">car</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; explota, no recibio una lista</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>(<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; devuelve +</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">;; cdr recibe una lista y devuelve el resto (todo menos el primer elemento)</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>(<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; devuelve (1 2)</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">;; cons crea un cons de un valor seguido de una lista</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">;; AKA agrega un valor al principio de la lista</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>(<span class="kw">cons</span> &#39;<span class="dv">1</span> &#39;(<span class="dv">2</span> <span class="dv">3</span>)) <span class="co">; devuelve (1 2 3)</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>(<span class="kw">cons</span> &#39;+ &#39;(<span class="dv">2</span> <span class="dv">3</span>)) <span class="co">; devuelve (+ 2 3)</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">;; list compone una lista de sus argumentos</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>(<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (1 2 3)</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>(<span class="kw">list</span> &#39;+ <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (+ 2 3)</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co">;; si tan solo hubiese una manera de ejecutar esta expresion!</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">;; car recibe una lista y devuelve su primer elemento</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>(<span class="kw">car</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; explota, no recibio una lista</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>(<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; devuelve +</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="co">;; cdr recibe una lista y devuelve el resto (todo menos el primer elemento)</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>(<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; devuelve (1 2)</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="co">;; cons crea un cons de un valor seguido de una lista</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="co">;; AKA agrega un valor al principio de la lista</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>(<span class="kw">cons</span> &#39;<span class="dv">1</span> &#39;(<span class="dv">2</span> <span class="dv">3</span>)) <span class="co">; devuelve (1 2 3)</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>(<span class="kw">cons</span> &#39;+ &#39;(<span class="dv">2</span> <span class="dv">3</span>)) <span class="co">; devuelve (+ 2 3)</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a></span>
+<span id="cb18-13"><a href="#cb18-13"></a><span class="co">;; list compone una lista de sus argumentos</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a>(<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (1 2 3)</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a>(<span class="kw">list</span> &#39;+ <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (+ 2 3)</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a><span class="co">;; si tan solo hubiese una manera de ejecutar esta expresion!</span></span></code></pre></div>
 </section>
 <section id="procesar-una-s-expression---programming-bottom-up" class="slide level2">
 <h2>Procesar una s-expression -&gt; Programming Bottom Up</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">;; Partimos de la expresion (+ 1 2)</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">;; La convertimos en el código de la expresion</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">;; Sacamos su operador -&gt; el +</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>(<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))</span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">;; Sacamos los operandos -&gt; el (1 2)</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>(<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))</span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">;; Empaquetamos esto nuevamente -&gt; (+ 1 2)</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>(<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)))</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">;; Evaluamos la expresion</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>(<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">;; Partimos de la expresion (+ 1 2)</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co">;; La convertimos en el código de la expresion</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>&#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)</span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="co">;; Sacamos su operador -&gt; el +</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>(<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))</span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="co">;; Sacamos los operandos -&gt; el (1 2)</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>(<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))</span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="co">;; Empaquetamos esto nuevamente -&gt; (+ 1 2)</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>(<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)))</span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="co">;; Evaluamos la expresion</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>(<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))))</span></code></pre></div>
+</section>
+<section id="control-de-flujo-tal-vez-sacarloo-convertirlo-en-buenos-ejemplos-de-codigo-de-whilesforsifsconds" class="slide level2">
+<h2>Control de flujo [Tal vez sacarlo?][o convertirlo en buenos ejemplos de codigo de whiles/fors/ifs/conds]</h2>
+<ul>
+<li><p>Estructuras para organizar programas: formas especiales(flet, etiquetas) o macros(macrolet).</p></li>
+<li><p>Versatilidad en funciones definidas localmente y macros.</p></li>
+<li><p>Facilidad de iteración general.</p></li>
+<li><p>Facilidad de iteración y mapeo en estructura de datos.</p></li>
+<li><p>Condicionales unidireccionales simples <code>when</code> y <code>unless</code>.</p></li>
+<li><p>Condicional bidireccional simple <code>if</code>.</p></li>
+<li><p>Condicionales multidireccionales <code>cond</code> y <code>case</code>.</p></li>
+</ul>
+</section>
+<section id="ejemplo-de-macros-javi" class="slide level2">
+<h2>Ejemplo de macros [Javi]</h2>
+<ul>
+<li><p>expandir macro</p></li>
+<li><p>Compararlo contra la definciion “canonica” de ese macro (lo que hay en el hyperspec)</p></li>
+<li><p>crear un propio macro</p></li>
+</ul>
+</section>
+<section id="closures-sacarlo-o-darle-mejor-forma-y-ponerlo-como-comparacion-a-oz-o-agregar-mas-cosas-tipicas-de-programacion-funcional-y-te-queda-un-popurri-de-3-o-4-features-de-fp" class="slide level2">
+<h2>Closures [Sacarlo? o darle mejor forma y ponerlo como comparacion a OZ? o agregar mas cosas tipicas de programacion funcional (y te queda un popurri de 3 o 4 features de FP)]</h2>
+<ul>
+<li>La variable debe persistir mientras la función lo haga.</li>
+<li>Variables léxicas válidas dentro del contexto en donde son definidas.</li>
+<li>Variable libre: Se continua haciendo referencia a una variable por fuera (mientras se continue usando el mismo contexto del cual fue definida).</li>
+<li>Lisp permite devolver una función como valor como cualquier otro objeto.</li>
+</ul>
+<p>A continuación se muestra un ejemplo. Por un lado, la función combine toma argumentos de cualquier tipo y los combina de forma apropiada. combiner toma un argumento y devuelve una función para combinar argumentos de cualquier tipo.</p>
+<pre><code>(defun combiner (x)
+    (typecase x
+        (number #&#39;+)
+        (list #&#39;append)
+        (t #&#39;list)))
+
+(defun combine (&amp;rest args)
+    (apply (combiner (car args))
+    args))</code></pre>
+</section>
+<section id="namespaces-fede---se-liga-un-poco-a-la-comparacion-con-scheme" class="slide level2">
+<h2>Namespaces [Fede -&gt; Se liga un poco a la comparacion con scheme]</h2>
+<ul>
+<li><p>Un simbolo puede referirse a:</p>
+<ul>
+<li>Una variable</li>
+<li>Una clase</li>
+<li>Una función</li>
+<li>Un operador especial</li>
+<li>Un macro</li>
+</ul></li>
+<li><p>Hay dos namespaces en LISP:</p>
+<ul>
+<li><p>Function namespace: funciones, operadores especiales, macros</p></li>
+<li><p>Variable namespace: variables, clases</p></li>
+</ul></li>
+<li><p>Lisp-1 (scheme) vs. Lisp-2 (clisp) debate</p></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">;; Defino una variable y una función con el mismo nombre</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>(<span class="kw">setq</span> X <span class="dv">1</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>(<span class="kw">defun</span><span class="fu"> X </span>(arg) (<span class="op">+</span> <span class="dv">10</span> arg))</span>
+<span id="cb21-4"><a href="#cb21-4"></a></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="co">; Un simbolo por defecto evalua al variable namespace</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>X <span class="co">; =&gt; 3</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="co">; Para referirme explicitamente al function namespace, llamo a `(function symbol)`</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>(<span class="kw">function</span> X) <span class="co">; =&gt; #&lt;FUNCTION X&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="co">; #&#39; es syntactic sugar de function</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>(#&#39;X) <span class="co">; =&gt; #&lt;FUNCTION X&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="co">; Hay que tener cuidado con lo que quiero</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a>(<span class="kw">funcall</span> X <span class="dv">3</span>) <span class="co">; Explota. Estoy llamando a la variable X</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>(<span class="kw">funcall</span> #&#39;X <span class="dv">3</span>) <span class="co">; =&gt; 13</span></span></code></pre></div>
+<p>https://wiki.c2.com/?SingleNamespaceLisp</p>
 </section></section>
 <section>
-<section id="desglosando-eval" class="title-slide slide level1">
-<h1>Desglosando <code>eval</code></h1>
+<section id="ejemplo-de-tda-tablas-de-hash-anita" class="title-slide slide level1">
+<h1>Ejemplo de TDA: Tablas de hash [Anita]</h1>
+
+</section>
+<section id="crear-una-tabla-de-hash-en-common-lisp" class="slide level2">
+<h2>Crear una tabla de hash en Common Lisp</h2>
+<ul>
+<li>función <code>make-hash-table</code></li>
+<li>No requiere ningún argumento.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1"></a>(<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a>(<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span>))</span></code></pre></div>
+<p>Sin embargo, el argumento opcional más usado es <code>:TEST</code>, que especifica la función utilizada para testear claves iguales.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb23-1"><a href="#cb23-1"></a>(<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>(<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal))</span></code></pre></div>
+</section>
+<section id="agregar-un-elemento-a-la-tabla" class="slide level2">
+<h2>Agregar un elemento a la tabla</h2>
+<ul>
+<li>función <code>gethash</code> en conjunto con la función <code>setf</code></li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb24-1"><a href="#cb24-1"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="dv">3</span>) <span class="co">; gethash recibe dos argumentos: la clave y el hash</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="dv">3</span></span></code></pre></div>
+</section>
+<section id="obtener-un-valor" class="slide level2">
+<h2>Obtener un valor</h2>
+<ul>
+<li>función <code>gethash</code> toma dos argumentos obligatorios: una clave y una tabla de hash</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb25-1"><a href="#cb25-1"></a><span class="op">*</span> (<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>TABLA</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="op">*</span> (<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal))</span>
+<span id="cb25-4"><a href="#cb25-4"></a>#&lt;HASH-TABLE :TEST EQUAL :COUNT <span class="dv">0</span> {10058B8553}<span class="op">&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="dv">3</span>)</span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="dv">3</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="op">*</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla)</span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="dv">3</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>T</span></code></pre></div>
+<p>En el siguiente ejemplo, guardamos NIL en el hash:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb26-1"><a href="#cb26-1"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave2&quot;</span> tabla) <span class="kw">nil</span>)</span>
+<span id="cb26-2"><a href="#cb26-2"></a>NIL</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="op">*</span> (<span class="kw">gethash</span> <span class="st">&quot;clave2&quot;</span> tabla)</span>
+<span id="cb26-4"><a href="#cb26-4"></a>NIL</span>
+<span id="cb26-5"><a href="#cb26-5"></a>T <span class="co">; T indica True, existe la clave.</span></span></code></pre></div>
+</section>
+<section id="borrar-de-la-tabla-de-hash" class="slide level2">
+<h2>Borrar de la tabla de hash</h2>
+<ul>
+<li>función <code>remhash</code> para eliminar el par clave-valor</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb27-1"><a href="#cb27-1"></a><span class="op">*</span> (<span class="kw">remhash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="co">; elimino el par: &quot;clave&quot;-3</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>T</span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="op">*</span> (<span class="kw">remhash</span> <span class="st">&quot;clave2&quot;</span> tabla) <span class="co">; elimino el par: &quot;clave2&quot;-nil</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>T</span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="op">*</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="co">; trato de obtener el valor de algo que fue eliminado</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>NIL</span>
+<span id="cb27-7"><a href="#cb27-7"></a>NIL</span>
+<span id="cb27-8"><a href="#cb27-8"></a><span class="op">*</span> (<span class="kw">remhash</span> <span class="st">&quot;clave3&quot;</span> tabla) <span class="co">; trato de borrar una clave que no existe</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>NIL</span></code></pre></div>
+</section>
+<section id="contar-entradas" class="slide level2">
+<h2>Contar entradas</h2>
+<ul>
+<li>función <code>hash-table-count</code></li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb28-1"><a href="#cb28-1"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="dv">3</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="dv">3</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave2&quot;</span> tabla) <span class="st">&quot;estoesunstring&quot;</span>)</span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="st">&quot;estoesunstring&quot;</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave3&quot;</span> tabla) <span class="dv">2</span>)</span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="dv">2</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="op">*</span> (<span class="kw">hash-table-count</span> tabla)</span>
+<span id="cb28-8"><a href="#cb28-8"></a><span class="dv">3</span> <span class="co">; 3 elementos en mi hash.</span></span></code></pre></div>
+</section>
+<section id="el-tamaño-del-hash" class="slide level2">
+<h2>El tamaño del hash</h2>
+<ul>
+<li>función <code>make-hash-table</code></li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb29-1"><a href="#cb29-1"></a><span class="op">*</span> (<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>TABLA</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="op">*</span> (<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal))</span>
+<span id="cb29-4"><a href="#cb29-4"></a>#&lt;HASH-TABLE :TEST EQUAL :COUNT <span class="dv">0</span> {10058B8553}<span class="op">&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="op">*</span>(<span class="kw">hash-table-size</span> tabla)</span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="dv">16</span> <span class="co">; por default</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="op">*</span>(<span class="kw">hash-table-rehash-size</span> tabla)</span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="fl">1.5</span> <span class="co">; indica que la tabla se agrandará en un 50% cada vez que necesite crecer.</span></span></code></pre></div>
+<ul>
+<li><p>Los valores para <code>hash-table-size</code> y <code>hash-table-rehash-size</code> dependen de la implementación. En este caso, la implementación de Common Lisp con la cual contamos, elige un tamaño inicial de 16, y aumentará el tamaño en un 50% (1.5) cada vez que el hash necesite crecer.</p></li>
+<li><p>Ejemplo: agregar un total de un millón* de pares clave-valor al hash:</p></li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb30-1"><a href="#cb30-1"></a><span class="op">*</span> (<span class="kw">time</span> (<span class="kw">dotimes</span> (n <span class="dv">1000000</span>) (<span class="kw">setf</span> (<span class="kw">gethash</span> n tabla) n))) <span class="co">; le tomo el tiempo que tarda</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>Evaluation took:</span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fl">0.162</span> seconds of <span class="kw">real</span> <span class="kw">time</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>  <span class="fl">0.161954</span> seconds of total run <span class="kw">time</span> (<span class="fl">0.137696</span> <span class="kw">user</span>, <span class="fl">0.024258</span> <span class="kw">system</span>)</span>
+<span id="cb30-5"><a href="#cb30-5"></a>  [ Run times consist of <span class="fl">0.015</span> seconds GC <span class="kw">time</span>, <span class="kw">and</span> <span class="fl">0.147</span> seconds non-GC <span class="kw">time</span>. ]</span>
+<span id="cb30-6"><a href="#cb30-6"></a>  <span class="fl">100.00</span>% CPU</span>
+<span id="cb30-7"><a href="#cb30-7"></a>  <span class="dv">355</span>,<span class="dv">501</span>,<span class="dv">132</span> processor cycles</span>
+<span id="cb30-8"><a href="#cb30-8"></a>  <span class="dv">83</span>,<span class="dv">836</span>,<span class="dv">896</span> bytes consed</span>
+<span id="cb30-9"><a href="#cb30-9"></a>NIL</span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="op">*</span> (<span class="kw">hash-table-count</span> tabla)</span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="dv">1000000</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="op">*</span> (<span class="kw">hash-table-size</span> tabla)</span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="dv">1048576</span></span></code></pre></div>
+<p>*<em>Se eligió un millón para resaltar los tiempos que tardan</em></p>
+<ul>
+<li>Y si piso todas las claves y tomo el tiempo nuevamente:</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb31-1"><a href="#cb31-1"></a><span class="op">*</span> (<span class="kw">time</span> (<span class="kw">dotimes</span> (n <span class="dv">1000000</span>) (<span class="kw">setf</span> (<span class="kw">gethash</span> n tabla) n)))</span>
+<span id="cb31-2"><a href="#cb31-2"></a>Evaluation took:</span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fl">0.088</span> seconds of <span class="kw">real</span> <span class="kw">time</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fl">0.088449</span> seconds of total run <span class="kw">time</span> (<span class="fl">0.088449</span> <span class="kw">user</span>, <span class="fl">0.000000</span> <span class="kw">system</span>)</span>
+<span id="cb31-5"><a href="#cb31-5"></a>  <span class="fl">100.00</span>% CPU</span>
+<span id="cb31-6"><a href="#cb31-6"></a>  <span class="dv">194</span>,<span class="dv">161</span>,<span class="dv">741</span> processor cycles</span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="dv">0</span> bytes consed</span>
+<span id="cb31-8"><a href="#cb31-8"></a>NIL</span></code></pre></div>
+<ul>
+<li>Veamos cuantas veces temenos que redimensionar para llegar al tamaño final:</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb32-1"><a href="#cb32-1"></a><span class="op">*</span> (<span class="kw">log</span> (<span class="op">/</span> <span class="dv">1000000</span> <span class="dv">16</span>) <span class="fl">1.5</span>)</span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="fl">27.235197</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="op">*</span> (<span class="kw">let</span> ((size <span class="dv">16</span>)) (<span class="kw">dotimes</span> (n <span class="dv">29</span>) (<span class="kw">print</span> (<span class="kw">list</span> n size)) (<span class="kw">setq</span> size (<span class="op">*</span> <span class="fl">1.5</span> size))))</span>
+<span id="cb32-4"><a href="#cb32-4"></a>(<span class="dv">0</span> <span class="dv">16</span>)</span>
+<span id="cb32-5"><a href="#cb32-5"></a>(<span class="dv">1</span> <span class="fl">24.0</span>)</span>
+<span id="cb32-6"><a href="#cb32-6"></a>(<span class="dv">2</span> <span class="fl">36.0</span>)</span>
+<span id="cb32-7"><a href="#cb32-7"></a>(<span class="dv">3</span> <span class="fl">54.0</span>)</span>
+<span id="cb32-8"><a href="#cb32-8"></a>(<span class="dv">4</span> <span class="fl">81.0</span>)</span>
+<span id="cb32-9"><a href="#cb32-9"></a>(<span class="dv">5</span> <span class="fl">121.5</span>)</span>
+<span id="cb32-10"><a href="#cb32-10"></a>(<span class="dv">6</span> <span class="fl">182.25</span>)</span>
+<span id="cb32-11"><a href="#cb32-11"></a>(<span class="dv">7</span> <span class="fl">273.375</span>)</span>
+<span id="cb32-12"><a href="#cb32-12"></a>(<span class="dv">8</span> <span class="fl">410.0625</span>)</span>
+<span id="cb32-13"><a href="#cb32-13"></a>(<span class="dv">9</span> <span class="fl">615.09375</span>)</span>
+<span id="cb32-14"><a href="#cb32-14"></a>(<span class="dv">10</span> <span class="fl">922.6406</span>)</span>
+<span id="cb32-15"><a href="#cb32-15"></a>(<span class="dv">11</span> <span class="fl">1383.9609</span>)</span>
+<span id="cb32-16"><a href="#cb32-16"></a>(<span class="dv">12</span> <span class="fl">2075.9414</span>)</span>
+<span id="cb32-17"><a href="#cb32-17"></a>(<span class="dv">13</span> <span class="fl">3113.912</span>)</span>
+<span id="cb32-18"><a href="#cb32-18"></a>(<span class="dv">14</span> <span class="fl">4670.868</span>)</span>
+<span id="cb32-19"><a href="#cb32-19"></a>(<span class="dv">15</span> <span class="fl">7006.3022</span>)</span>
+<span id="cb32-20"><a href="#cb32-20"></a>(<span class="dv">16</span> <span class="fl">10509.453</span>)</span>
+<span id="cb32-21"><a href="#cb32-21"></a>(<span class="dv">17</span> <span class="fl">15764.18</span>)</span>
+<span id="cb32-22"><a href="#cb32-22"></a>(<span class="dv">18</span> <span class="fl">23646.27</span>)</span>
+<span id="cb32-23"><a href="#cb32-23"></a>(<span class="dv">19</span> <span class="fl">35469.406</span>)</span>
+<span id="cb32-24"><a href="#cb32-24"></a>(<span class="dv">20</span> <span class="fl">53204.11</span>)</span>
+<span id="cb32-25"><a href="#cb32-25"></a>(<span class="dv">21</span> <span class="fl">79806.164</span>)</span>
+<span id="cb32-26"><a href="#cb32-26"></a>(<span class="dv">22</span> <span class="fl">119709.25</span>)</span>
+<span id="cb32-27"><a href="#cb32-27"></a>(<span class="dv">23</span> <span class="fl">179563.88</span>)</span>
+<span id="cb32-28"><a href="#cb32-28"></a>(<span class="dv">24</span> <span class="fl">269345.8</span>)</span>
+<span id="cb32-29"><a href="#cb32-29"></a>(<span class="dv">25</span> <span class="fl">404018.72</span>)</span>
+<span id="cb32-30"><a href="#cb32-30"></a>(<span class="dv">26</span> <span class="fl">606028.06</span>)</span>
+<span id="cb32-31"><a href="#cb32-31"></a>(<span class="dv">27</span> <span class="fl">909042.1</span>)</span>
+<span id="cb32-32"><a href="#cb32-32"></a>(<span class="dv">28</span> <span class="fl">1363563.3</span>)</span>
+<span id="cb32-33"><a href="#cb32-33"></a>NIL</span></code></pre></div>
+<ul>
+<li><p>Se redimensiona 28 veces hasta que sea lo suficientemente grande para contener 1,000,000 de claves con sus respectivos valores.</p></li>
+<li><p>Una manera de hacerlo más rápido: Si ya sabemos con anticipación que tan grande nuestro hash será, podemos comenzar con el tamaño correcto desde el vamos:</p></li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb33-1"><a href="#cb33-1"></a><span class="op">*</span> (<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
+<span id="cb33-2"><a href="#cb33-2"></a>TABLA</span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="op">*</span> (<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal :size <span class="dv">1000000</span>))</span>
+<span id="cb33-4"><a href="#cb33-4"></a>#&lt;HASH-TABLE :TEST EQUAL :COUNT <span class="dv">0</span> {10039B0043}<span class="op">&gt;</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="op">*</span> (<span class="kw">hash-table-size</span> tabla)</span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="dv">1000000</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a><span class="op">*</span> (<span class="kw">time</span> (<span class="kw">dotimes</span> (n <span class="dv">1000000</span>) (<span class="kw">setf</span> (<span class="kw">gethash</span> n tabla) n)))</span>
+<span id="cb33-8"><a href="#cb33-8"></a>Evaluation took:</span>
+<span id="cb33-9"><a href="#cb33-9"></a>  <span class="fl">0.086</span> seconds of <span class="kw">real</span> <span class="kw">time</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a>  <span class="fl">0.085881</span> seconds of total run <span class="kw">time</span> (<span class="fl">0.085881</span> <span class="kw">user</span>, <span class="fl">0.000000</span> <span class="kw">system</span>)</span>
+<span id="cb33-11"><a href="#cb33-11"></a>  <span class="fl">100.00</span>% CPU</span>
+<span id="cb33-12"><a href="#cb33-12"></a>  <span class="dv">188</span>,<span class="dv">651</span>,<span class="dv">959</span> processor cycles</span>
+<span id="cb33-13"><a href="#cb33-13"></a>  <span class="dv">0</span> bytes consed</span>
+<span id="cb33-14"><a href="#cb33-14"></a>NIL</span></code></pre></div>
+<ul>
+<li>Se prueba que tarda considerablemente menos tiempo.</li>
+<li>No hubo alocamientos involucrados ya que no hubo que redimensionar en absoluto</li>
+<li>Se puede anticipar el comportamiento de crecimiento que tendrá el hash: parámetro <code>:rehash-size</code> en la función <code>make-hash-table</code></li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb34-1"><a href="#cb34-1"></a><span class="op">*</span> (<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
+<span id="cb34-2"><a href="#cb34-2"></a>TABLA</span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="op">*</span> (<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal <span class="bu">:rehash-size</span> <span class="dv">1000000</span>))</span>
+<span id="cb34-4"><a href="#cb34-4"></a>#&lt;HASH-TABLE :TEST EQUAL :COUNT <span class="dv">0</span> {100589D563}<span class="op">&gt;</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="op">*</span> (<span class="kw">hash-table-size</span> tabla)</span>
+<span id="cb34-6"><a href="#cb34-6"></a><span class="dv">16</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a><span class="op">*</span> (<span class="kw">hash-table-rehash-size</span> tabla)</span>
+<span id="cb34-8"><a href="#cb34-8"></a><span class="dv">1000000</span></span>
+<span id="cb34-9"><a href="#cb34-9"></a><span class="op">*</span> (<span class="kw">time</span> (<span class="kw">dotimes</span> (n <span class="dv">1000000</span>) (<span class="kw">setf</span> (<span class="kw">gethash</span> n tabla) n)))</span>
+<span id="cb34-10"><a href="#cb34-10"></a>Evaluation took:</span>
+<span id="cb34-11"><a href="#cb34-11"></a>  <span class="fl">0.120</span> seconds of <span class="kw">real</span> <span class="kw">time</span></span>
+<span id="cb34-12"><a href="#cb34-12"></a>  <span class="fl">0.120026</span> seconds of total run <span class="kw">time</span> (<span class="fl">0.116221</span> <span class="kw">user</span>, <span class="fl">0.003805</span> <span class="kw">system</span>)</span>
+<span id="cb34-13"><a href="#cb34-13"></a>  [ Run times consist of <span class="fl">0.017</span> seconds GC <span class="kw">time</span>, <span class="kw">and</span> <span class="fl">0.104</span> seconds non-GC <span class="kw">time</span>. ]</span>
+<span id="cb34-14"><a href="#cb34-14"></a>  <span class="fl">100.00</span>% CPU</span>
+<span id="cb34-15"><a href="#cb34-15"></a>  <span class="dv">263</span>,<span class="dv">851</span>,<span class="dv">583</span> processor cycles</span>
+<span id="cb34-16"><a href="#cb34-16"></a>  <span class="dv">41</span>,<span class="dv">943</span>,<span class="dv">104</span> bytes consed</span>
+<span id="cb34-17"><a href="#cb34-17"></a>NIL</span></code></pre></div>
+<ul>
+<li>Solamente necesitamos una redimensión, pero mucho màs realocamiento (41,943,107 bytes consed) porque casi toda la tabla (menos los 16 elementos iniciales) tuvieron que se construídos durante la iteración.</li>
+</ul>
+</section>
+<section id="fun-stuff-e-iteradores-del-hash" class="slide level2">
+<h2>Fun stuff e iteradores del hash</h2>
+<p>Si se quiere realizar una acción sobre cada par clave-valor en la tabla de hash, existen múltiples opciones:</p>
+<ul>
+<li><code>maphash</code>: itera sobre todas las claves de la tabla. Su primer argumento debe ser una función que acepte dos parámetros: la clave y el valor. Muy importante notar y recordar que, dado la naturaleza de las tablas de hash, uno no puede controlar el orden en el cual las claves son devueltas. <code>maphash</code> devuelve siemple <code>NIL</code>.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb35-1"><a href="#cb35-1"></a><span class="op">*</span> (<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a>TABLA</span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="op">*</span> (<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal))</span>
+<span id="cb35-4"><a href="#cb35-4"></a>#&lt;HASH-TABLE :TEST EQUAL :COUNT <span class="dv">0</span> {100589D0E3}<span class="op">&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="dv">1</span>)</span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="dv">1</span></span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave2&quot;</span> tabla) <span class="dv">2</span>)</span>
+<span id="cb35-8"><a href="#cb35-8"></a><span class="dv">2</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave3&quot;</span> tabla) <span class="dv">3</span>)</span>
+<span id="cb35-10"><a href="#cb35-10"></a><span class="dv">3</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a><span class="op">*</span> (<span class="kw">defun</span><span class="fu"> imprimir-entrada </span>(clave valor) (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;El valor asociado a la clave ~S es ~S~%&quot;</span> clave valor))</span>
+<span id="cb35-12"><a href="#cb35-12"></a>IMPRIMIR-ENTRADA</span>
+<span id="cb35-13"><a href="#cb35-13"></a><span class="op">*</span> (<span class="kw">maphash</span> #&#39;imprimir-entrada tabla)</span>
+<span id="cb35-14"><a href="#cb35-14"></a>El valor asociado a la clave <span class="st">&quot;clave1&quot;</span> es <span class="dv">1</span></span>
+<span id="cb35-15"><a href="#cb35-15"></a>El valor asociado a la clave <span class="st">&quot;clave2&quot;</span> es <span class="dv">2</span></span>
+<span id="cb35-16"><a href="#cb35-16"></a>El valor asociado a la clave <span class="st">&quot;clave3&quot;</span> es <span class="dv">3</span></span>
+<span id="cb35-17"><a href="#cb35-17"></a>NIL</span>
+<span id="cb35-18"><a href="#cb35-18"></a><span class="op">*</span></span></code></pre></div>
+<ul>
+<li><code>with-hash-table-iterator</code>: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve tres valores cada clave-valor del hash: un booleano generalizado que es <code>true</code> si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve <code>NIL</code></li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb36-1"><a href="#cb36-1"></a><span class="op">*</span> (<span class="kw">with-hash-table-iterator</span> (iterador tabla)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>    (<span class="kw">loop</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>        (<span class="kw">multiple-value-bind</span> (entrada clave valor)</span>
+<span id="cb36-4"><a href="#cb36-4"></a>            (iterador)</span>
+<span id="cb36-5"><a href="#cb36-5"></a>        (<span class="kw">if</span> entrada</span>
+<span id="cb36-6"><a href="#cb36-6"></a>            (imprimir-entrada clave valor)</span>
+<span id="cb36-7"><a href="#cb36-7"></a>            (<span class="kw">return</span>)))))</span>
+<span id="cb36-8"><a href="#cb36-8"></a>El valor asociado a la clave <span class="st">&quot;clave1&quot;</span> es <span class="dv">1</span></span>
+<span id="cb36-9"><a href="#cb36-9"></a>El valor asociado a la clave <span class="st">&quot;clave2&quot;</span> es <span class="dv">2</span></span>
+<span id="cb36-10"><a href="#cb36-10"></a>El valor asociado a la clave <span class="st">&quot;clave3&quot;</span> es <span class="dv">3</span></span>
+<span id="cb36-11"><a href="#cb36-11"></a>NIL</span></code></pre></div>
+<ul>
+<li><code>loop</code>: <del>la vieja confiable</del></li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb37-1"><a href="#cb37-1"></a>  <span class="op">*</span> (<span class="kw">loop</span> for clave being <span class="kw">the</span> hash-keys of tabla <span class="kw">do</span> (<span class="kw">print</span> clave))</span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="st">&quot;clave1&quot;</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="st">&quot;clave2&quot;</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="st">&quot;clave3&quot;</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>NIL</span></code></pre></div>
+<p>Formateado clave-valor:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb38-1"><a href="#cb38-1"></a><span class="op">*</span> (<span class="kw">loop</span> for clave being <span class="kw">the</span> hash-keys of tabla using (hash-value valor)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>    <span class="kw">do</span> (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;El valor asociado a la clave ~S es ~S~%&quot;</span> clave valor))</span>
+<span id="cb38-3"><a href="#cb38-3"></a>El valor asociado a la clave <span class="st">&quot;clave1&quot;</span> es <span class="dv">1</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a>El valor asociado a la clave <span class="st">&quot;clave2&quot;</span> es <span class="dv">2</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a>El valor asociado a la clave <span class="st">&quot;clave3&quot;</span> es <span class="dv">3</span></span>
+<span id="cb38-6"><a href="#cb38-6"></a>NIL</span></code></pre></div>
+<p>Solo el valor:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb39-1"><a href="#cb39-1"></a><span class="op">*</span> (<span class="kw">loop</span> for valor being <span class="kw">the</span> hash-values of tabla <span class="kw">do</span> (<span class="kw">print</span> valor))</span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="dv">1</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="dv">2</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="dv">3</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>NIL</span></code></pre></div>
+<p>Clave y valor:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb40-1"><a href="#cb40-1"></a><span class="op">*</span> (<span class="kw">loop</span> for valor being <span class="kw">the</span> hash-values of tabla using (hash-key clave) <span class="kw">do</span> (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~&amp;~S -&gt; ~S&quot;</span> clave valor))</span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="st">&quot;clave1&quot;</span> -&gt; <span class="dv">1</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="st">&quot;clave2&quot;</span> -&gt; <span class="dv">2</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="st">&quot;clave3&quot;</span> -&gt; <span class="dv">3</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a>NIL</span></code></pre></div>
+<p>HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm</p>
+</section></section>
+<section>
+<section id="desglosando-eval-fede" class="title-slide slide level1">
+<h1>Desglosando <code>eval</code> [Fede]</h1>
 <p><a href="http://www.paulgraham.com/rootsoflisp.html">The Roots of LISP ~ Paul Graham</a></p>
 <p><a href="https://youtu.be/OyfBQmvr2Hc">The Most Beautiful Program Ever Written ~ William Byrd</a></p>
 <ul>
@@ -309,55 +963,105 @@ Secchi, Anita - XXXXXX</div></p>
 <p>That was the big revelation to me when I was in graduate school—when I finally understood that the half page of code on the bottom of page 13 of the Lisp 1.5 manual was Lisp in itself. These were “Maxwell’s Equations of Software!” This is the whole world of programming in a few lines that I can put my hand over.</p>
 </blockquote>
 <p>~ Alan Kay, <a href="https://queue.acm.org/detail.cfm?id=1039523">A Conversation with Alan Kay</a></p>
-<p><img data-src="eval.png" /></p>
+<p><img data-src="img/eval.png" /></p>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">;; Anotaciones sobre el código de Paul Graham en Roots of Lisp</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">; The Lisp defined in McCarthy&#39;s 1960 paper, translated into Common Lisp.</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">; eval recibe una expresion `e` y una lista de argumentos `a` -&gt; El &quot;entorno&quot;</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">; Básicamente, recibe todo el scope donde estoy parado</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>(<span class="kw">defun</span><span class="fu"> eval </span>(e a)</span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="co">; Es todo un if grande de 4 condiciones que chequean el tipo de la expresion</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>  (<span class="kw">cond</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="co">; Si es un atomo -&gt; Devuelvo su valor en el entorno</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>    ((<span class="kw">atom</span> e) (<span class="kw">assoc</span> e a))</span>
-<span id="cb6-11"><a href="#cb6-11"></a>    <span class="co">; Si no es un atomo tiene que ser una lista</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>    <span class="co">; Si es una lista del tipo (atomo...resto) -&gt; Es una función!</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>    <span class="co">; (car e) es el operador</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co">; (cadr e) es (car (cdr e)) que es el primero de los argumentos</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a>    ((<span class="kw">atom</span> (<span class="kw">car</span> e))</span>
-<span id="cb6-16"><a href="#cb6-16"></a>     <span class="co">; Si Es una funcion, ¿que funcion es?</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>     (<span class="kw">cond</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>       <span class="co">; Si es quote, solo devuelvo los argumentos de la funcion</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;quote) (<span class="kw">cadr</span> e))</span>
-<span id="cb6-20"><a href="#cb6-20"></a>       <span class="co">; Para el resto de los axiomas, llamo a esa funcion contra los argumentos</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a>       <span class="co">; Como quiero llamar a la operacion contra los valores de los argumentos, llamo a eval</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;atom)  (<span class="kw">atom</span>   (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
-<span id="cb6-23"><a href="#cb6-23"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;eq)    (<span class="kw">eq</span>     (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)</span>
-<span id="cb6-24"><a href="#cb6-24"></a>                                    (<span class="kw">eval</span> (<span class="kw">caddr</span> e) a)))</span>
-<span id="cb6-25"><a href="#cb6-25"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;car)   (<span class="kw">car</span>    (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
-<span id="cb6-26"><a href="#cb6-26"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cdr)   (<span class="kw">cdr</span>    (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
-<span id="cb6-27"><a href="#cb6-27"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cons)  (<span class="kw">cons</span>   (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)</span>
-<span id="cb6-28"><a href="#cb6-28"></a>                                    (<span class="kw">eval</span> (<span class="kw">caddr</span> e) a)))</span>
-<span id="cb6-29"><a href="#cb6-29"></a>       <span class="co">; cond tiene que evaluar recursivamente todas las condiciones, hasta encontrar el primer true</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a>       <span class="co">; para eso, se define una funcion auxiliar, `evcon` que recorre la lista de parametros y los evalua</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cond)  (evcon (<span class="kw">cdr</span> e) a))</span>
-<span id="cb6-32"><a href="#cb6-32"></a>       <span class="co">; el caso final es recibir una funcion definida por el usuario</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a>       (&#39;t (<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">assoc</span> (<span class="kw">car</span> e) a)</span>
-<span id="cb6-34"><a href="#cb6-34"></a>                        (<span class="kw">cdr</span> e))</span>
-<span id="cb6-35"><a href="#cb6-35"></a>                  a))))</span>
-<span id="cb6-36"><a href="#cb6-36"></a>    <span class="co">; Si no es un atomo ni una lista que comienza por un atomo, entonces es una lista que comienza por otra cosa</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a>    <span class="co">; Si es una lista que comienza con label, evaluo la funcion a la que refiere</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a>    ((<span class="kw">eq</span> (<span class="kw">caar</span> e) &#39;label)</span>
-<span id="cb6-39"><a href="#cb6-39"></a>     (<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">caddar</span> e) (<span class="kw">cdr</span> e))</span>
-<span id="cb6-40"><a href="#cb6-40"></a>            (<span class="kw">cons</span> (<span class="kw">list</span> (<span class="kw">cadar</span> e) (<span class="kw">car</span> e)) a)))</span>
-<span id="cb6-41"><a href="#cb6-41"></a>    <span class="co">; Si es una lista que comienza con lambda, evaluo sus parametros</span></span>
-<span id="cb6-42"><a href="#cb6-42"></a>    ((<span class="kw">eq</span> (<span class="kw">caar</span> e) &#39;lambda)</span>
-<span id="cb6-43"><a href="#cb6-43"></a>     (<span class="kw">eval</span> (<span class="kw">caddar</span> e)</span>
-<span id="cb6-44"><a href="#cb6-44"></a>            (<span class="kw">append</span> (pair (<span class="kw">cadar</span> e) (evlis  (<span class="kw">cdr</span> e) a))</span>
-<span id="cb6-45"><a href="#cb6-45"></a>                     a)))))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">;; Anotaciones sobre el código de Paul Graham en Roots of Lisp</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="co">; The Lisp defined in McCarthy&#39;s 1960 paper, translated into Common Lisp.</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a></span>
+<span id="cb41-4"><a href="#cb41-4"></a><span class="co">; eval recibe una expresion `e` y una lista de argumentos `a` -&gt; El &quot;entorno&quot;</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a><span class="co">; Básicamente, recibe todo el scope donde estoy parado</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a>(<span class="kw">defun</span><span class="fu"> eval </span>(e a)</span>
+<span id="cb41-7"><a href="#cb41-7"></a>  <span class="co">; Es todo un if grande de 4 condiciones que chequean el tipo de la expresion</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a>  (<span class="kw">cond</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>    <span class="co">; Si es un atomo -&gt; Devuelvo su valor en el entorno</span></span>
+<span id="cb41-10"><a href="#cb41-10"></a>    ((<span class="kw">atom</span> e) (<span class="kw">assoc</span> e a))</span>
+<span id="cb41-11"><a href="#cb41-11"></a>    <span class="co">; Si no es un atomo tiene que ser una lista</span></span>
+<span id="cb41-12"><a href="#cb41-12"></a>    <span class="co">; Si es una lista del tipo (atomo...resto) -&gt; Es una función!</span></span>
+<span id="cb41-13"><a href="#cb41-13"></a>    <span class="co">; (car e) es el operador</span></span>
+<span id="cb41-14"><a href="#cb41-14"></a>    <span class="co">; (cadr e) es (car (cdr e)) que es el primero de los argumentos</span></span>
+<span id="cb41-15"><a href="#cb41-15"></a>    ((<span class="kw">atom</span> (<span class="kw">car</span> e))</span>
+<span id="cb41-16"><a href="#cb41-16"></a>     <span class="co">; Si Es una funcion, ¿que funcion es?</span></span>
+<span id="cb41-17"><a href="#cb41-17"></a>     (<span class="kw">cond</span></span>
+<span id="cb41-18"><a href="#cb41-18"></a>       <span class="co">; Si es quote, solo devuelvo los argumentos de la funcion</span></span>
+<span id="cb41-19"><a href="#cb41-19"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;quote) (<span class="kw">cadr</span> e))</span>
+<span id="cb41-20"><a href="#cb41-20"></a>       <span class="co">; Para el resto de los axiomas, llamo a esa funcion contra los argumentos</span></span>
+<span id="cb41-21"><a href="#cb41-21"></a>       <span class="co">; Como quiero llamar a la operacion contra los valores de los argumentos, llamo a eval</span></span>
+<span id="cb41-22"><a href="#cb41-22"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;atom)  (<span class="kw">atom</span>   (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
+<span id="cb41-23"><a href="#cb41-23"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;eq)    (<span class="kw">eq</span>     (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)</span>
+<span id="cb41-24"><a href="#cb41-24"></a>                                    (<span class="kw">eval</span> (<span class="kw">caddr</span> e) a)))</span>
+<span id="cb41-25"><a href="#cb41-25"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;car)   (<span class="kw">car</span>    (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
+<span id="cb41-26"><a href="#cb41-26"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cdr)   (<span class="kw">cdr</span>    (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)))</span>
+<span id="cb41-27"><a href="#cb41-27"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cons)  (<span class="kw">cons</span>   (<span class="kw">eval</span> (<span class="kw">cadr</span> e) a)</span>
+<span id="cb41-28"><a href="#cb41-28"></a>                                    (<span class="kw">eval</span> (<span class="kw">caddr</span> e) a)))</span>
+<span id="cb41-29"><a href="#cb41-29"></a>       <span class="co">; cond tiene que evaluar recursivamente todas las condiciones, hasta encontrar el primer true</span></span>
+<span id="cb41-30"><a href="#cb41-30"></a>       <span class="co">; para eso, se define una funcion auxiliar, `evcon` que recorre la lista de parametros y los evalua</span></span>
+<span id="cb41-31"><a href="#cb41-31"></a>       ((<span class="kw">eq</span> (<span class="kw">car</span> e) &#39;cond)  (evcon (<span class="kw">cdr</span> e) a))</span>
+<span id="cb41-32"><a href="#cb41-32"></a>       <span class="co">; el caso final es recibir una funcion definida por el usuario</span></span>
+<span id="cb41-33"><a href="#cb41-33"></a>       (&#39;t (<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">assoc</span> (<span class="kw">car</span> e) a)</span>
+<span id="cb41-34"><a href="#cb41-34"></a>                        (<span class="kw">cdr</span> e))</span>
+<span id="cb41-35"><a href="#cb41-35"></a>                  a))))</span>
+<span id="cb41-36"><a href="#cb41-36"></a>    <span class="co">; Si no es un atomo ni una lista que comienza por un atomo, entonces es una lista que comienza por otra cosa</span></span>
+<span id="cb41-37"><a href="#cb41-37"></a>    <span class="co">; Si es una lista que comienza con label, evaluo la funcion a la que refiere</span></span>
+<span id="cb41-38"><a href="#cb41-38"></a>    ((<span class="kw">eq</span> (<span class="kw">caar</span> e) &#39;label)</span>
+<span id="cb41-39"><a href="#cb41-39"></a>     (<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">caddar</span> e) (<span class="kw">cdr</span> e))</span>
+<span id="cb41-40"><a href="#cb41-40"></a>            (<span class="kw">cons</span> (<span class="kw">list</span> (<span class="kw">cadar</span> e) (<span class="kw">car</span> e)) a)))</span>
+<span id="cb41-41"><a href="#cb41-41"></a>    <span class="co">; Si es una lista que comienza con lambda, evaluo sus parametros</span></span>
+<span id="cb41-42"><a href="#cb41-42"></a>    ((<span class="kw">eq</span> (<span class="kw">caar</span> e) &#39;lambda)</span>
+<span id="cb41-43"><a href="#cb41-43"></a>     (<span class="kw">eval</span> (<span class="kw">caddar</span> e)</span>
+<span id="cb41-44"><a href="#cb41-44"></a>            (<span class="kw">append</span> (pair (<span class="kw">cadar</span> e) (evlis  (<span class="kw">cdr</span> e) a))</span>
+<span id="cb41-45"><a href="#cb41-45"></a>                     a)))))</span></code></pre></div>
+</section></section>
+<section>
+<section id="lisp-en-la-practica" class="title-slide slide level1">
+<h1>LISP en la practica</h1>
+
+</section>
+<section id="estadisticas-camijavi" class="slide level2">
+<h2>Estadisticas [Cami/Javi]</h2>
+<ul>
+<li>repos de github</li>
+</ul>
+<p><em>Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en los últimos años. Para lenguajes antiguos se incluye información sobre qué lenguajes o técnicas se vieron influenciadas por este lenguaje</em></p>
+<p>http://blockml.awwapps.com/example/example/document.html#sec-6</p>
+</section>
+<section id="comparaciones-camianita" class="slide level2">
+<h2>Comparaciones [Cami/Anita]</h2>
+<ul>
+<li>repetir tema de la influencia y de como todo lenguaje se ve tocado por lisp</li>
+<li>comparar con python</li>
+<li>con C performance</li>
+<li>con oz, scala, haskell</li>
+<li>con dialectos de lisp como scheme y racket</li>
+<li>con javascript para decir como se influencia por shcem</li>
+</ul>
+<p><em>Se destacan las diferencias del lenguaje contra otros con propósito similar, se incluyen además benchmarks o ejemplos que identifiquen diferencias.</em></p>
+<p>https://wiki.c2.com/?LispSchemeDifferences</p>
+<p>http://www.norvig.com/python-lisp.html</p>
+<p>https://hyperpolyglot.org/lisp</p>
+<ul>
+<li>armar secciones tipo lisp vs x</li>
+</ul>
+</section>
+<section id="lisp-vs-scheme" class="slide level2">
+<h2>LISP vs Scheme</h2>
+<p>Los dos dialectos principales a elegir son Common Lisp y Scheme (OJO, no pongamos esto, hay mil mas!!!), ambos tienen ventajas y desventajas, pero las diferencias entre ellos sigue siendo chica que comparando contra otros lenguajes, así que no importa cual elejas para empezar. ¿Cuál debería aprender, Common Lisp o Scheme? Cuál es la diferencia?</p>
+<ul>
+<li>Common Lisp: Es poderoso pero feo</li>
+<li>Scheme: Es chiquito y limpio, pero el estándar solamente define es inner core del lenguaje.</li>
+<li>Si tuviera que crear una aplicación, probablemente es mejor ir por Common Lisp.</li>
+<li>Si tuviera que enseniar (no tengo enie) en un curso, usaria Scheme (pero con macros de Common Lisp)</li>
+</ul>
+</section>
+<section id="casos-de-estudio-camianita" class="slide level2">
+<h2>Casos de estudio [Cami/Anita]</h2>
+<p><em>Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje</em></p>
+<p>emacs</p>
+<p>crash bandicoot</p>
+<p>beating the averages!!!! (http://www.paulgraham.com/avg.html)</p>
+<p>Reddit</p>
+<p>https://github.com/CodyReichert/awesome-cl</p>
 </section></section>
     </div>
   </div>

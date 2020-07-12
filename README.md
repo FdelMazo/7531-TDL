@@ -1,5 +1,5 @@
 ---
-title: "LISP"
+title: "(Common) LISP"
 author: |
   | del Mazo, Federico - 100029
   | Di Santo, Javier - 101696
@@ -9,7 +9,7 @@ author: |
 
 [![](img/lisp.png)](https://github.com/FdelMazo/7531-TDL)
 
-# Historia
+# Historia [Fede]
 
 [Early LISP History (1956 - 1959) ~ Herbert Stoyan](https://campus.hesge.ch/Daehne/2004-2005/Langages/Lisp.htm)
 
@@ -83,50 +83,23 @@ author: |
 
   - Funciones compiladas e interpretadas pueden ser intercambiadas libremente.
 
-# Para qué sirve (y para qué no)
+## Cálculo Lambda
 
-_Se explica en qué casos es bueno y malo el lenguaje con los motivos_
+https://youtu.be/eis11j_iGMs
+
+?x. x?x.
+
+(lambda (x) (x\*x))
+
+The power of the lambda notation is in its generality. The lambda notation will handle the case in which the value of a function is a function. In many computer languages the value of a function must be an element of a set, such as a number or a string or the label of a function. In the lambda notation the value can be a function, not the name or label of a function but a function itself.
+
+https://www.sjsu.edu/faculty/watkins/lambda.htm
+
+- Calculo Lambda no tipado: expresa _mas_ que el calculo lambda tipado
 
 # Caracteristicas del Lenguaje
 
-## Pionero
-
-[What Made Lisp Different ~ Paul Graham](http://www.paulgraham.com/diff.html)
-
-[Influential Programming Languages, Lisp ~ David Chisnall](https://www.informit.com/articles/article.aspx?p=1671639)
-
-- **if-then-else**: Las expresiones condicionales fueron definidas en el paper de 1960, con `cond`. Un condicional es un una construcción if-then-else; hoy en día los damos por hecho. Fueron inventados por McCarthy en el transcurso de desarrollo de Lisp.
-
-- **Funciones**: Las funciones son objectos de primera clase, son un tipo de dato como lo son los enteros, cadenas, etc. Tienen una representación literal, pueden ser asignadas a variables, pasadas como argumentos (parámetros)...
-
-- **Recursión**: Ya existía matemáticamente, pero nunca en un lenguaje de programación
-
-- **Un nuevo concepto en variables**: Todas las variables son efectivamente punteros. Los valores son aquellos que _tienen tipos_, no variables. Asignar variables significa copiar punteros, y no aquello a lo que apuntan.
-
-- **Garbarge Collection**: Con un diseño primitivo (no era concurrente), LISP fue el primer lenguaje en utilizar garbage collection automático.
-
-- **Programas compuestos por expresiones**: Los programas en Lisp son árboles de expresiones, cada uno devuelve un valor. (En otras expresiones de Lisp, puede devolver múltiples valores). Esto es en contraste con los lenguajes más exitosos, que distinguen entre _expresión_ y _declaración_. Cuando un lenguaje está hecho enteramente de expresiones, uno puede componer expresiones como uno quiera:
-  Puede ser (en syntaxis de _Arc_):
-
-```lisp
-  (if foo (= x 1) (= x 2))
-```
-
-o
-
-```lisp
-(= x (if foo 1 2))
-```
-
-- **Tipado dinámico**: No hay que explicitar si algo es un átomo o una lista.
-
-- **Interactividad**: Gracias al interprete REPL se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente.
-
-- **El lenguaje completo está siempre disponible**: No hay una distinción real entre tiempo de lectura, tiempo de compilación y tiempo de ejecución. Uno puede compilar o ejecutar mientras lee, leer o ejecutar código mientras compila, leer o compilar mientras se ejecuta el código.
-
-- **Map y Reduce**: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.
-
-## Paradigma
+## Paradigma [Fede]
 
 ![](img/declarative.png)
 
@@ -152,40 +125,68 @@ o
 
 - Lisp es un lenguaje de programacón de tipo multiparadigma: soporta más de un paradigma de programación
 - Lisp es orientado a objetos, reflexivo, imperativo y funcional: el programador será capaz de crear programas usando más de un estilo de programación, sin estar forzado a tomar un estilo en particular.
-- Existen otros lenguajes multiparadigma como 
-	- Python: éste además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones
-	- Oz: incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
-	
+- Existen otros lenguajes multiparadigma como - Python: éste además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones - Oz: incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
+
 In func­tional program­ming, func­tions avoid two habits common in other languages: muta­tion (= changing data in-place rather than returning a value) and relying on state (= extra context that’s not provided as input, for instance global vari­ables).
 
-## Compilado/interpretado
+- ¿¿dataflow vs logicflow??
 
-- Las funciones pueden ser compiladas de forma individual o por el archivo. 
+## Pionero [Cami]
+
+[What Made Lisp Different ~ Paul Graham](http://www.paulgraham.com/diff.html)
+
+[Influential Programming Languages, Lisp ~ David Chisnall](https://www.informit.com/articles/article.aspx?p=1671639)
+
+- **if-then-else**: Las expresiones condicionales fueron definidas en el paper de 1960, con `cond`. Un condicional es un una construcción if-then-else; hoy en día los damos por hecho. Fueron inventados por McCarthy en el transcurso de desarrollo de Lisp.
+
+- **Funciones**: Las funciones son objectos de primera clase, son un tipo de dato como lo son los enteros, cadenas, etc. Tienen una representación literal, pueden ser asignadas a variables, pasadas como argumentos (parámetros)...
+
+- **Recursión**: Ya existía matemáticamente, pero nunca en un lenguaje de programación
+
+- **Un nuevo concepto en variables**: Todas las variables son efectivamente punteros. Los valores son aquellos que _tienen tipos_, no variables. Asignar variables significa copiar punteros, y no aquello a lo que apuntan.
+
+- **Garbarge Collection**: Con un diseño primitivo (no era concurrente), LISP fue el primer lenguaje en utilizar garbage collection automático.
+
+- **Tipado dinámico**: No hay que explicitar si algo es un átomo o una lista.
+
+- **Interactividad**: Gracias al interprete REPL se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente.
+
+- **El lenguaje completo está siempre disponible**: No hay una distinción real entre tiempo de lectura, tiempo de compilación y tiempo de ejecución. Uno puede compilar o ejecutar mientras lee, leer o ejecutar código mientras compila, leer o compilar mientras se ejecuta el código.
+
+- **Map y Reduce**: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.
+
+## Evaluacion [Cami]
+
+- Eager / Data-driven evaluation
+
+- Lisp is usually evaluated eagerly. In Common Lisp, arguments are evaluated in applicative order ('leftmost innermost').
+
+## Compilado/interpretado [Cami]
+
+[How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
+
+- Las funciones pueden ser compiladas de forma individual o por el archivo.
 - Funciones compiladas o interpretadas se comportan de la misma forma, excepto con el comando `compiled-f unction-p` que verifica si la función pasada por parámetro fue compilada.
 
-- Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos. 
+- Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos.
 - El compilador puede recibir instrucciones sobre qué tan dinámico debe ser el código compilado
 - Intérprete REPL(Read-Eval-Print-Loop): se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente
 - La función _eval_, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario
 - No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura:
 
-	- Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
-	- Ejecutar código en tiempo de compilación es la base de las macros.
-	- Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
-	- Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
+      	- Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
+      	- Ejecutar código en tiempo de compilación es la base de las macros.
+      	- Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
+      	- Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
 
-		(Interpretado || Compilado) -> True
+      		(Interpretado || Compilado) -> True
 
-		<< es interactivo o interpretado???>>
+      		<< es interactivo o interpretado???>>
 
-## Tipado
+## Tipado [Cami]
 
 - Tipado dinámico: las verificaciones de tipo se realizan en tiempo de ejecución y las variables se pueden configurar de forma predeterminada para todo tipo de objetos.
-- Lisp es dinámico: tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución, se le permite al usuario agregar, cambiar y eliminar
-	- funciones
-	- construcciones sintácticas
-	- tipos de datos
-	- sintáxis
+- Lisp es dinámico: tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución, se le permite al usuario agregar, cambiar y eliminar - funciones - construcciones sintácticas - tipos de datos - sintáxis
 
 - Explota en runtime
 
@@ -193,47 +194,31 @@ In func­tional program­ming, func­tions avoid two habits common in other lang
 
   - Tipado dinamico: en runtime
 
-## Closures
+## Lexical/Static/dynamic scoping [Cami]
 
-- La variable debe persistir mientras la función lo haga.
-- Variables léxicas válidas dentro del contexto en donde son definidas.
-- Variable libre: Se continua haciendo referencia a una variable por fuera (mientras se continue usando el mismo contexto del cual fue definida).
-- Lisp permite devolver una función como valor como cualquier otro objeto. 
-
-A continuación se muestra un ejemplo. Por un lado, la función combine toma argumentos de cualquier tipo y los combina de forma apropiada. combiner toma un argumento y devuelve una función para combinar argumentos de cualquier tipo.
-
-```
-(defun combiner (x)
-    (typecase x
-        (number #'+)
-        (list #'append)
-        (t #'list))) 
-
-(defun combine (&rest args)
-    (apply (combiner (car args)) 
-    args)) 
-```
-
-[How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
-
-## Lexical/Static Scoping
-
-## Dynamic scoping
 - Identificador asociado con el entorno más reciente al declarar con `special`.
 
 Ejemplo:
+
 ```
 (le t ((x 20))
     (declare (specia l x))
-    (foo)) 
+    (foo))
 ```
-## Recursión
-- No siempre es la mejor opción pero su uso trae muchas ventajas: 
-	- Evita errores por efectos secundarios.
-	- Estructura de datos más sencilla.
-	- Código más elegante y limpio.
 
-## Metaprogramming / Extensibilidad
+## Expression oriented / Simbolico [Fede]
+
+https://beautifulracket.com/appendix/why-racket-why-lisp.html
+
+Usa S-Expressions: Simbolic expression
+
+Lisp is an expression oriented language. Unlike most other languages, no distinction is made between "expressions" and "statements";[dubious – discuss] all code and data are written as expressions. When an expression is evaluated, it produces a value (in Common Lisp, possibly multiple values), which can then be embedded into other expressions. Each value can be any data type.
+
+https://en.wikipedia.org/wiki/Expression-oriented_programming_language
+
+Transparencia referencial: equals can be replaced by equals
+
+## Metaprogramming / Extensibilidad [Javi]
 
 https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
 
@@ -249,40 +234,67 @@ https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_vmsLq
 
 https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_pwJR1
 
-
 "language-oriented program­ming"
 
-### Macros
+- comparar como se extiende python o C normalmente https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s6-extensibility y http://www.gigamonkeys.com/book/macros-standard-control-constructs.html
 
+- Hablar de extensiones "populares" (importantes) del lenguaje
+
+  - Darle mucha bola a CLOS! que es importantisimo en la historia de lisp (chusmear relacion con smalltalk!!!) (chusmear como CLOS es de lo mas "puro" en cuanto a Object Oriented)
+
+  - Concurrencia
+
+  - String interpolation
+
+Solo en librerías.
+
+- [Bordeaux Threads](https://common-lisp.net/project/bordeaux-threads/) para la creación de hilos.
+
+- [lparallel](https://github.com/lmj/lparallel) para una implementación más compleja que incluye comunicación entre hilos (colas, promesas, etc).
+
+- [Blackbird](https://github.com/orthecreedence/blackbird) implementación de promesas (la dejo porque no la encontré en cl-awesole).
+
+* "los macros son **parte** de lo que es la extensibilidad de list" --> pie para entrar a la siguiente seccion
+
+## Macros [Javi]
+
+- Esta seccion que sea bien teorica con codigo (pero poco codigo). Los ejemplos ejemplos van en sintaxis
 
 - En Lisp, una macro es una función que genera código de Lisp. La forma más sencilla de pensarlo sería como una transformación de código. Cuando se llama a una macro en el código:
+
 1. Se arma el código en base a la definición `defmacro` de la misma.
 2. Se evalúa el nuevo código en el lugar de la llamada a la macro.
 
 A partir de esto, se pueden usar macros para simplificar y reutilizar código, o hasta manipular la sintaxis del lenguaje.
 
 - Algunos operadores:
-  - ``Backquote ` ``: Funciona similar a `quote`. (se explica antes?)
+  - `` Backquote ` ``: Funciona similar a `quote`. (se explica antes?)
+
 ```lisp
 `(a, b, c)
 ; equivalente a escribir
 '(a b c)
 (list 'a 'b 'c)
 ```
-  - `Comma  , `: Combinado con `backquote` sirve para "activar y desactivar" el efecto de `backquote`. Es útil al escribir macros:
+
+- `Comma ,`: Combinado con `backquote` sirve para "activar y desactivar" el efecto de `backquote`. Es útil al escribir macros:
+
 ```lisp
 `(a ,b c ,d)
 ; equivalente a escribir
 (list 'a b 'c d)
 ```
-  - `Comma-at ,@`: Dada una expresión que resuelve una lista, se puede utilizar `,@` para reemplazar esta lista por la secuencia de sus mismos elementos (elimina el paréntesis):
+
+- `Comma-at ,@`: Dada una expresión que resuelve una lista, se puede utilizar `,@` para reemplazar esta lista por la secuencia de sus mismos elementos (elimina el paréntesis):
+
 ```lisp
 `(a b c)    ->  (A (1 2 3) C)
 `(a ,@b c)  ->  (A 1 2 3 C)
 ```
 
-- `(nil! x)`: Cambiar el valor de la variable `x` a `nil`. 
-En el ejemplo se puede observar que `var` se expande al valor que corresponde (por el operador `,`), mientras que `setq` y `nil` no se evalúan.
+- `(nil! x)`: Cambiar el valor de la variable `x` a `nil`.
+  En el ejemplo se puede observar que `var` se expande al valor que corresponde (por el operador `,`), mientras que `setq` y `nil` no se evalúan.
+
 ```lisp
 (defmacro nil! (var)
   `(setq ,var nil))
@@ -295,12 +307,15 @@ En el ejemplo se puede observar que `var` se expande al valor que corresponde (p
 ```
 
 - `(if test then else)`: Ya se encuentra definida en Lisp. Tiene que ser una macro para evaluar la expresión solo cuando corresponda. Una posible implementación utilizaría la macro `cond`, que evalúa solo la primer expresión cuya condición sea true:
+
 ```lisp
 (defmacro if (condition then else)
   `(cond (,condition ,then)
          (t ,else)))
 ```
+
 - `(when test do1 do2 ...)`: Cuando la expresión `test` devuelve `true`, se ejecutan todas las expresiones `do`, devolviendo el valor de la última. Para que se expandan todas las expresiones `do` se las combina en una lista `&rest body` y luego se utiliza el operador `,@`:
+
 ```lisp
 (defmacro our-when (test &rest body)
   `(if ,test
@@ -319,6 +334,7 @@ En el ejemplo se puede observar que `var` se expande al valor que corresponde (p
 ```
 
 - `infix`: Las macros permiten cambiar el orden de las expresiones sin evaluarlas. Entonces, se podría hacer una macro `infix` para tener operadores matemáticos en notación de infijo en vez de la notación polaca de Lisp. Existen implementaciones completas de esta macro para que funcione con más de una operación, pero para mostrar la más simple:
+
 ```lisp
 (defmacro infix (arg1 op arg2)
   `(,op ,arg1 ,arg2))
@@ -329,7 +345,6 @@ En el ejemplo se puede observar que `var` se expande al valor que corresponde (p
 ; genera el código
 (+ 2 3)
 ```
-
 
 - `lcomp`: Replicar la sintaxis de compresión de listas de Python.
 
@@ -350,6 +365,7 @@ En el ejemplo se puede observar que `var` se expande al valor que corresponde (p
 ```
 
 - `let`:
+
 ```lisp
 (defmacro let (binds &body body)
   ‘((lambda ,(mapcar #’(lambda (x)
@@ -360,21 +376,27 @@ En el ejemplo se puede observar que `var` se expande al valor que corresponde (p
                   (if (consp x) (cadr x) nil))
               binds)))
 ```
+
 - `while`:
+
 ```lisp
 (defmacro while (test &body body)
   ‘(do ()
        ((not ,test))
        ,@body))
 ```
+
 - `till`:
+
 ```lisp
 (defmacro till (test &body body)
   ‘(do ()
        (,test)
        ,@body))
 ```
+
 - `for`:
+
 ```lisp
 (defmacro for ((var start stop) &body body)
   (let ((gstop (gensym)))
@@ -384,17 +406,7 @@ En el ejemplo se puede observar que `var` se expande al valor que corresponde (p
        ,@body)))
 ```
 
-## Expression oriented / Simbolico
-
-https://beautifulracket.com/appendix/why-racket-why-lisp.html
-
-Usa S-Expressions: Simbolic expression
-
-Lisp is an expression oriented language. Unlike most other languages, no distinction is made between "expressions" and "statements";[dubious – discuss] all code and data are written as expressions. When an expression is evaluated, it produces a value (in Common Lisp, possibly multiple values), which can then be embedded into other expressions. Each value can be any data type.
-
-https://en.wikipedia.org/wiki/Expression-oriented_programming_language
-
-## Homoiconicidad ("Code as Data")
+## Homoiconicidad ("Code as Data") [Javi]
 
 "This means that the way you think about a program­ming problem can be quite close to the way you actu­ally program it."
 
@@ -424,15 +436,23 @@ https://en.wikipedia.org/wiki/Expression-oriented_programming_language
 
 This feature makes it easy to develop efficient languages within languages. For example, the Common Lisp Object System can be implemented cleanly as a language extension using macros. This means that if an application needs a different inheritance mechanism, it can use a different object system. This is in stark contrast to most other languages; for example, Java does not support multiple inheritance and there is no reasonable way to add it.
 
-## s-exprs as trees
-
 - Las s-expresiones son binary trees porque son o atomos o (x y) siendo (x . y) un dotted pair (x hijo izq, y hijo der)
 
 - (hoy por hoy se usa el sintacic sugar LIST, que es nada mas concatenar mil dotted pairs. (x y z) es (x . (y . (z . null))))
 
 - foto binary tree
 
-## Manejo de memoria
+- Dualidad entre el codigo y la data.
+
+- Todo es una lista por ende tanto el código, como la data se escriben de la misma forma
+
+- Toda expresión se puede interpretar de las dos maneras. - Se interpreta como data usando `quote` - Se interpreta como code usando `eval`
+
+- Misma expresión que se puede leer de ambas formas y permite swapear dependiendo que necesite.
+
+[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
+
+## Manejo de memoria [Anita]
 
 - Las variables de Lisp apuntan a sus valores.
 
@@ -442,381 +462,25 @@ This feature makes it easy to develop efficient languages within languages. For 
 
 - Sistema de garbage collection.
 
-- Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero. 
+- Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero.
 
 - Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).
 
-## Control de flujo
+- Si o Si hablar de garbage collection aca!!!
 
-- Estructuras para organizar programas: formas especiales(flet, etiquetas) o macros(macrolet).
-
-- Versatilidad en funciones definidas localmente y macros.
-
-- Facilidad de iteración general. 
-
-- Facilidad de iteración y mapeo en estructura de datos.
-
-- Condicionales unidireccionales simples `when` y `unless`.
-
-- Condicional bidireccional simple `if`.
-
-- Condicionales multidireccionales `cond` y `case`.
-
-## TDA
-
-### Tablas de hash
-
-#### Crear una tabla de hash en Common Lisp
-
-- función `make-hash-table`
-- No requiere ningún argumento.
-
-Ejemplo: 
-```lisp
-(defvar tabla)
-(setq tabla (make-hash-table))
-```
-Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la función utilizada para testear claves iguales.
-```lisp
-(defvar tabla)
-(setq tabla (make-hash-table :test 'equal))
-```
-
-#### Agregar un elemento a la tabla
-
-- función `gethash` en conjunto con la función `setf`
-
-```lisp
-* (setf (gethash "clave1" tabla) 3) ; gethash recibe dos argumentos: la clave y el hash
-3
-```
-
-#### Obtener un valor
-
-- función `gethash` toma dos argumentos obligatorios: una clave y una tabla de hash
-
-Ejemplo:
-```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
-* (setf (gethash "clave1" tabla) 3)
-3
-* (gethash "clave1" tabla)
-3
-T
-```
-En el siguiente ejemplo, guardamos NIL en el hash:
-```lisp
-* (setf (gethash "clave2" tabla) nil)
-NIL
-* (gethash "clave2" tabla)
-NIL
-T ; T indica True, existe la clave.
-```
-#### Borrar de la tabla de hash
-
-- función `remhash` para eliminar el par clave-valor
-
-```lisp
-* (remhash "clave1" tabla) ; elimino el par: "clave"-3
-T
-* (remhash "clave2" tabla) ; elimino el par: "clave2"-nil
-T
-* (gethash "clave1" tabla) ; trato de obtener el valor de algo que fue eliminado
-NIL
-NIL
-* (remhash "clave3" tabla) ; trato de borrar una clave que no existe
-NIL
-```
-#### Contar entradas
-
-- función `hash-table-count`
-
-```lisp
-* (setf (gethash "clave1" tabla) 3)
-3
-* (setf (gethash "clave2" tabla) "estoesunstring")
-"estoesunstring"
-* (setf (gethash "clave3" tabla) 2)
-2
-* (hash-table-count tabla)
-3 ; 3 elementos en mi hash.
-```
-
-#### El tamaño del hash
-
-- función `make-hash-table` 
-
-```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
-*(hash-table-size tabla)
-16 ; por default
-*(hash-table-rehash-size tabla)
-1.5 ; indica que la tabla se agrandará en un 50% cada vez que necesite crecer.
-```
-
-- Los valores para `hash-table-size` y `hash-table-rehash-size` dependen de la implementación. En este caso, la implementación de Common Lisp con la cual contamos, elige un tamaño inicial de 16, y aumentará el tamaño en un 50% (1.5) cada vez que el hash necesite crecer.
-
-- Ejemplo: agregar un total de un millón* de pares clave-valor al hash:
-
-```lisp
-* (time (dotimes (n 1000000) (setf (gethash n tabla) n))) ; le tomo el tiempo que tarda
-Evaluation took:
-  0.162 seconds of real time
-  0.161954 seconds of total run time (0.137696 user, 0.024258 system)
-  [ Run times consist of 0.015 seconds GC time, and 0.147 seconds non-GC time. ]
-  100.00% CPU
-  355,501,132 processor cycles
-  83,836,896 bytes consed
-NIL
-* (hash-table-count tabla)
-1000000
-* (hash-table-size tabla)
-1048576
-```
-*_Se eligió un millón para resaltar los tiempos que tardan_
-
-- Y si piso todas las claves y tomo el tiempo nuevamente:
-
-```lisp
-* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
-Evaluation took:
-  0.088 seconds of real time
-  0.088449 seconds of total run time (0.088449 user, 0.000000 system)
-  100.00% CPU
-  194,161,741 processor cycles
-  0 bytes consed
-NIL
-```
-- Veamos cuantas veces temenos que redimensionar para llegar al tamaño final:
-
-```lisp
-* (log (/ 1000000 16) 1.5)
-27.235197
-* (let ((size 16)) (dotimes (n 29) (print (list n size)) (setq size (* 1.5 size))))
-(0 16)
-(1 24.0)
-(2 36.0)
-(3 54.0)
-(4 81.0)
-(5 121.5)
-(6 182.25)
-(7 273.375)
-(8 410.0625)
-(9 615.09375)
-(10 922.6406)
-(11 1383.9609)
-(12 2075.9414)
-(13 3113.912)
-(14 4670.868)
-(15 7006.3022)
-(16 10509.453)
-(17 15764.18)
-(18 23646.27)
-(19 35469.406)
-(20 53204.11)
-(21 79806.164)
-(22 119709.25)
-(23 179563.88)
-(24 269345.8)
-(25 404018.72)
-(26 606028.06)
-(27 909042.1)
-(28 1363563.3)
-NIL
-```
-- Se redimensiona 28 veces hasta que sea lo suficientemente grande para contener 1,000,000 de claves con sus respectivos valores.
-
-- Una manera de hacerlo más rápido: Si ya sabemos con anticipación que tan grande nuestro hash será, podemos comenzar con el tamaño correcto desde el vamos:
-
-```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal :size 1000000))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {10039B0043}>
-* (hash-table-size tabla)
-1000000
-* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
-Evaluation took:
-  0.086 seconds of real time
-  0.085881 seconds of total run time (0.085881 user, 0.000000 system)
-  100.00% CPU
-  188,651,959 processor cycles
-  0 bytes consed
-NIL
-```
-- Se prueba que tarda considerablemente menos tiempo. 
-- No hubo alocamientos involucrados ya que no hubo que redimensionar en absoluto
-- Se puede anticipar el comportamiento de crecimiento que tendrá el hash: parámetro `:rehash-size` en la función `make-hash-table`
-
-```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal :rehash-size 1000000))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D563}>
-* (hash-table-size tabla)
-16
-* (hash-table-rehash-size tabla)
-1000000
-* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
-Evaluation took:
-  0.120 seconds of real time
-  0.120026 seconds of total run time (0.116221 user, 0.003805 system)
-  [ Run times consist of 0.017 seconds GC time, and 0.104 seconds non-GC time. ]
-  100.00% CPU
-  263,851,583 processor cycles
-  41,943,104 bytes consed
-NIL
-```
-
-- Solamente necesitamos una redimensión, pero mucho màs realocamiento (41,943,107 bytes consed) porque casi toda la tabla (menos los 16 elementos iniciales) tuvieron que se construídos durante la iteración.
-
-#### Fun stuff e iteradores del hash
-
-Si se quiere realizar una acción sobre cada par clave-valor en la tabla de hash, existen múltiples opciones:
-
-  - `maphash`: itera sobre todas las claves de la tabla. Su primer argumento debe ser una función que acepte dos parámetros: la clave y el valor. Muy importante notar y recordar que, dado la naturaleza de las tablas de hash, uno no puede controlar el orden en el cual las claves son devueltas. `maphash` devuelve siemple `NIL`.
-
-```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D0E3}>
-* (setf (gethash "clave1" tabla) 1)
-1
-* (setf (gethash "clave2" tabla) 2)
-2
-* (setf (gethash "clave3" tabla) 3)
-3
-* (defun imprimir-entrada (clave valor) (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
-IMPRIMIR-ENTRADA
-* (maphash #'imprimir-entrada tabla)
-El valor asociado a la clave "clave1" es 1
-El valor asociado a la clave "clave2" es 2
-El valor asociado a la clave "clave3" es 3
-NIL
-*
-```
-  - `with-hash-table-iterator`: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve tres valores cada clave-valor del hash: un booleano generalizado que es `true` si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve `NIL`
-  
-```lisp
-* (with-hash-table-iterator (iterador tabla)
-	(loop
-		(multiple-value-bind (entrada clave valor)
-			(iterador)
-		(if entrada
-			(imprimir-entrada clave valor)
-			(return)))))
-El valor asociado a la clave "clave1" es 1
-El valor asociado a la clave "clave2" es 2
-El valor asociado a la clave "clave3" es 3
-NIL
-```
-
-  - `loop`: ~~la vieja confiable~~
-  
-```lisp
-  * (loop for clave being the hash-keys of tabla do (print clave))
-"clave1"
-"clave2"
-"clave3"
-NIL
-```
-Formateado clave-valor:
-
-```lisp
-* (loop for clave being the hash-keys of tabla using (hash-value valor)
-	do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
-El valor asociado a la clave "clave1" es 1
-El valor asociado a la clave "clave2" es 2
-El valor asociado a la clave "clave3" es 3
-NIL
-```
-Solo el valor:
-
-```lisp
-* (loop for valor being the hash-values of tabla do (print valor))
-1
-2
-3
-NIL
-```
-Clave y valor:
-
-```lisp
-* (loop for valor being the hash-values of tabla using (hash-key clave) do (format t "~&~S -> ~S" clave valor))
-"clave1" -> 1
-"clave2" -> 2
-"clave3" -> 3
-NIL
-```
-
-HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
-
-## Parámetros
-
-## Transparencia referencial: equals can be replaced by equals
-
-## Manejo de concurrencia
-
-Solo en librerías.
-
-- [Bordeaux Threads](https://common-lisp.net/project/bordeaux-threads/) para la creación de hilos.
-
-- [lparallel](https://github.com/lmj/lparallel) para una implementación más compleja que incluye comunicación entre hilos (colas, promesas, etc).
-
-- [Blackbird](https://github.com/orthecreedence/blackbird) implementación de promesas (la dejo porque no la encontré en cl-awesole).
-
-## Cálculo Lambda
-
-https://youtu.be/eis11j_iGMs
-
-?x. x?x.
-
-(lambda (x) (x\*x))
-
-The power of the lambda notation is in its generality. The lambda notation will handle the case in which the value of a function is a function. In many computer languages the value of a function must be an element of a set, such as a number or a string or the label of a function. In the lambda notation the value can be a function, not the name or label of a function but a function itself.
-
-https://www.sjsu.edu/faculty/watkins/lambda.htm
-
-- Calculo Lambda no tipado: expresa _mas_ que el calculo lambda tipado
-
-## Evaluacion
-
-- Eager / Data-driven evaluation
-
-- Todo se evalua
-
-Lisp is usually evaluated eagerly. In Common Lisp, arguments are evaluated in applicative order ('leftmost innermost').
-
-## Manejo de errores
+## Manejo de errores [Anita]
 
 Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.
 
--Work in progress, pls do not  touch
+-Work in progress, pls do not touch
 
 [Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
 
-## Paralelismo
+## TDA [Anita]
 
-## Code vs Data
+- que te da el lenguaje?
 
-- Dualidad entre el codigo y la data.
-
-- Todo es una lista por ende tanto el código, como la data se escriben de la misma forma
-
-- Toda expresión se puede interpretar de las dos maneras.
-	- Se interpreta como data usando `quote`
-	- Se interpreta como code usando `eval`
-	
-- Misma expresión que se puede leer de ambas formas y permite swapear dependiendo que necesite.
-
-[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
+- "mas tarde vemos un ejemplo concreto: la tabla de hash"
 
 # Sintaxis
 
@@ -829,7 +493,6 @@ Los errores puede ser señalizados por una amplia variedad de razones. Muchas fu
 - notacion polaca
 
 - kebab case
-
 
 ## Expresiones -> átomos y listas
 
@@ -928,7 +591,52 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 (eval (cons (car '(+ 1 2)) (cdr '(+ 1 2))))
 ```
 
-## Namespaces
+## Control de flujo [Tal vez sacarlo?][o convertirlo en buenos ejemplos de codigo de whiles/fors/ifs/conds]
+
+- Estructuras para organizar programas: formas especiales(flet, etiquetas) o macros(macrolet).
+
+- Versatilidad en funciones definidas localmente y macros.
+
+- Facilidad de iteración general.
+
+- Facilidad de iteración y mapeo en estructura de datos.
+
+- Condicionales unidireccionales simples `when` y `unless`.
+
+- Condicional bidireccional simple `if`.
+
+- Condicionales multidireccionales `cond` y `case`.
+
+## Ejemplo de macros [Javi]
+
+- expandir macro
+
+- Compararlo contra la definciion "canonica" de ese macro (lo que hay en el hyperspec)
+
+- crear un propio macro
+
+## Closures [Sacarlo? o darle mejor forma y ponerlo como comparacion a OZ? o agregar mas cosas tipicas de programacion funcional (y te queda un popurri de 3 o 4 features de FP)]
+
+- La variable debe persistir mientras la función lo haga.
+- Variables léxicas válidas dentro del contexto en donde son definidas.
+- Variable libre: Se continua haciendo referencia a una variable por fuera (mientras se continue usando el mismo contexto del cual fue definida).
+- Lisp permite devolver una función como valor como cualquier otro objeto.
+
+A continuación se muestra un ejemplo. Por un lado, la función combine toma argumentos de cualquier tipo y los combina de forma apropiada. combiner toma un argumento y devuelve una función para combinar argumentos de cualquier tipo.
+
+```
+(defun combiner (x)
+    (typecase x
+        (number #'+)
+        (list #'append)
+        (t #'list)))
+
+(defun combine (&rest args)
+    (apply (combiner (car args))
+    args))
+```
+
+## Namespaces [Fede -> Se liga un poco a la comparacion con scheme]
 
 - Un simbolo puede referirse a:
 
@@ -965,11 +673,317 @@ X ; => 3
 
 https://wiki.c2.com/?SingleNamespaceLisp
 
-## Sistemas
+# Ejemplo de TDA: Tablas de hash [Anita]
 
-https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s30-modern-common-lisp
+## Crear una tabla de hash en Common Lisp
 
-# Desglosando `eval`
+- función `make-hash-table`
+- No requiere ningún argumento.
+
+Ejemplo:
+
+```lisp
+(defvar tabla)
+(setq tabla (make-hash-table))
+```
+
+Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la función utilizada para testear claves iguales.
+
+```lisp
+(defvar tabla)
+(setq tabla (make-hash-table :test 'equal))
+```
+
+## Agregar un elemento a la tabla
+
+- función `gethash` en conjunto con la función `setf`
+
+```lisp
+* (setf (gethash "clave1" tabla) 3) ; gethash recibe dos argumentos: la clave y el hash
+3
+```
+
+## Obtener un valor
+
+- función `gethash` toma dos argumentos obligatorios: una clave y una tabla de hash
+
+Ejemplo:
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
+* (setf (gethash "clave1" tabla) 3)
+3
+* (gethash "clave1" tabla)
+3
+T
+```
+
+En el siguiente ejemplo, guardamos NIL en el hash:
+
+```lisp
+* (setf (gethash "clave2" tabla) nil)
+NIL
+* (gethash "clave2" tabla)
+NIL
+T ; T indica True, existe la clave.
+```
+
+## Borrar de la tabla de hash
+
+- función `remhash` para eliminar el par clave-valor
+
+```lisp
+* (remhash "clave1" tabla) ; elimino el par: "clave"-3
+T
+* (remhash "clave2" tabla) ; elimino el par: "clave2"-nil
+T
+* (gethash "clave1" tabla) ; trato de obtener el valor de algo que fue eliminado
+NIL
+NIL
+* (remhash "clave3" tabla) ; trato de borrar una clave que no existe
+NIL
+```
+
+## Contar entradas
+
+- función `hash-table-count`
+
+```lisp
+* (setf (gethash "clave1" tabla) 3)
+3
+* (setf (gethash "clave2" tabla) "estoesunstring")
+"estoesunstring"
+* (setf (gethash "clave3" tabla) 2)
+2
+* (hash-table-count tabla)
+3 ; 3 elementos en mi hash.
+```
+
+## El tamaño del hash
+
+- función `make-hash-table`
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
+*(hash-table-size tabla)
+16 ; por default
+*(hash-table-rehash-size tabla)
+1.5 ; indica que la tabla se agrandará en un 50% cada vez que necesite crecer.
+```
+
+- Los valores para `hash-table-size` y `hash-table-rehash-size` dependen de la implementación. En este caso, la implementación de Common Lisp con la cual contamos, elige un tamaño inicial de 16, y aumentará el tamaño en un 50% (1.5) cada vez que el hash necesite crecer.
+
+- Ejemplo: agregar un total de un millón\* de pares clave-valor al hash:
+
+```lisp
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n))) ; le tomo el tiempo que tarda
+Evaluation took:
+  0.162 seconds of real time
+  0.161954 seconds of total run time (0.137696 user, 0.024258 system)
+  [ Run times consist of 0.015 seconds GC time, and 0.147 seconds non-GC time. ]
+  100.00% CPU
+  355,501,132 processor cycles
+  83,836,896 bytes consed
+NIL
+* (hash-table-count tabla)
+1000000
+* (hash-table-size tabla)
+1048576
+```
+
+\*_Se eligió un millón para resaltar los tiempos que tardan_
+
+- Y si piso todas las claves y tomo el tiempo nuevamente:
+
+```lisp
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
+Evaluation took:
+  0.088 seconds of real time
+  0.088449 seconds of total run time (0.088449 user, 0.000000 system)
+  100.00% CPU
+  194,161,741 processor cycles
+  0 bytes consed
+NIL
+```
+
+- Veamos cuantas veces temenos que redimensionar para llegar al tamaño final:
+
+```lisp
+* (log (/ 1000000 16) 1.5)
+27.235197
+* (let ((size 16)) (dotimes (n 29) (print (list n size)) (setq size (* 1.5 size))))
+(0 16)
+(1 24.0)
+(2 36.0)
+(3 54.0)
+(4 81.0)
+(5 121.5)
+(6 182.25)
+(7 273.375)
+(8 410.0625)
+(9 615.09375)
+(10 922.6406)
+(11 1383.9609)
+(12 2075.9414)
+(13 3113.912)
+(14 4670.868)
+(15 7006.3022)
+(16 10509.453)
+(17 15764.18)
+(18 23646.27)
+(19 35469.406)
+(20 53204.11)
+(21 79806.164)
+(22 119709.25)
+(23 179563.88)
+(24 269345.8)
+(25 404018.72)
+(26 606028.06)
+(27 909042.1)
+(28 1363563.3)
+NIL
+```
+
+- Se redimensiona 28 veces hasta que sea lo suficientemente grande para contener 1,000,000 de claves con sus respectivos valores.
+
+- Una manera de hacerlo más rápido: Si ya sabemos con anticipación que tan grande nuestro hash será, podemos comenzar con el tamaño correcto desde el vamos:
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal :size 1000000))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {10039B0043}>
+* (hash-table-size tabla)
+1000000
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
+Evaluation took:
+  0.086 seconds of real time
+  0.085881 seconds of total run time (0.085881 user, 0.000000 system)
+  100.00% CPU
+  188,651,959 processor cycles
+  0 bytes consed
+NIL
+```
+
+- Se prueba que tarda considerablemente menos tiempo.
+- No hubo alocamientos involucrados ya que no hubo que redimensionar en absoluto
+- Se puede anticipar el comportamiento de crecimiento que tendrá el hash: parámetro `:rehash-size` en la función `make-hash-table`
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal :rehash-size 1000000))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D563}>
+* (hash-table-size tabla)
+16
+* (hash-table-rehash-size tabla)
+1000000
+* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
+Evaluation took:
+  0.120 seconds of real time
+  0.120026 seconds of total run time (0.116221 user, 0.003805 system)
+  [ Run times consist of 0.017 seconds GC time, and 0.104 seconds non-GC time. ]
+  100.00% CPU
+  263,851,583 processor cycles
+  41,943,104 bytes consed
+NIL
+```
+
+- Solamente necesitamos una redimensión, pero mucho màs realocamiento (41,943,107 bytes consed) porque casi toda la tabla (menos los 16 elementos iniciales) tuvieron que se construídos durante la iteración.
+
+## Fun stuff e iteradores del hash
+
+Si se quiere realizar una acción sobre cada par clave-valor en la tabla de hash, existen múltiples opciones:
+
+- `maphash`: itera sobre todas las claves de la tabla. Su primer argumento debe ser una función que acepte dos parámetros: la clave y el valor. Muy importante notar y recordar que, dado la naturaleza de las tablas de hash, uno no puede controlar el orden en el cual las claves son devueltas. `maphash` devuelve siemple `NIL`.
+
+```lisp
+* (defvar tabla)
+TABLA
+* (setq tabla (make-hash-table :test 'equal))
+#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D0E3}>
+* (setf (gethash "clave1" tabla) 1)
+1
+* (setf (gethash "clave2" tabla) 2)
+2
+* (setf (gethash "clave3" tabla) 3)
+3
+* (defun imprimir-entrada (clave valor) (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
+IMPRIMIR-ENTRADA
+* (maphash #'imprimir-entrada tabla)
+El valor asociado a la clave "clave1" es 1
+El valor asociado a la clave "clave2" es 2
+El valor asociado a la clave "clave3" es 3
+NIL
+*
+```
+
+- `with-hash-table-iterator`: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve tres valores cada clave-valor del hash: un booleano generalizado que es `true` si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve `NIL`
+
+```lisp
+* (with-hash-table-iterator (iterador tabla)
+	(loop
+		(multiple-value-bind (entrada clave valor)
+			(iterador)
+		(if entrada
+			(imprimir-entrada clave valor)
+			(return)))))
+El valor asociado a la clave "clave1" es 1
+El valor asociado a la clave "clave2" es 2
+El valor asociado a la clave "clave3" es 3
+NIL
+```
+
+- `loop`: ~~la vieja confiable~~
+
+```lisp
+  * (loop for clave being the hash-keys of tabla do (print clave))
+"clave1"
+"clave2"
+"clave3"
+NIL
+```
+
+Formateado clave-valor:
+
+```lisp
+* (loop for clave being the hash-keys of tabla using (hash-value valor)
+	do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
+El valor asociado a la clave "clave1" es 1
+El valor asociado a la clave "clave2" es 2
+El valor asociado a la clave "clave3" es 3
+NIL
+```
+
+Solo el valor:
+
+```lisp
+* (loop for valor being the hash-values of tabla do (print valor))
+1
+2
+3
+NIL
+```
+
+Clave y valor:
+
+```lisp
+* (loop for valor being the hash-values of tabla using (hash-key clave) do (format t "~&~S -> ~S" clave valor))
+"clave1" -> 1
+"clave2" -> 2
+"clave3" -> 3
+NIL
+```
+
+HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
+
+# Desglosando `eval` [Fede]
 
 [The Roots of LISP ~ Paul Graham](http://www.paulgraham.com/rootsoflisp.html)
 
@@ -1039,13 +1053,24 @@ https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s30-modern-common-lisp
                      a)))))
 ```
 
-# Estadísticas
+# LISP en la practica
+
+## Estadisticas [Cami/Javi]
+
+- repos de github
 
 _Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en los últimos años. Para lenguajes antiguos se incluye información sobre qué lenguajes o técnicas se vieron influenciadas por este lenguaje_
 
 http://blockml.awwapps.com/example/example/document.html#sec-6
 
-# Comparaciones
+## Comparaciones [Cami/Anita]
+
+- repetir tema de la influencia y de como todo lenguaje se ve tocado por lisp
+- comparar con python
+- con C performance
+- con oz, scala, haskell
+- con dialectos de lisp como scheme y racket
+- con javascript para decir como se influencia por shcem
 
 _Se destacan las diferencias del lenguaje contra otros con propósito similar, se incluyen además benchmarks o ejemplos que identifiquen diferencias._
 
@@ -1055,17 +1080,27 @@ http://www.norvig.com/python-lisp.html
 
 https://hyperpolyglot.org/lisp
 
-## Scheme
+- armar secciones tipo lisp vs x
 
-Los dos dialectos principales a elegir son Common Lisp y Scheme, ambos tienen ventajas y desventajas, pero las diferencias entre ellos sigue siendo chica que comparando contra otros lenguajes, así que no importa cual elejas para empezar. ¿Cuál debería aprender, Common Lisp o Scheme? Cuál es la diferencia?
+## LISP vs Scheme
+
+Los dos dialectos principales a elegir son Common Lisp y Scheme (OJO, no pongamos esto, hay mil mas!!!), ambos tienen ventajas y desventajas, pero las diferencias entre ellos sigue siendo chica que comparando contra otros lenguajes, así que no importa cual elejas para empezar. ¿Cuál debería aprender, Common Lisp o Scheme? Cuál es la diferencia?
 
 - Common Lisp: Es poderoso pero feo
 - Scheme: Es chiquito y limpio, pero el estándar solamente define es inner core del lenguaje.
 - Si tuviera que crear una aplicación, probablemente es mejor ir por Common Lisp.
 - Si tuviera que enseniar (no tengo enie) en un curso, usaria Scheme (pero con macros de Common Lisp)
 
-# Casos de estudio
+## Casos de estudio [Cami/Anita]
 
 _Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje_
+
+emacs
+
+crash bandicoot
+
+beating the averages!!!! (http://www.paulgraham.com/avg.html)
+
+Reddit
 
 https://github.com/CodyReichert/awesome-cl
