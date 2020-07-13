@@ -127,7 +127,7 @@ https://www.sjsu.edu/faculty/watkins/lambda.htm
 - Lisp es orientado a objetos, reflexivo, imperativo y funcional: el programador será capaz de crear programas usando más de un estilo de programación, sin estar forzado a tomar un estilo en particular.
 - Existen otros lenguajes multiparadigma como - Python: éste además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones - Oz: incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
 
-In func­tional program­ming, func­tions avoid two habits common in other languages: muta­tion (= changing data in-place rather than returning a value) and relying on state (= extra context that’s not provided as input, for instance global vari­ables).
+In func­tional program­ming, func­tions avoid two habits common in other languages: muta­tion (= changing data in-place rather than returning a value) and relying on state (= extra context that's not provided as input, for instance global vari­ables).
 
 - ¿¿dataflow vs logicflow??
 
@@ -174,14 +174,14 @@ In func­tional program­ming, func­tions avoid two habits common in other lang
 - La función _eval_, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario
 - No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura:
 
-      	- Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
-      	- Ejecutar código en tiempo de compilación es la base de las macros.
-      	- Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
-      	- Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
+          - Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
+          - Ejecutar código en tiempo de compilación es la base de las macros.
+          - Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
+          - Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
 
-      		(Interpretado || Compilado) -> True
+              (Interpretado || Compilado) -> True
 
-      		<< es interactivo o interpretado???>>
+              << es interactivo o interpretado???>>
 
 ## Tipado [Cami]
 
@@ -368,11 +368,11 @@ A partir de esto, se pueden usar macros para simplificar y reutilizar código, o
 
 ```lisp
 (defmacro let (binds &body body)
-  ‘((lambda ,(mapcar #’(lambda (x)
+  '((lambda ,(mapcar #'(lambda (x)
                          (if (consp x) (car x) x))
                         binds)
       ,@body)
-    ,@(mapcar #’(lambda (x)
+    ,@(mapcar #'(lambda (x)
                   (if (consp x) (cadr x) nil))
               binds)))
 ```
@@ -381,7 +381,7 @@ A partir de esto, se pueden usar macros para simplificar y reutilizar código, o
 
 ```lisp
 (defmacro while (test &body body)
-  ‘(do ()
+  '(do ()
        ((not ,test))
        ,@body))
 ```
@@ -390,7 +390,7 @@ A partir de esto, se pueden usar macros para simplificar y reutilizar código, o
 
 ```lisp
 (defmacro till (test &body body)
-  ‘(do ()
+  '(do ()
        (,test)
        ,@body))
 ```
@@ -400,7 +400,7 @@ A partir de esto, se pueden usar macros para simplificar y reutilizar código, o
 ```lisp
 (defmacro for ((var start stop) &body body)
   (let ((gstop (gensym)))
-    ‘(do ((,var ,start (1+ ,var))
+    '(do ((,var ,start (1+ ,var))
           (,gstop ,stop))
          ((> ,var ,gstop))
        ,@body)))
@@ -928,12 +928,12 @@ NIL
 
 ```lisp
 * (with-hash-table-iterator (iterador tabla)
-	(loop
-		(multiple-value-bind (entrada clave valor)
-			(iterador)
-		(if entrada
-			(imprimir-entrada clave valor)
-			(return)))))
+    (loop
+        (multiple-value-bind (entrada clave valor)
+            (iterador)
+        (if entrada
+            (imprimir-entrada clave valor)
+            (return)))))
 El valor asociado a la clave "clave1" es 1
 El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
@@ -954,7 +954,7 @@ Formateado clave-valor:
 
 ```lisp
 * (loop for clave being the hash-keys of tabla using (hash-value valor)
-	do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
+    do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
 El valor asociado a la clave "clave1" es 1
 El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
@@ -1072,25 +1072,53 @@ http://blockml.awwapps.com/example/example/document.html#sec-6
 - con dialectos de lisp como scheme y racket
 - con javascript para decir como se influencia por shcem
 
-_Se destacan las diferencias del lenguaje contra otros con propósito similar, se incluyen además benchmarks o ejemplos que identifiquen diferencias._
 
-https://wiki.c2.com/?LispSchemeDifferences
+## Familias de Lisp
 
-http://www.norvig.com/python-lisp.html
+- Más usados: Scheme (1975),Emacs Lisp (1985) y Clojure (2007).
 
-https://hyperpolyglot.org/lisp
+Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son Scheme (1975),Emacs Lisp (1985) y Clojure (2007).
 
-- armar secciones tipo lisp vs x
+### Scheme
 
-## LISP vs Scheme
+- Minimalista, solamente define el inner core del lenguaje
+- Sistema de macros limpio y trnasparente
+- Lexical scoping
+- Garbage collection.
+- Ocupa mucha menos memoria 
 
-Los dos dialectos principales a elegir son Common Lisp y Scheme (OJO, no pongamos esto, hay mil mas!!!), ambos tienen ventajas y desventajas, pero las diferencias entre ellos sigue siendo chica que comparando contra otros lenguajes, así que no importa cual elejas para empezar. ¿Cuál debería aprender, Common Lisp o Scheme? Cuál es la diferencia?
+### Clojure
 
-- Common Lisp: Es poderoso pero feo
-- Scheme: Es chiquito y limpio, pero el estándar solamente define es inner core del lenguaje.
-- Si tuviera que crear una aplicación, probablemente es mejor ir por Common Lisp.
-- Si tuviera que enseniar (no tengo enie) en un curso, usaria Scheme (pero con macros de Common Lisp)
+- Sistema de macros similar al de Common Lisp
+- Secuencias lazy (`seq`)
+- El sistema de macros de Clojure es muy similar al de Common Lisp con la excepción de que la versión de Clojure de la comilla inversa (llamada "comilla sintáctica") cualifica los símbolos con el espacio de nombres al que pertenece. 
+- Sistema integrado de estructuras de datos persistentes e inmutables.
+- Compilado con Java
+  
 
+### Emacs Lisp
+- Emacs Lisp trabaja con dynamic scoping por default.
+- Sintaxis para el compilado de un archivo `M-x byte-compile-file`
+- No tiene closures
+
+## Otros lenguajes
+
+### Python
+
+- Python admite todas las caracteristicas esenciales de Lisp, exeptuando las macros.
+- Sintaxis más sencilla de leer, 
+- Tiempo de compilacion más rápido
+- Tiempo de ejecución mucho más lento
+- Más dinámico, python realiza menos chequeos de erorres.
+- Similitudes:
+  - Lenguaje de alto nivel interpretado y compiladom orientado a objetos con semántica dinámica.
+  - Admiten modulos y paquetes, fomentando la modularidad del programa.
+  - Debuggear es sencillo
+
+### C++
+- Lisp es una o dos veces más lento que C++
+- Manejo de memoria con punteros
+- Sintaxis más detallada y restrictiva
 ## Casos de estudio [Cami/Anita]
 
 _Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje_
