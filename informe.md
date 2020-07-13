@@ -578,12 +578,12 @@ NIL
   
 ```lisp
 * (with-hash-table-iterator (iterador tabla)
-	(loop
-		(multiple-value-bind (entrada clave valor)
-			(iterador)
-		(if entrada
-			(imprimir-entrada clave valor)
-			(return)))))
+    (loop
+        (multiple-value-bind (entrada clave valor)
+            (iterador)
+        (if entrada
+            (imprimir-entrada clave valor)
+            (return)))))
 El valor asociado a la clave "clave1" es 1
 El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
@@ -603,7 +603,7 @@ Formateado clave-valor:
 
 ```lisp
 * (loop for clave being the hash-keys of tabla using (hash-value valor)
-	do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
+    do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
 El valor asociado a la clave "clave1" es 1
 El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
@@ -904,22 +904,46 @@ http://blockml.awwapps.com/example/example/document.html#sec-6
 
 # Comparaciones
 
-_Se destacan las diferencias del lenguaje contra otros con propósito similar, se incluyen además benchmarks o ejemplos que identifiquen diferencias._
 
-https://wiki.c2.com/?LispSchemeDifferences
+## Familias de Lisp
+Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son Scheme (1975),Emacs Lisp (1985) y Clojure (2007).
 
-http://www.norvig.com/python-lisp.html
+### Scheme
 
-https://hyperpolyglot.org/lisp
+Scheme es un lenguaje de programación muy corto, cuenta con solo 50 páginas, es más corto que el índice del libro de Guy Steele Common Lisp: The Language. Conocido por ser limpio y minimalista, Scheme solamente define el inner core del lenguaje, proporciona el mínimo número posible de nociones primitivas, contruyendo todo lo demas a partir de un reducido numero de abstracciones. 
+Cuenta con ciertas características de implementación (tales como optimización de llamada de cola y continuación completa), un sistema de macros limpio y transparente basado en reglas de reencritura.
+Scheme se usa a menudo en ciencias de computación o investigación debido a su capacidad de representar muchas abstracciones de programación con sus primitivas simples. Common Lisp, en cambio, se usa para la programación del mundo real debido a su gran biblioteca de funciones de utilidad, CLOS y su sistema de manejo de condiciones.
+Si se tuviera que crear una aplicación, probablemente es mejor ir por Common Lisp. Pero si se tuviera que enseñar en un curso, probablemente la mejor opción sería Scheme (pero con macros de Common Lisp)
 
-## Scheme
 
-Los dos dialectos principales a elegir son Common Lisp y Scheme, ambos tienen ventajas y desventajas, pero las diferencias entre ellos sigue siendo chica que comparando contra otros lenguajes, así que no importa cual elejas para empezar. ¿Cuál debería aprender, Common Lisp o Scheme? Cuál es la diferencia?
+### Clojure
 
-- Common Lisp: Es poderoso pero feo
-- Scheme: Es chiquito y limpio, pero el estándar solamente define es inner core del lenguaje.
-- Si tuviera que crear una aplicación, probablemente es mejor ir por Common Lisp.
-- Si tuviera que enseniar (no tengo enie) en un curso, usaria Scheme (pero con macros de Common Lisp)
+Clojure es de los lenguajes de programación pertenecientes a la familia de Lisp más recientes. 
+El sistema de macros de Clojure es muy similar al de Common Lisp con la excepción de que la versión de Clojure de la comilla inversa (llamada "comilla sintáctica") cualifica los símbolos con el espacio de nombres al que pertenece. 
+A diferencia de Common Lisp que se maneja con lista, Clojure usa secuencias con evaluación perezosa, es decir que los elementos de la secuencia no se computan hasta que son necesarios, lo que permite representar conjuntos infinitos en potencia.
+Las aplicaciones escritas en Clojure pueden ser fácilmente integradas en servidores de aplicaciones u otros entornos Java con escasa complejidad adicional. Este puede ser ejecutado sobre la Máquina Virtual de Java y la máquina virtual de la plataforma .NET, así como compilado a JavaScript.
+
+### Emacs Lisp
+
+- Emacs Lisp trabaja con dynamic scoping por default.
+- No tiene closures, lo cual hace la composicion de funciones bastante dificil.
+
+
+## Otros lenguajes
+
+### Python
+
+Python admite todas las caracteristicas esenciales de Lisp, exeptuando las macros.
+La sintaxis de este lenguaje de programación es bastante más sencilla de leer, Lisp proporciona un core más potente y consistente, pero más engorroso a la hora de leer. En consecuencia, Lisp, en general, es más dificil para aprende ya que se opera en un alto nivel de abstracción desde un principio. Sin embargo, luego sera mas sencillo agregar niveles de abstracción y complejidad. Esto hace que Python sea más sencillo de programar para problemas de dificultad básica pero Lisp este más preparado para facilitar las tareas más complejas.
+En cuanto al tiempo de compilacion, Python más rápido(tiempo de compilación, de analisis de errores y dedeclaración de tipos baja). En cuanto a tiempo de ejecución python es mucho más lento. 
+Por otro lado, es más dinámico, ya que realiza menos chequeos de erorres.
+Más allá de estas diferencias, son lenguajes de alto nivel interpretado y compilado orientado a objetos muy similares. Ambos admiten módulos y paquetes, fomrantando la modularidad del programa y en ambos lenguajes es muy sencillo de debuggear, un bug no puede producir un Segmentation Fault.
+
+### C++
+
+- Lisp es una o dos veces más lento que C++
+- Manejo de memoria con punteros
+- Sintaxis más detallada y restrictiva
 
 # Casos de estudio
 
