@@ -7,9 +7,9 @@ author: |
   | Secchi, Anita - 99131
 ---
 
-[![](img/lisp.png)](https://github.com/FdelMazo/7531-TDL)
+[![](img/byte.png)](https://github.com/FdelMazo/7531-TDL)
 
-# Historia [Fede]
+# Historia
 
 [Early LISP History (1956 - 1959) ~ Herbert Stoyan](https://campus.hesge.ch/Daehne/2004-2005/Langages/Lisp.htm)
 
@@ -97,41 +97,7 @@ https://www.sjsu.edu/faculty/watkins/lambda.htm
 
 - Calculo Lambda no tipado: expresa _mas_ que el calculo lambda tipado
 
-# Caracteristicas del Lenguaje
-
-## Paradigma [Fede]
-
-![](img/declarative.png)
-
-~ Peter Van-Roy, Concepts, Techniques, and Models of Computer Programming
-
-- Programación declarativa: definir el _qué_ sin explicar el _cómo_
-
-  - Programación funcional: los componentes se definen como funciones matemáticas
-
-    - Determinístico
-
-    - Misma entrada garantiza misma salida
-
-    - No hay estado
-
-    - No hay efectos secundarios
-
-    - Programación de alto orden:
-
-      - Funciones como ciudadanos de primera clase: se pueden usar en cualquier contexto
-
-      - Funciones de alto orden: poder recibir como parametro o retornar funciones
-
-- Lisp es un lenguaje de programacón de tipo multiparadigma: soporta más de un paradigma de programación
-- Lisp es orientado a objetos, reflexivo, imperativo y funcional: el programador será capaz de crear programas usando más de un estilo de programación, sin estar forzado a tomar un estilo en particular.
-- Existen otros lenguajes multiparadigma como - Python: éste además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones - Oz: incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
-
-In func­tional program­ming, func­tions avoid two habits common in other languages: muta­tion (= changing data in-place rather than returning a value) and relying on state (= extra context that's not provided as input, for instance global vari­ables).
-
-- ¿¿dataflow vs logicflow??
-
-## Pionero [Cami]
+## Pionero
 
 [What Made Lisp Different ~ Paul Graham](http://www.paulgraham.com/diff.html)
 
@@ -155,333 +121,6 @@ In func­tional program­ming, func­tions avoid two habits common in other lang
 
 - **Map y Reduce**: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.
 
-## Evaluacion [Cami]
-
-- Eager / Data-driven evaluation
-
-- Lisp is usually evaluated eagerly. In Common Lisp, arguments are evaluated in applicative order ('leftmost innermost').
-
-## Compilado/interpretado [Cami]
-
-[How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
-
-- Las funciones pueden ser compiladas de forma individual o por el archivo.
-- Funciones compiladas o interpretadas se comportan de la misma forma, excepto con el comando `compiled-f unction-p` que verifica si la función pasada por parámetro fue compilada.
-
-- Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos.
-- El compilador puede recibir instrucciones sobre qué tan dinámico debe ser el código compilado
-- Intérprete REPL(Read-Eval-Print-Loop): se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente
-- La función _eval_, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario
-- No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura:
-
-          - Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
-          - Ejecutar código en tiempo de compilación es la base de las macros.
-          - Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
-          - Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
-
-              (Interpretado || Compilado) -> True
-
-              << es interactivo o interpretado???>>
-
-## Tipado [Cami]
-
-- Tipado dinámico: las verificaciones de tipo se realizan en tiempo de ejecución y las variables se pueden configurar de forma predeterminada para todo tipo de objetos.
-- Lisp es dinámico: tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución, se le permite al usuario agregar, cambiar y eliminar - funciones - construcciones sintácticas - tipos de datos - sintáxis
-
-- Explota en runtime
-
-  - Tipado fuerte: explota
-
-  - Tipado dinamico: en runtime
-
-## Lexical/Static/dynamic scoping [Cami]
-
-- Identificador asociado con el entorno más reciente al declarar con `special`.
-
-Ejemplo:
-
-```
-(le t ((x 20))
-    (declare (specia l x))
-    (foo))
-```
-
-## Expression oriented / Simbolico [Fede]
-
-https://beautifulracket.com/appendix/why-racket-why-lisp.html
-
-Usa S-Expressions: Simbolic expression
-
-Lisp is an expression oriented language. Unlike most other languages, no distinction is made between "expressions" and "statements";[dubious – discuss] all code and data are written as expressions. When an expression is evaluated, it produces a value (in Common Lisp, possibly multiple values), which can then be embedded into other expressions. Each value can be any data type.
-
-https://en.wikipedia.org/wiki/Expression-oriented_programming_language
-
-Transparencia referencial: equals can be replaced by equals
-
-## Metaprogramming / Extensibilidad [Javi]
-
-https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
-
-cahpter 4 de practical common lisp
-
-Further, because Lisp code has the same structure as lists, macros can be built with any of the list-processing functions in the language. In short, anything that Lisp can do to a data structure, Lisp macros can do to code. In contrast, in most other languages, the parser's output is purely internal to the language implementation and cannot be manipulated by the programmer.
-
-https://youtu.be/dw-y3vNDRWk
-
-The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.
-
-https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_vmsLq
-
-https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_pwJR1
-
-"language-oriented program­ming"
-
-- comparar como se extiende python o C normalmente https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s6-extensibility y http://www.gigamonkeys.com/book/macros-standard-control-constructs.html
-
-- Hablar de extensiones "populares" (importantes) del lenguaje
-
-  - Darle mucha bola a CLOS! que es importantisimo en la historia de lisp (chusmear relacion con smalltalk!!!) (chusmear como CLOS es de lo mas "puro" en cuanto a Object Oriented)
-
-  - Concurrencia
-
-  - String interpolation
-
-Solo en librerías.
-
-- [Bordeaux Threads](https://common-lisp.net/project/bordeaux-threads/) para la creación de hilos.
-
-- [lparallel](https://github.com/lmj/lparallel) para una implementación más compleja que incluye comunicación entre hilos (colas, promesas, etc).
-
-- [Blackbird](https://github.com/orthecreedence/blackbird) implementación de promesas (la dejo porque no la encontré en cl-awesole).
-
-* "los macros son **parte** de lo que es la extensibilidad de list" --> pie para entrar a la siguiente seccion
-
-## Macros [Javi]
-
-- Esta seccion que sea bien teorica con codigo (pero poco codigo). Los ejemplos ejemplos van en sintaxis
-
-- En Lisp, una macro es una función que genera código de Lisp. La forma más sencilla de pensarlo sería como una transformación de código. Cuando se llama a una macro en el código:
-
-1. Se arma el código en base a la definición `defmacro` de la misma.
-2. Se evalúa el nuevo código en el lugar de la llamada a la macro.
-
-A partir de esto, se pueden usar macros para simplificar y reutilizar código, o hasta manipular la sintaxis del lenguaje.
-
-- Algunos operadores:
-  - `` Backquote ` ``: Funciona similar a `quote`. (se explica antes?)
-
-```lisp
-`(a, b, c)
-; equivalente a escribir
-'(a b c)
-(list 'a 'b 'c)
-```
-
-- `Comma ,`: Combinado con `backquote` sirve para "activar y desactivar" el efecto de `backquote`. Es útil al escribir macros:
-
-```lisp
-`(a ,b c ,d)
-; equivalente a escribir
-(list 'a b 'c d)
-```
-
-- `Comma-at ,@`: Dada una expresión que resuelve una lista, se puede utilizar `,@` para reemplazar esta lista por la secuencia de sus mismos elementos (elimina el paréntesis):
-
-```lisp
-`(a b c)    ->  (A (1 2 3) C)
-`(a ,@b c)  ->  (A 1 2 3 C)
-```
-
-- `(nil! x)`: Cambiar el valor de la variable `x` a `nil`.
-  En el ejemplo se puede observar que `var` se expande al valor que corresponde (por el operador `,`), mientras que `setq` y `nil` no se evalúan.
-
-```lisp
-(defmacro nil! (var)
-  `(setq ,var nil))
-
-; se llama de la forma
-(nil! x)
-
-; genera el código
-(setq x nil)
-```
-
-- `(if test then else)`: Ya se encuentra definida en Lisp. Tiene que ser una macro para evaluar la expresión solo cuando corresponda. Una posible implementación utilizaría la macro `cond`, que evalúa solo la primer expresión cuya condición sea true:
-
-```lisp
-(defmacro if (condition then else)
-  `(cond (,condition ,then)
-         (t ,else)))
-```
-
-- `(when test do1 do2 ...)`: Cuando la expresión `test` devuelve `true`, se ejecutan todas las expresiones `do`, devolviendo el valor de la última. Para que se expandan todas las expresiones `do` se las combina en una lista `&rest body` y luego se utiliza el operador `,@`:
-
-```lisp
-(defmacro our-when (test &rest body)
-  `(if ,test
-    (progn
-      ,@body)))
-
-; se llama de la forma
-(when test do1 do2 do3)
-
-; genera el código
-(if (eligible obj)
-  (progn do1
-    do2
-    do3
-    obj))
-```
-
-- `infix`: Las macros permiten cambiar el orden de las expresiones sin evaluarlas. Entonces, se podría hacer una macro `infix` para tener operadores matemáticos en notación de infijo en vez de la notación polaca de Lisp. Existen implementaciones completas de esta macro para que funcione con más de una operación, pero para mostrar la más simple:
-
-```lisp
-(defmacro infix (arg1 op arg2)
-  `(,op ,arg1 ,arg2))
-
-; se llama de la forma
-(infix 2 + 3)
-
-; genera el código
-(+ 2 3)
-```
-
-- `lcomp`: Replicar la sintaxis de compresión de listas de Python.
-
-```lisp
-(defmacro lcomp (expression for var in list conditional conditional-test)
-  (let ((result (gensym)))
-    `(let ((,result nil))
-       (loop for ,var in ,list
-            ,conditional ,conditional-test
-            do (setq ,result (append ,result (list ,expression))))
-       ,result)))
-
-; se llama de la forma
-(lcomp x for x in (1 2 3 4 5 6 7) if (= (mod x 2) 0))
-
-; una vez generado y ejecutado el código devuelve
-(2 4 6)
-```
-
-- `let`:
-
-```lisp
-(defmacro let (binds &body body)
-  '((lambda ,(mapcar #'(lambda (x)
-                         (if (consp x) (car x) x))
-                        binds)
-      ,@body)
-    ,@(mapcar #'(lambda (x)
-                  (if (consp x) (cadr x) nil))
-              binds)))
-```
-
-- `while`:
-
-```lisp
-(defmacro while (test &body body)
-  '(do ()
-       ((not ,test))
-       ,@body))
-```
-
-- `till`:
-
-```lisp
-(defmacro till (test &body body)
-  '(do ()
-       (,test)
-       ,@body))
-```
-
-- `for`:
-
-```lisp
-(defmacro for ((var start stop) &body body)
-  (let ((gstop (gensym)))
-    '(do ((,var ,start (1+ ,var))
-          (,gstop ,stop))
-         ((> ,var ,gstop))
-       ,@body)))
-```
-
-## Homoiconicidad ("Code as Data") [Javi]
-
-"This means that the way you think about a program­ming problem can be quite close to the way you actu­ally program it."
-
-- Gracias a las S-Expressions
-
-- Codigo y estructuras de datos intercambiable
-
-- La representación interna del programa es la que se lee
-
-- Todo es una lista -> Code and Data are made out of the same data structures, and the quote operator is the way we distinguish between them
-
-- Reflexion mucho mas sencilla
-
-- Lisp functions can be manipulated, altered or even created within a Lisp program without lower-level manipulations
-
-- Extensibilidad mucho mas facil
-
-- List of lists ??? Tree!
-
-- And how do we deal with trees? Recursion!
-
-- El abstract syntax tree de una funcion se puede manipualr como una estructura de datos y luego evaluar
-
-- s-expressions can represent arbitrary tree expressions, much like the usual abstract syntax tree
-
-- anything that Lisp can do to a data structure, Lisp macros can do to code
-
-This feature makes it easy to develop efficient languages within languages. For example, the Common Lisp Object System can be implemented cleanly as a language extension using macros. This means that if an application needs a different inheritance mechanism, it can use a different object system. This is in stark contrast to most other languages; for example, Java does not support multiple inheritance and there is no reasonable way to add it.
-
-- Las s-expresiones son binary trees porque son o atomos o (x y) siendo (x . y) un dotted pair (x hijo izq, y hijo der)
-
-- (hoy por hoy se usa el sintacic sugar LIST, que es nada mas concatenar mil dotted pairs. (x y z) es (x . (y . (z . null))))
-
-- foto binary tree
-
-- Dualidad entre el codigo y la data.
-
-- Todo es una lista por ende tanto el código, como la data se escriben de la misma forma
-
-- Toda expresión se puede interpretar de las dos maneras. - Se interpreta como data usando `quote` - Se interpreta como code usando `eval`
-
-- Misma expresión que se puede leer de ambas formas y permite swapear dependiendo que necesite.
-
-[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
-
-## Manejo de memoria [Anita]
-
-- Las variables de Lisp apuntan a sus valores.
-
-- Todos los valores son conceptualmente un puntero.
-
-- Manejo de memoria automática-> Consing.
-
-- Sistema de garbage collection.
-
-- Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero.
-
-- Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).
-
-- Si o Si hablar de garbage collection aca!!!
-
-## Manejo de errores [Anita]
-
-Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.
-
--Work in progress, pls do not touch
-
-[Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
-
-## TDA [Anita]
-
-- que te da el lenguaje?
-
-- "mas tarde vemos un ejemplo concreto: la tabla de hash"
-
 # Sintaxis
 
 [LISP 1.5 Programmer's Manual](http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf)
@@ -489,10 +128,6 @@ Los errores puede ser señalizados por una amplia variedad de razones. Muchas fu
 [Common Lisp HyperSpec](http://clhs.lisp.se/Front/index.htm)
 
 [Learn X in Y minutes, Where X=Common Lisp](https://learnxinyminutes.com/docs/common-lisp/)
-
-- notacion polaca
-
-- kebab case
 
 ## Expresiones -> átomos y listas
 
@@ -591,89 +226,7 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 (eval (cons (car '(+ 1 2)) (cdr '(+ 1 2))))
 ```
 
-## Control de flujo [Tal vez sacarlo?][o convertirlo en buenos ejemplos de codigo de whiles/fors/ifs/conds]
-
-- Estructuras para organizar programas: formas especiales(flet, etiquetas) o macros(macrolet).
-
-- Versatilidad en funciones definidas localmente y macros.
-
-- Facilidad de iteración general.
-
-- Facilidad de iteración y mapeo en estructura de datos.
-
-- Condicionales unidireccionales simples `when` y `unless`.
-
-- Condicional bidireccional simple `if`.
-
-- Condicionales multidireccionales `cond` y `case`.
-
-## Ejemplo de macros [Javi]
-
-- expandir macro
-
-- Compararlo contra la definciion "canonica" de ese macro (lo que hay en el hyperspec)
-
-- crear un propio macro
-
-## Closures [Sacarlo? o darle mejor forma y ponerlo como comparacion a OZ? o agregar mas cosas tipicas de programacion funcional (y te queda un popurri de 3 o 4 features de FP)]
-
-- La variable debe persistir mientras la función lo haga.
-- Variables léxicas válidas dentro del contexto en donde son definidas.
-- Variable libre: Se continua haciendo referencia a una variable por fuera (mientras se continue usando el mismo contexto del cual fue definida).
-- Lisp permite devolver una función como valor como cualquier otro objeto.
-
-A continuación se muestra un ejemplo. Por un lado, la función combine toma argumentos de cualquier tipo y los combina de forma apropiada. combiner toma un argumento y devuelve una función para combinar argumentos de cualquier tipo.
-
-```
-(defun combiner (x)
-    (typecase x
-        (number #'+)
-        (list #'append)
-        (t #'list)))
-
-(defun combine (&rest args)
-    (apply (combiner (car args))
-    args))
-```
-
-## Namespaces [Fede -> Se liga un poco a la comparacion con scheme]
-
-- Un simbolo puede referirse a:
-
-  - Una variable
-  - Una clase
-  - Una función
-  - Un operador especial
-  - Un macro
-
-- Hay dos namespaces en LISP:
-
-  - Function namespace: funciones, operadores especiales, macros
-
-  - Variable namespace: variables, clases
-
-- Lisp-1 (scheme) vs. Lisp-2 (clisp) debate
-
-```lisp
-;; Defino una variable y una función con el mismo nombre
-(setq X 1)
-(defun X (arg) (+ 10 arg))
-
-; Un simbolo por defecto evalua al variable namespace
-X ; => 3
-; Para referirme explicitamente al function namespace, llamo a `(function symbol)`
-(function X) ; => #<FUNCTION X>
-; #' es syntactic sugar de function
-(#'X) ; => #<FUNCTION X>
-
-; Hay que tener cuidado con lo que quiero
-(funcall X 3) ; Explota. Estoy llamando a la variable X
-(funcall #'X 3) ; => 13
-```
-
-https://wiki.c2.com/?SingleNamespaceLisp
-
-# Ejemplo de TDA: Tablas de hash [Anita]
+# Ejemplo de TDA: Tablas de hash
 
 ## Crear una tabla de hash en Common Lisp
 
@@ -983,7 +536,285 @@ NIL
 
 HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
 
-# Desglosando `eval` [Fede]
+# Fractales, en Common LISP
+
+[cl-aristid](https://github.com/FdelMazo/cl-aristid)
+
+- En las implementaciones más comunes, es compilado (pero no JIT necesariamente)
+
+- LISP es un lenguaje interactivo y dinámico
+
+- Tipado fuerte y dinámico
+
+- Manifest typing
+
+- Funciones y estructuras: `defun`, `defstruct`, `let`
+
+- Control de flujo: `if`, `loop`
+
+- Static (lexical) Scoping
+
+- Closures
+
+- Namespaces
+
+- Manejo de memoria
+
+- Manejo de errores
+
+- Macros
+
+# Metaprogramming
+
+## Expression oriented / Simbolico
+
+https://beautifulracket.com/appendix/why-racket-why-lisp.html
+
+Usa S-Expressions: Simbolic expression
+
+Lisp is an expression oriented language. Unlike most other languages, no distinction is made between "expressions" and "statements";[dubious – discuss] all code and data are written as expressions. When an expression is evaluated, it produces a value (in Common Lisp, possibly multiple values), which can then be embedded into other expressions. Each value can be any data type.
+
+https://en.wikipedia.org/wiki/Expression-oriented_programming_language
+
+Transparencia referencial: equals can be replaced by equals
+
+## Extensibilidad del lenguaje
+
+https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
+
+cahpter 4 de practical common lisp
+
+Further, because Lisp code has the same structure as lists, macros can be built with any of the list-processing functions in the language. In short, anything that Lisp can do to a data structure, Lisp macros can do to code. In contrast, in most other languages, the parser's output is purely internal to the language implementation and cannot be manipulated by the programmer.
+
+https://youtu.be/dw-y3vNDRWk
+
+The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.
+
+https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_vmsLq
+
+https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_pwJR1
+
+"language-oriented program­ming"
+
+- comparar como se extiende python o C normalmente https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s6-extensibility y http://www.gigamonkeys.com/book/macros-standard-control-constructs.html
+
+- Hablar de extensiones "populares" (importantes) del lenguaje
+
+  - Darle mucha bola a CLOS! que es importantisimo en la historia de lisp (chusmear relacion con smalltalk!!!) (chusmear como CLOS es de lo mas "puro" en cuanto a Object Oriented)
+
+  - Concurrencia
+
+  - String interpolation
+
+Solo en librerías.
+
+- [Bordeaux Threads](https://common-lisp.net/project/bordeaux-threads/) para la creación de hilos.
+
+- [lparallel](https://github.com/lmj/lparallel) para una implementación más compleja que incluye comunicación entre hilos (colas, promesas, etc).
+
+- [Blackbird](https://github.com/orthecreedence/blackbird) implementación de promesas (la dejo porque no la encontré en cl-awesole).
+
+* "los macros son **parte** de lo que es la extensibilidad de list" --> pie para entrar a la siguiente seccion
+
+## Macros
+
+- Despues de la teoria, Volver a cl-aristid y al REPL. Expandir macros, compararlos con las versiones canonicas, mostrar los macros definidos, como se definen, como cambian la sintaxis
+
+- Esta seccion que sea bien teorica con codigo (pero poco codigo). Los ejemplos ejemplos van en sintaxis
+
+- En Lisp, una macro es una función que genera código de Lisp. La forma más sencilla de pensarlo sería como una transformación de código. Cuando se llama a una macro en el código:
+
+1. Se arma el código en base a la definición `defmacro` de la misma.
+2. Se evalúa el nuevo código en el lugar de la llamada a la macro.
+
+A partir de esto, se pueden usar macros para simplificar y reutilizar código, o hasta manipular la sintaxis del lenguaje.
+
+- Algunos operadores:
+  - `` Backquote ` ``: Funciona similar a `quote`. (se explica antes?)
+
+```lisp
+`(a, b, c)
+; equivalente a escribir
+'(a b c)
+(list 'a 'b 'c)
+```
+
+- `Comma ,`: Combinado con `backquote` sirve para "activar y desactivar" el efecto de `backquote`. Es útil al escribir macros:
+
+```lisp
+`(a ,b c ,d)
+; equivalente a escribir
+(list 'a b 'c d)
+```
+
+- `Comma-at ,@`: Dada una expresión que resuelve una lista, se puede utilizar `,@` para reemplazar esta lista por la secuencia de sus mismos elementos (elimina el paréntesis):
+
+```lisp
+`(a b c)    ->  (A (1 2 3) C)
+`(a ,@b c)  ->  (A 1 2 3 C)
+```
+
+- `(nil! x)`: Cambiar el valor de la variable `x` a `nil`.
+  En el ejemplo se puede observar que `var` se expande al valor que corresponde (por el operador `,`), mientras que `setq` y `nil` no se evalúan.
+
+```lisp
+(defmacro nil! (var)
+  `(setq ,var nil))
+
+; se llama de la forma
+(nil! x)
+
+; genera el código
+(setq x nil)
+```
+
+- `(if test then else)`: Ya se encuentra definida en Lisp. Tiene que ser una macro para evaluar la expresión solo cuando corresponda. Una posible implementación utilizaría la macro `cond`, que evalúa solo la primer expresión cuya condición sea true:
+
+```lisp
+(defmacro if (condition then else)
+  `(cond (,condition ,then)
+         (t ,else)))
+```
+
+- `(when test do1 do2 ...)`: Cuando la expresión `test` devuelve `true`, se ejecutan todas las expresiones `do`, devolviendo el valor de la última. Para que se expandan todas las expresiones `do` se las combina en una lista `&rest body` y luego se utiliza el operador `,@`:
+
+```lisp
+(defmacro our-when (test &rest body)
+  `(if ,test
+    (progn
+      ,@body)))
+
+; se llama de la forma
+(when test do1 do2 do3)
+
+; genera el código
+(if (eligible obj)
+  (progn do1
+    do2
+    do3
+    obj))
+```
+
+- `infix`: Las macros permiten cambiar el orden de las expresiones sin evaluarlas. Entonces, se podría hacer una macro `infix` para tener operadores matemáticos en notación de infijo en vez de la notación polaca de Lisp. Existen implementaciones completas de esta macro para que funcione con más de una operación, pero para mostrar la más simple:
+
+```lisp
+(defmacro infix (arg1 op arg2)
+  `(,op ,arg1 ,arg2))
+
+; se llama de la forma
+(infix 2 + 3)
+
+; genera el código
+(+ 2 3)
+```
+
+- `lcomp`: Replicar la sintaxis de compresión de listas de Python.
+
+```lisp
+(defmacro lcomp (expression for var in list conditional conditional-test)
+  (let ((result (gensym)))
+    `(let ((,result nil))
+       (loop for ,var in ,list
+            ,conditional ,conditional-test
+            do (setq ,result (append ,result (list ,expression))))
+       ,result)))
+
+; se llama de la forma
+(lcomp x for x in (1 2 3 4 5 6 7) if (= (mod x 2) 0))
+
+; una vez generado y ejecutado el código devuelve
+(2 4 6)
+```
+
+- `let`:
+
+```lisp
+(defmacro let (binds &body body)
+  '((lambda ,(mapcar #'(lambda (x)
+                         (if (consp x) (car x) x))
+                        binds)
+      ,@body)
+    ,@(mapcar #'(lambda (x)
+                  (if (consp x) (cadr x) nil))
+              binds)))
+```
+
+- `while`:
+
+```lisp
+(defmacro while (test &body body)
+  '(do ()
+       ((not ,test))
+       ,@body))
+```
+
+- `till`:
+
+```lisp
+(defmacro till (test &body body)
+  '(do ()
+       (,test)
+       ,@body))
+```
+
+- `for`:
+
+```lisp
+(defmacro for ((var start stop) &body body)
+  (let ((gstop (gensym)))
+    '(do ((,var ,start (1+ ,var))
+          (,gstop ,stop))
+         ((> ,var ,gstop))
+       ,@body)))
+```
+
+## Homoiconicidad ("Code as Data")
+
+"This means that the way you think about a program­ming problem can be quite close to the way you actu­ally program it."
+
+- Gracias a las S-Expressions
+
+- Codigo y estructuras de datos intercambiable
+
+- La representación interna del programa es la que se lee
+
+- Todo es una lista -> Code and Data are made out of the same data structures, and the quote operator is the way we distinguish between them
+
+- Reflexion mucho mas sencilla
+
+- Lisp functions can be manipulated, altered or even created within a Lisp program without lower-level manipulations
+
+- Extensibilidad mucho mas facil
+
+- List of lists ??? Tree!
+
+- And how do we deal with trees? Recursion!
+
+- El abstract syntax tree de una funcion se puede manipualr como una estructura de datos y luego evaluar
+
+- s-expressions can represent arbitrary tree expressions, much like the usual abstract syntax tree
+
+- anything that Lisp can do to a data structure, Lisp macros can do to code
+
+This feature makes it easy to develop efficient languages within languages. For example, the Common Lisp Object System can be implemented cleanly as a language extension using macros. This means that if an application needs a different inheritance mechanism, it can use a different object system. This is in stark contrast to most other languages; for example, Java does not support multiple inheritance and there is no reasonable way to add it.
+
+- Las s-expresiones son binary trees porque son o atomos o (x y) siendo (x . y) un dotted pair (x hijo izq, y hijo der)
+
+- (hoy por hoy se usa el sintacic sugar LIST, que es nada mas concatenar mil dotted pairs. (x y z) es (x . (y . (z . null))))
+
+- foto binary tree
+
+- Dualidad entre el codigo y la data.
+
+- Todo es una lista por ende tanto el código, como la data se escriben de la misma forma
+
+- Toda expresión se puede interpretar de las dos maneras. - Se interpreta como data usando `quote` - Se interpreta como code usando `eval`
+
+- Misma expresión que se puede leer de ambas formas y permite swapear dependiendo que necesite.
+
+[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
+
+# Desglosando `eval`
 
 [The Roots of LISP ~ Paul Graham](http://www.paulgraham.com/rootsoflisp.html)
 
@@ -1055,7 +886,7 @@ HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutoria
 
 # LISP en la practica
 
-## Estadisticas [Cami/Javi]
+## Estadisticas
 
 - repos de github
 
@@ -1063,7 +894,7 @@ _Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en lo
 
 http://blockml.awwapps.com/example/example/document.html#sec-6
 
-## Comparaciones [Cami/Anita]
+## Comparaciones
 
 - repetir tema de la influencia y de como todo lenguaje se ve tocado por lisp
 - comparar con python
@@ -1071,7 +902,6 @@ http://blockml.awwapps.com/example/example/document.html#sec-6
 - con oz, scala, haskell
 - con dialectos de lisp como scheme y racket
 - con javascript para decir como se influencia por shcem
-
 
 ## Familias de Lisp
 
@@ -1085,18 +915,18 @@ Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son S
 - Sistema de macros limpio y trnasparente
 - Lexical scoping
 - Garbage collection.
-- Ocupa mucha menos memoria 
+- Ocupa mucha menos memoria
 
 ### Clojure
 
 - Sistema de macros similar al de Common Lisp
 - Secuencias lazy (`seq`)
-- El sistema de macros de Clojure es muy similar al de Common Lisp con la excepción de que la versión de Clojure de la comilla inversa (llamada "comilla sintáctica") cualifica los símbolos con el espacio de nombres al que pertenece. 
+- El sistema de macros de Clojure es muy similar al de Common Lisp con la excepción de que la versión de Clojure de la comilla inversa (llamada "comilla sintáctica") cualifica los símbolos con el espacio de nombres al que pertenece.
 - Sistema integrado de estructuras de datos persistentes e inmutables.
 - Compilado con Java
-  
 
 ### Emacs Lisp
+
 - Emacs Lisp trabaja con dynamic scoping por default.
 - Sintaxis para el compilado de un archivo `M-x byte-compile-file`
 - No tiene closures
@@ -1106,7 +936,7 @@ Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son S
 ### Python
 
 - Python admite todas las caracteristicas esenciales de Lisp, exeptuando las macros.
-- Sintaxis más sencilla de leer, 
+- Sintaxis más sencilla de leer,
 - Tiempo de compilacion más rápido
 - Tiempo de ejecución mucho más lento
 - Más dinámico, python realiza menos chequeos de erorres.
@@ -1116,10 +946,12 @@ Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son S
   - Debuggear es sencillo
 
 ### C++
+
 - Lisp es una o dos veces más lento que C++
 - Manejo de memoria con punteros
 - Sintaxis más detallada y restrictiva
-## Casos de estudio [Cami/Anita]
+
+## Casos de estudio
 
 _Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje_
 

@@ -128,10 +128,6 @@ o
 
 ## Paradigma
 
-![](img/declarative.png)
-
-~ Peter Van-Roy, Concepts, Techniques, and Models of Computer Programming
-
 - Programación declarativa: definir el _qué_ sin explicar el _cómo_
 
   - Programación funcional: los componentes se definen como funciones matemáticas
@@ -150,26 +146,31 @@ o
 
       - Funciones de alto orden: poder recibir como parametro o retornar funciones
 
-Lisp es un lenguaje de programacón de tipo multiparadigma, esto quiere decir que soporta más de un paradigma de programación. Lisp es orientado a objetos, reflexivo(capacidad de un programa de observar y modificar su estructura de alto nivel, como Lisp no distingue entre tiempo de ejecución y tiempo de compilación, no va a haber diferencia entre compilación o interpretación de código y reflexión), imperativo(instrucciones en forma de algoritmos) y funcional. Por lo tanto el programador será capaz de crear programas usando más de un estilo de programación, sin estar forzado a tomar un estilo en particular.
-Existen otros lenguajes multiparadigma como Python, este además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones. Oz tambien es un lenguaje de programación multiparadigma que incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
+- Lisp es un lenguaje de programacón de tipo multiparadigma: soporta más de un paradigma de programación
+- Lisp es orientado a objetos, reflexivo, imperativo y funcional: el programador será capaz de crear programas usando más de un estilo de programación, sin estar forzado a tomar un estilo en particular.
+- Existen otros lenguajes multiparadigma como - Python: éste además de programación orientada a objetos, programación imperativa y programación funcional, acepta otros paradigmas soportados mediante el uso de extensiones - Oz: incluye la idea de programación lógica, funcional(tanto lazy como eager), impertativa, orientada a objetos, con restricciones, distribuida y concurrente.
 
-## Compilado/interpretado
+In func­tional program­ming, func­tions avoid two habits common in other languages: muta­tion (= changing data in-place rather than returning a value) and relying on state (= extra context that's not provided as input, for instance global vari­ables).
 
-- Las funciones pueden ser compiladas de forma individual o por el archivo. 
+- ¿¿dataflow vs logicflow??
+
+## Compilado/interpretado [Cami]
+
+[How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
+
+- Las funciones pueden ser compiladas de forma individual o por el archivo.
 - Funciones compiladas o interpretadas se comportan de la misma forma, excepto con el comando `compiled-f unction-p` que verifica si la función pasada por parámetro fue compilada.
 
-Varias implementaciones de dialectos anteriores de Lisp proporcionaron tanto un intérprete como un compilador. En cuanto a Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos. Ademas el compilador puede recibir instrucciones sobre qué tan dinámico debe ser el código compilado.
-Gracias al interprete REPL(Read-Eval-Print-Loop) se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente. La función _eval_, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario.
-No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura:
+- Common List no es un compilador en tiempo de ejecución, sino que es necesario invocar al compilador medicante las funciones COMPILE, para las funciones individuales y COMPILE-FILE, para los archivos.
+- El compilador puede recibir instrucciones sobre qué tan dinámico debe ser el código compilado
+- Intérprete REPL(Read-Eval-Print-Loop): se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente
+- La función _eval_, va a toma las entradas individuales del usuario(s-expression pre parseada), las evalúa y devuelve el resultado al usuario
+- No existe una distinción entre el tiempo de compilación, tiempo de ejecución y el tiempo de lectura:
 
 - Ejecutar código en tiempo de lectura permite al usuario reprogramar la sintáxis de Lisp.
 - Ejecutar código en tiempo de compilación es la base de las macros.
 - Compilar en tiempo de ejecución es la base del uso de Lisp como un lenguaje de extensión en programas como lo es Emacs.
 - Leer en tiempo de ejecución permite a los programas comunicarse utilizando _s-expressions_, una idea recientemente reinventada como _XML_.
-
-(Interpretado || Compilado) -> True
-
-<< es interactivo o interpretado???>>
 
 ## Tipado
 
@@ -177,20 +178,22 @@ Lisp es un lenguaje de tipado dinámico porque las verificaciones de tipo se rea
 
 _Dato_: Ademas de ser de tipado dinámico, Lisp es dinámico, porque tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución: se le prermite al usuario agregar, cambiar y eliminar funciones, construcciones sintácticas, tipos de datos, se podrá cambiar la sintaxis de superficie de Lisp de varias maneras. Esto facilite a que Lisp se tipee dinámicamente para proporcionar algunas de estas características.
 
-- Explota en runtime
+- Lisp es dinámico: tanto el lenguaje de programación Lisp como el programa en sí se pueden cambiar en tiempo de ejecución, se le permite al usuario agregar, cambiar y eliminar - funciones - construcciones sintácticas - tipos de datos - sintáxis
+
+- Tipado dinámico: las verificaciones de tipo se realizan en tiempo de ejecución y las variables se pueden configurar de forma predeterminada para todo tipo de objetos.
+
+* Explota en runtime
 
   - Tipado fuerte: explota
 
   - Tipado dinamico: en runtime
 
-## Closures
+## Closures [Sacarlo? o darle mejor forma y ponerlo como comparacion a OZ? o agregar mas cosas tipicas de programacion funcional (y te queda un popurri de 3 o 4 features de FP)]
 
-- La variable debe persistir mientras la función lo haga
-- Lisp permite devolver una función como valor como cualquier otro objeto. 
-
-Las variables léxicas solo son válidas dentro del
-contexto donde se definen y continuarán siendo válidos mientras se continue usando el contexto.
-Si una función se define dentro del alcance de una variable léxica, puede continuar haciendo referencia a esa variable, incluso si se devuelve como un valor fuera de contexto donde se creó la variable.  Cuando una función se refiere a una variables definida por fuera, se llama *variable libre*, y si una función se refiere a un variable léxica libre, es un *closure*.
+- La variable debe persistir mientras la función lo haga.
+- Variables léxicas válidas dentro del contexto en donde son definidas.
+- Variable libre: Se continua haciendo referencia a una variable por fuera (mientras se continue usando el mismo contexto del cual fue definida).
+- Lisp permite devolver una función como valor como cualquier otro objeto.
 
 A continuación se muestra un ejemplo. Por un lado, la función combine toma argumentos de cualquier tipo y los combina de forma apropiada. combiner toma un argumento y devuelve una función para combinar argumentos de cualquier tipo.
 
@@ -199,11 +202,11 @@ A continuación se muestra un ejemplo. Por un lado, la función combine toma arg
     (typecase x
         (number #'+)
         (list #'append)
-        (t #'list))) 
+        (t #'list)))
 
 (defun combine (&rest args)
-    (apply (combiner (car args)) 
-    args)) 
+    (apply (combiner (car args))
+    args))
 ```
 
 [How is Lisp dynamic and compiled? - StackOverflow](https://stackoverflow.com/questions/12593768/how-is-lisp-dynamic-and-compiled/12595700#12595700)
@@ -211,40 +214,47 @@ A continuación se muestra un ejemplo. Por un lado, la función combine toma arg
 ## Lexical/Static Scoping
 
 ## Dynamic scoping
-Cuando se habla de variables de ambito léxico, se habla de un nombre que siempre refiere a su entorno léxico local, es decir que si yo defino una variable *X* dentro de una función, esa será su definción adentro sin importar cualquier valor que podría tener por fuera. 
+
+Cuando se habla de variables de ambito léxico, se habla de un nombre que siempre refiere a su entorno léxico local, es decir que si yo defino una variable _X_ dentro de una función, esa será su definción adentro sin importar cualquier valor que podría tener por fuera.
 En cambio, con dynamic scoping, se refiere al identificador asociado con el entorno más reciente. En otras palabras, se busca a la variable en el ambiente en el que la función se llama y no en dónde se define. Para que esto suceda es necesario declararla con `special`:
+
 ```
 (le t ((x 20))
     (declare (specia l x))
-    (foo)) 
+    (foo))
 ```
+
 ## Recursión
 
 La recursión en este lenguaje es muy importante por diversas razones:
+
 - Evita errores por efectos secundarios.
 - La estructura de datos de Lisp es más sencilla de utilizar con recursión. Las listas son o `nil` o `cons`.
 - Código más elegante y limpio.
 
 Sin embargo, tener en cuenta que las solución recursiva más obvio no necesariamente es la más eficiente. Por ejemplo, la función de Fibonacci, que se define recursivamente de la siguiente forma:
+
 1. Fib(0) = Fib(l)=l.
 2. Fib(n) = Fib(n-1) + Fib(rc-2)
-Al traducir esta idea a Lisp, nos encontramos con una idea poco eficiente(repite constantemente instrucciones que ya se resolvieron):
+   Al traducir esta idea a Lisp, nos encontramos con una idea poco eficiente(repite constantemente instrucciones que ya se resolvieron):
+
 ```
 (defun fi b (n)
     (if « = n 1)
         1
         (+ (fib (- n 1))
-            (fib (- n 2)))))    
+            (fib (- n 2)))))
 ```
+
 Por otro lado, se puede resolver de forma iterativa de esta forma:
+
 ```
 (defun fi b (n)
     (do ((i n (- i 1))
         (fl 1 (+ fl f2))
         (f2 1 fl))
-        ( « = i 1) fl))) 
+        ( « = i 1) fl)))
 ```
-
 
 ## Metaprogramming / Extensibilidad / Macros
 
@@ -302,24 +312,45 @@ This feature makes it easy to develop efficient languages within languages. For 
 
 - foto binary tree
 
-## Manejo de memoria
+## Manejo de memoria [Anita]
+
+- Las variables de Lisp apuntan a sus valores.
+
+- Todos los valores son conceptualmente un puntero.
+
+- Manejo de memoria automática-> Consing.
+
+- Sistema de garbage collection.
+
+- Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero.
+
+- Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).
+
+- Si o Si hablar de garbage collection aca!!!
+
+## Manejo de errores [Anita]
+
+Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.
+
+-Work in progress, pls do not touch
+
+[Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
 
 - Las variables de Lisp apuntan a sus valores.
 - La razon por la cual Lisp no tiene punteros es que todos los valores son conceptualmente un puntero.
 - Manejo de memoria automática.
 - Lisp cuenta con un sistema de garbage collection.
-- Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero. 
+- Para tener una representación más inmediata, Lisp podría devolver un pequeño integer en vez de un puntero.
 - Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).
 
 Las variables tienen valores de la misma manera que las listas tienen elementos, es decir que las variables tienen apuntan al valor. Lisp se va a ocupar de manipular estos punteros, el usuario no debe preocuparse por ello.
-Si el programador setea una variable *X* con un valor *Y*, en la ubicación de memoria asociada al valor *Y* se encuentra un puntero al mismo y Lisp va a copiar ese puntero en la variable *X*.
+Si el programador setea una variable _X_ con un valor _Y_, en la ubicación de memoria asociada al valor _Y_ se encuentra un puntero al mismo y Lisp va a copiar ese puntero en la variable _X_.
 La razon por la cual Lisp no tiene punteros es que todos los valores son conceptualmente un puntero.
 
 Las listas son una estructura de datos un poco lenta cuando se trata de recuperar un valor en especifico, ya que la busqueda es secuencial. Sin embargo este costo pueden ser pequeño en comparación con el costo
-de asignación y reciclaje de *cons cell*.
-Lisp cuenta con un manejo de memoria automatico compuesto por un heap en el que lleva un seguimiento de la memoria que no esta en uso y lo distribuye a medida que se crean nuevos objetos. El sistema esta buscando constantemente de la memoria que ya no se necesita, *garabage* para poder reutilizar los *cons cells*. La alocación de memoria en el heap se conoce como *consing* y la busqueda de basura, *garbage collection*.
-Como ventaja, el programador no va a tener que encargarse jamas de alocar y desalocar memoria, y todos los problemas que en general conllevan esas tareas. Como desventaja, el costo asociado a usar, reciclar  los espacios de memoria y constantemente recorrer en busca de basura podría ser costoso.
-
+de asignación y reciclaje de _cons cell_.
+Lisp cuenta con un manejo de memoria automatico compuesto por un heap en el que lleva un seguimiento de la memoria que no esta en uso y lo distribuye a medida que se crean nuevos objetos. El sistema esta buscando constantemente de la memoria que ya no se necesita, _garabage_ para poder reutilizar los _cons cells_. La alocación de memoria en el heap se conoce como _consing_ y la busqueda de basura, _garbage collection_.
+Como ventaja, el programador no va a tener que encargarse jamas de alocar y desalocar memoria, y todos los problemas que en general conllevan esas tareas. Como desventaja, el costo asociado a usar, reciclar los espacios de memoria y constantemente recorrer en busca de basura podría ser costoso.
 
 [Ansi common lisp cap 3 (link de descarga pdf)](https://mafiadoc.com/ansi-common-lisp-paul-grahampdf_59b625c51723dddcc6daf94d.html)
 
@@ -341,19 +372,25 @@ Se proporcionan construcciones para realizar salidas no locales con diversas dis
 [Data and Control Flow (ejemplos de funciones y macros)](https://mr.gy/ansi-common-lisp/Data-and-Control-Flow.html#Data-and-Control-Flow)
 
 ## TDA
+
 ### Tablas de hash
+
 #### Introducción
+
 Las tablas de hash son una importante estructura de datos, que asocian claves con valores de una manera muy eficiente. Los hashes son preferibles por sobre listas cuando se le da importancia a los tiempos de búsqueda, pero son más complejos lo cual hace que las listas sean las elegidas cuando solamente hay unos pocos pares clave-valor a mantener.
 
 #### Crear una tabla de hash en Common Lisp
 
 Las tablas de hash son creadas usando la función `make-hash-table`. No requiere ningún argumento.
-Ejemplo: 
+Ejemplo:
+
 ```lisp
 (defvar tabla)
 (setq tabla (make-hash-table))
 ```
+
 Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la función utilizada para testear claves iguales.
+
 ```lisp
 (defvar tabla)
 (setq tabla (make-hash-table :test 'equal))
@@ -374,6 +411,7 @@ La función `gethash` toma dos argumentos obligatorios: una clave y una tabla de
 El booleano es necesario ya que `NIL` es un valor válido en in par clave-valor. Es decir que obtener un `NIL` como primer valor de `gethash` no significa necesariamente que la clave no se encuentra en la tabla.
 
 Ejemplo:
+
 ```lisp
 * (defvar tabla)
 TABLA
@@ -385,7 +423,9 @@ TABLA
 3
 T
 ```
+
 En el siguiente ejemplo, guardamos NIL en el hash:
+
 ```lisp
 * (setf (gethash "clave2" tabla) nil)
 NIL
@@ -393,6 +433,7 @@ NIL
 NIL
 T ; T indica True, existe la clave.
 ```
+
 #### Borrar de la tabla de hash
 
 Se utiliza la función `remhash` para eliminar el par clave-valor. Es decir, la clave y su valor asociado serán eliminados por completo de la tabla. `remhash` devuelve `T` si dicho par existe, `NIL` en otro caso.
@@ -408,8 +449,11 @@ NIL
 * (remhash "clave3" tabla) ; trato de borrar una clave que no existe
 NIL
 ```
+
 #### Contar entradas
+
 No hay necesidad de usar tus dedos! Common Lisp posee una función que lo hace por vos: `hash-table-count`. Recibe la tabla por parámetro.
+
 ```lisp
 * (setf (gethash "clave1" tabla) 3)
 3
@@ -420,6 +464,7 @@ No hay necesidad de usar tus dedos! Common Lisp posee una función que lo hace p
 * (hash-table-count tabla)
 3 ; 3 elementos en mi hash.
 ```
+
 #### El tamaño del hash
 
 La función `make-hash-table` tiene algunos parámetros opcionales que controlan el tamaño inicial del hash y como crecerá en caso de que necesite hacerlo. Esto puede ser un gran problema de performance si se trabajo con tablas muy grandes.
@@ -437,7 +482,8 @@ TABLA
 
 Los valores para `hash-table-size` y `hash-table-rehash-size` dependen de la implementación. En este caso, la implementación de Common Lisp con la cual contamos, elige un tamaño inicial de 16, y aumentará el tamaño en un 50% (1.5) cada vez que el hash necesite crecer.
 
-Veamos que sucede cuando agregamos un total de un millón* de pares clave-valor al hash:
+Veamos que sucede cuando agregamos un total de un millón\* de pares clave-valor al hash:
+
 ```lisp
 * (time (dotimes (n 1000000) (setf (gethash n tabla) n))) ; le tomo el tiempo que tarda
 Evaluation took:
@@ -453,7 +499,8 @@ NIL
 * (hash-table-size tabla)
 1048576
 ```
-*_Se eligió un millón para resaltar los tiempos que tardan_
+
+\*_Se eligió un millón para resaltar los tiempos que tardan_
 
 Y si piso todas las claves y tomo el tiempo nuevamente:
 
@@ -467,6 +514,7 @@ Evaluation took:
   0 bytes consed
 NIL
 ```
+
 Veamos cuantas veces temenos que redimensionar para llegar al tamaño final:
 
 ```lisp
@@ -504,6 +552,7 @@ Veamos cuantas veces temenos que redimensionar para llegar al tamaño final:
 (28 1363563.3)
 NIL
 ```
+
 El hash se redimensiona 28 veces hasta que sea lo suficientemente grande para contener 1,000,000 de claves con sus respectivos valores. Esto explica por qué tardó bastante en rellenar la tabla. También explica por qué la segunda guardada tardó considerablemente menos: el hash ya poseía el tamaño correcto.
 
 Acá está la manera de hacerlo más rápido: Si ya sabemos con anticipación que tan grande nuestro hash será, podemos comenzar con el tamaño correcto desde el vamos:
@@ -524,6 +573,7 @@ Evaluation took:
   0 bytes consed
 NIL
 ```
+
 Allí se prueba que tarda considerablemente menos tiempo. Tampoco hubo alocamientos involucrados ya que no hubo que redimensionar en absoluto. Si no sabemos el tamañop final de antemano, pero podemos anticipar el comportamiento de crecimiento que tendrá el hash, podemos utilizar sin duda el parámetro `:rehash-size` en la función `make-hash-table`. Usamos un entero para especificar cremiento absoluto, o un float para especificar crecimiento relativo.
 
 ```lisp
@@ -552,7 +602,7 @@ Solamente necesitamos una redimensión, pero mucho màs realocamiento (41,943,10
 
 Si se quiere realizar una acción sobre cada par clave-valor en la tabla de hash, existen múltiples opciones:
 
-  - `maphash`: itera sobre todas las claves de la tabla. Su primer argumento debe ser una función que acepte dos parámetros: la clave y el valor. Muy importante notar y recordar que, dado la naturaleza de las tablas de hash, uno no puede controlar el orden en el cual las claves son devueltas. `maphash` devuelve siemple `NIL`.
+- `maphash`: itera sobre todas las claves de la tabla. Su primer argumento debe ser una función que acepte dos parámetros: la clave y el valor. Muy importante notar y recordar que, dado la naturaleza de las tablas de hash, uno no puede controlar el orden en el cual las claves son devueltas. `maphash` devuelve siemple `NIL`.
 
 ```lisp
 * (defvar tabla)
@@ -574,8 +624,9 @@ El valor asociado a la clave "clave3" es 3
 NIL
 *
 ```
-  - `with-hash-table-iterator`: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve tres valores cada clave-valor del hash: un booleano generalizado que es `true` si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve `NIL`
-  
+
+- `with-hash-table-iterator`: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve tres valores cada clave-valor del hash: un booleano generalizado que es `true` si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve `NIL`
+
 ```lisp
 * (with-hash-table-iterator (iterador tabla)
     (loop
@@ -590,8 +641,8 @@ El valor asociado a la clave "clave3" es 3
 NIL
 ```
 
-  - `loop`: ~~la vieja confiable~~
-  
+- `loop`: ~~la vieja confiable~~
+
 ```lisp
   * (loop for clave being the hash-keys of tabla do (print clave))
 "clave1"
@@ -599,6 +650,7 @@ NIL
 "clave3"
 NIL
 ```
+
 Formateado clave-valor:
 
 ```lisp
@@ -609,6 +661,7 @@ El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
 NIL
 ```
+
 Solo el valor:
 
 ```lisp
@@ -618,6 +671,7 @@ Solo el valor:
 3
 NIL
 ```
+
 Clave y valor:
 
 ```lisp
@@ -670,7 +724,7 @@ Lisp is usually evaluated eagerly. In Common Lisp, arguments are evaluated in ap
 
 Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.
 
--Work in progress, pls do not  touch
+-Work in progress, pls do not touch
 
 [Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
 
@@ -785,7 +839,23 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 (eval (cons (car '(+ 1 2)) (cdr '(+ 1 2))))
 ```
 
-## Namespaces
+## Control de flujo [Tal vez sacarlo?][o convertirlo en buenos ejemplos de codigo de whiles/fors/ifs/conds]
+
+- Estructuras para organizar programas: formas especiales(flet, etiquetas) o macros(macrolet).
+
+- Versatilidad en funciones definidas localmente y macros.
+
+- Facilidad de iteración general.
+
+- Facilidad de iteración y mapeo en estructura de datos.
+
+- Condicionales unidireccionales simples `when` y `unless`.
+
+- Condicional bidireccional simple `if`.
+
+- Condicionales multidireccionales `cond` y `case`.
+
+## Namespaces [Fede -> Se liga un poco a la comparacion con scheme]
 
 - Un simbolo puede referirse a:
 
@@ -803,7 +873,7 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 
 - Lisp-1 (scheme) vs. Lisp-2 (clisp) debate
 
-```lisp
+```lisp6
 ;; Defino una variable y una función con el mismo nombre
 (setq X 1)
 (defun X (arg) (+ 10 arg))
@@ -904,22 +974,21 @@ http://blockml.awwapps.com/example/example/document.html#sec-6
 
 # Comparaciones
 
-
 ## Familias de Lisp
+
 Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son Scheme (1975),Emacs Lisp (1985) y Clojure (2007).
 
 ### Scheme
 
-Scheme es un lenguaje de programación muy corto, cuenta con solo 50 páginas, es más corto que el índice del libro de Guy Steele Common Lisp: The Language. Conocido por ser limpio y minimalista, Scheme solamente define el inner core del lenguaje, proporciona el mínimo número posible de nociones primitivas, contruyendo todo lo demas a partir de un reducido numero de abstracciones. 
+Scheme es un lenguaje de programación muy corto, cuenta con solo 50 páginas, es más corto que el índice del libro de Guy Steele Common Lisp: The Language. Conocido por ser limpio y minimalista, Scheme solamente define el inner core del lenguaje, proporciona el mínimo número posible de nociones primitivas, contruyendo todo lo demas a partir de un reducido numero de abstracciones.
 Cuenta con ciertas características de implementación (tales como optimización de llamada de cola y continuación completa), un sistema de macros limpio y transparente basado en reglas de reencritura.
 Scheme se usa a menudo en ciencias de computación o investigación debido a su capacidad de representar muchas abstracciones de programación con sus primitivas simples. Common Lisp, en cambio, se usa para la programación del mundo real debido a su gran biblioteca de funciones de utilidad, CLOS y su sistema de manejo de condiciones.
 Si se tuviera que crear una aplicación, probablemente es mejor ir por Common Lisp. Pero si se tuviera que enseñar en un curso, probablemente la mejor opción sería Scheme (pero con macros de Common Lisp)
 
-
 ### Clojure
 
-Clojure es de los lenguajes de programación pertenecientes a la familia de Lisp más recientes. 
-El sistema de macros de Clojure es muy similar al de Common Lisp con la excepción de que la versión de Clojure de la comilla inversa (llamada "comilla sintáctica") cualifica los símbolos con el espacio de nombres al que pertenece. 
+Clojure es de los lenguajes de programación pertenecientes a la familia de Lisp más recientes.
+El sistema de macros de Clojure es muy similar al de Common Lisp con la excepción de que la versión de Clojure de la comilla inversa (llamada "comilla sintáctica") cualifica los símbolos con el espacio de nombres al que pertenece.
 A diferencia de Common Lisp que se maneja con lista, Clojure usa secuencias con evaluación perezosa, es decir que los elementos de la secuencia no se computan hasta que son necesarios, lo que permite representar conjuntos infinitos en potencia.
 Las aplicaciones escritas en Clojure pueden ser fácilmente integradas en servidores de aplicaciones u otros entornos Java con escasa complejidad adicional. Este puede ser ejecutado sobre la Máquina Virtual de Java y la máquina virtual de la plataforma .NET, así como compilado a JavaScript.
 
@@ -928,14 +997,13 @@ Las aplicaciones escritas en Clojure pueden ser fácilmente integradas en servid
 - Emacs Lisp trabaja con dynamic scoping por default.
 - No tiene closures, lo cual hace la composicion de funciones bastante dificil.
 
-
 ## Otros lenguajes
 
 ### Python
 
 Python admite todas las caracteristicas esenciales de Lisp, exeptuando las macros.
 La sintaxis de este lenguaje de programación es bastante más sencilla de leer, Lisp proporciona un core más potente y consistente, pero más engorroso a la hora de leer. En consecuencia, Lisp, en general, es más dificil para aprende ya que se opera en un alto nivel de abstracción desde un principio. Sin embargo, luego sera mas sencillo agregar niveles de abstracción y complejidad. Esto hace que Python sea más sencillo de programar para problemas de dificultad básica pero Lisp este más preparado para facilitar las tareas más complejas.
-En cuanto al tiempo de compilacion, Python más rápido(tiempo de compilación, de analisis de errores y dedeclaración de tipos baja). En cuanto a tiempo de ejecución python es mucho más lento. 
+En cuanto al tiempo de compilacion, Python más rápido(tiempo de compilación, de analisis de errores y dedeclaración de tipos baja). En cuanto a tiempo de ejecución python es mucho más lento.
 Por otro lado, es más dinámico, ya que realiza menos chequeos de erorres.
 Más allá de estas diferencias, son lenguajes de alto nivel interpretado y compilado orientado a objetos muy similares. Ambos admiten módulos y paquetes, fomrantando la modularidad del programa y en ambos lenguajes es muy sencillo de debuggear, un bug no puede producir un Segmentation Fault.
 
