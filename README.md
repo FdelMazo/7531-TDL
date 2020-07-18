@@ -198,14 +198,6 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 
 ## Procesar listas -> `car`, `cdr`, `cons` y `list`
 
-- Las listas en LISP son listas enlazadas
-
-- Los "nodos" (dato y prox) se llaman **cons cells**
-
-  - El dato actual es el **car**
-
-  - El resto es otra lista, el **cdr**
-
 ```lisp
 ;; car recibe una lista y devuelve su primer elemento
 (car (+ 1 2)) ; explota, no recibio una lista

@@ -269,14 +269,6 @@ Secchi, Anita - 99131</div></p>
 </section>
 <section id="procesar-listas---car-cdr-cons-y-list" class="slide level2">
 <h2>Procesar listas -&gt; <code>car</code>, <code>cdr</code>, <code>cons</code> y <code>list</code></h2>
-<ul>
-<li><p>Las listas en LISP son listas enlazadas</p></li>
-<li><p>Los “nodos” (dato y prox) se llaman <strong>cons cells</strong></p>
-<ul>
-<li><p>El dato actual es el <strong>car</strong></p></li>
-<li><p>El resto es otra lista, el <strong>cdr</strong></p></li>
-</ul></li>
-</ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">;; car recibe una lista y devuelve su primer elemento</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>(<span class="kw">car</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; explota, no recibio una lista</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>(<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; devuelve +</span></span>
