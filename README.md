@@ -19,6 +19,8 @@ author: |
 
 [Lets LISP like it's 1959](https://youtu.be/hGY3uBHVVr4) // [LISP and the foundations of computing](https://lwn.net/Articles/778550/)
 
+[Why Lisp ~ WikiWikiWeb](https://wiki.c2.com/?WhyLisp)
+
 ##
 
 ![](img/mccarthy.png)
@@ -55,13 +57,13 @@ author: |
 
 **Definición**
 
-- 1958: "An Algebraic Language for the Manipulation of Symbolic Expression"
+- ["An Algebraic Language for the Manipulation of Symbolic Expression" (1958) ~ John McCarthy](http://www.softwarepreservation.org/projects/LISP/MIT/AIM-001.pdf)
 
   - Primer diseño (incompleto) de LISP.
 
   - Comienzos de la programación funcional.
 
-- 1960: "Recursive Functions of Symbolic Expressionsand Their Computation by Machine, Part I"
+- ["Recursive Functions of Symbolic Expressionsand Their Computation by Machine, Part I" (1960) ~ John McCarthy](http://www-formal.stanford.edu/jmc/recursive.pdf)
 
   - Especificación completa de LISP, un lenguaje _teórico_, que no estaba pensado para ser implementado.
 
@@ -85,17 +87,31 @@ author: |
 
 ## Cálculo Lambda
 
-https://youtu.be/eis11j_iGMs
+**λx . x+y**
 
-?x. x?x.
+["An Unsolvable Problem Of Elementary Number Theory" (1936) ~ Alonzo Church](https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf)
 
-(lambda (x) (x\*x))
+["Can Programming Be Liberated from the von Neumann Style? A Functional Style and Its Algebra of Programs" (1977) ~ John Backus](http://www.csc.villanova.edu/~beck/csc8310/BackusFP.pdf)
 
-The power of the lambda notation is in its generality. The lambda notation will handle the case in which the value of a function is a function. In many computer languages the value of a function must be an element of a set, such as a number or a string or the label of a function. In the lambda notation the value can be a function, not the name or label of a function but a function itself.
+[Lambda calculus ~ Computerphile](https://youtu.be/eis11j_iGMs)
 
-https://www.sjsu.edu/faculty/watkins/lambda.htm
+[Whiteboard problems in pure Lambda calculus](https://www.jtolio.com/2017/03/whiteboard-problems-in-pure-lambda-calculus/)
 
-- Calculo Lambda no tipado: expresa _mas_ que el calculo lambda tipado
+[The Awesome Power of Theory, Explorations in the untyped lambda calculus ~ Ron Garret](http://www.flownet.com/ron/lambda-calculus.html)
+
+- No hay estado interno
+
+- Solo tiene:
+
+  - Identificadores (variables)
+
+  - Expresiones lambda (construcción de funciones)
+
+  - Aplicación de funciones
+
+  - Variables
+
+- Church–Turing thesis: la notación Lambda es formalmente equivalente a una máquina de Turing
 
 ## Pionero
 
@@ -227,6 +243,10 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 ```
 
 # Ejemplo de TDA: Tablas de hash
+
+- Poner sources (al menos el cap de structs de ansi common lisp)
+
+- Dar ejemplo de que es un struct en lisp, que son los make-struct, struct-tabla, etc
 
 ## Crear una tabla de hash en Common Lisp
 
@@ -566,27 +586,150 @@ HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutoria
 
 # Metaprogramming
 
-## Expression oriented / Simbolico
+[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
 
-https://beautifulracket.com/appendix/why-racket-why-lisp.html
+[Why are there so many parentheses in Lisp?](http://mnielsen.github.io/notes/parentheses/index.html)
 
-Usa S-Expressions: Simbolic expression
+<div class="container">
+<div class="col">
+**data**
 
-Lisp is an expression oriented language. Unlike most other languages, no distinction is made between "expressions" and "statements";[dubious – discuss] all code and data are written as expressions. When an expression is evaluated, it produces a value (in Common Lisp, possibly multiple values), which can then be embedded into other expressions. Each value can be any data type.
+- No hay interpretación
 
-https://en.wikipedia.org/wiki/Expression-oriented_programming_language
+  - Números `1`
 
-Transparencia referencial: equals can be replaced by equals
+  - Cadenas `"uno"`
+
+</div>
+<div class="col">
+**code**
+
+- Hay un procesamiento
+
+  - aritmética `1 + 2`
+
+  - acciones `print "uno"`
+
+</div>
+</div>
+
+## Orientado a expresiones
+
+[Why Racket? Why Lisp?; Everything is an expression ~ Beautiful Racket](https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_CU5IP)
+
+[Expression-oriented programming language](https://en.wikipedia.org/wiki/Expression-oriented_programming_language)
+
+- La mayoria de los los lenguajes distinguen entre `expresiones` y `sentencias` (statements)
+
+  - Expresión: frases que son evaluadas
+
+    - Siempre producen un valor
+
+    - Suelen no tener efectos secundarios
+
+  - Sentencias: frases que marcan una acción
+
+    - No retornan valores
+
+    - Se ejecutan solamente por sus efectos secundarios
+
+- En LISP, todo es una expresiónn
+
+  - Facil de testear
+
+  - Código mas expresivo
+
+  - Anidar expresiones de manera concisa
+
+- Transparencia referencial: equals can be replaced by equals
+
+## Symbolic expression
+
+<div class="container">
+<div class="col">
+**atom**
+
+![](img/atom.png)
+
+`(x)`
+
+</div>
+<div class="col">
+**construct cell**
+
+![](img/cons.png)
+
+`(x . y)`
+
+</div>
+</div>
+
+## list
+
+![](img/list.png)
+
+`(x . (y . (z . NIL)))` === `(x y z)`
+
+## tree
+
+![](img/tree.png)
+
+`(x y z)`
+
+## s-expressions
+
+![](img/sexp.png)
+
+`(* (+ 1 2) (- 5 3) )`
+
+## Conclusión
+
+- ¿Cómo se representá mi código escrito? **árbol de s-expressions**
+
+- ¿Cómo se representá mi programa compilado? **árbol de sintaxis abstracta (AST)**
+
+**La representación interna de mi código es muy parecida a mi código escrito**
+
+## Homoiconicidad
+
+[Symbolic programming](https://en.wikipedia.org/wiki/Symbolic_programming)
+
+[Homoiconicity](https://en.wikipedia.org/wiki/Homoiconicity)
+
+[Homoiconic Example In Many Programming Languages ~ WikiWikiWeb](https://wiki.c2.com/?HomoiconicExampleInManyProgrammingLanguages)
+
+- LISP es un lenguaje simbólico: El código es un ciudadano de primera clase
+
+- LISP es homoicónico: su representación interna se infiere leyendo el código
+
+- Toda expresión se puede interpretar de las dos maneras.
+
+  - Se interpreta como data usando `quote`
+
+  - Se interpreta como código usando `eval`
+
+```lisp
+(setf b 3)
+b ; => 3
+(setf a '(setf b 15))
+a ; => (SETF B 15)
+(eval a)
+b	; => 15
+```
 
 ## Extensibilidad del lenguaje
+
+- anything that Lisp can do to a data structure, Lisp macros can do to code
+
+This feature makes it easy to develop efficient languages within languages. For example, the Common Lisp Object System can be implemented cleanly as a language extension using macros. This means that if an application needs a different inheritance mechanism, it can use a different object system. This is in stark contrast to most other languages; for example, Java does not support multiple inheritance and there is no reasonable way to add it.
+
+https://en.wikipedia.org/wiki/Domain-specific_language
 
 https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
 
 cahpter 4 de practical common lisp
 
 Further, because Lisp code has the same structure as lists, macros can be built with any of the list-processing functions in the language. In short, anything that Lisp can do to a data structure, Lisp macros can do to code. In contrast, in most other languages, the parser's output is purely internal to the language implementation and cannot be manipulated by the programmer.
-
-https://youtu.be/dw-y3vNDRWk
 
 The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.
 
@@ -768,52 +911,6 @@ A partir de esto, se pueden usar macros para simplificar y reutilizar código, o
        ,@body)))
 ```
 
-## Homoiconicidad ("Code as Data")
-
-"This means that the way you think about a program­ming problem can be quite close to the way you actu­ally program it."
-
-- Gracias a las S-Expressions
-
-- Codigo y estructuras de datos intercambiable
-
-- La representación interna del programa es la que se lee
-
-- Todo es una lista -> Code and Data are made out of the same data structures, and the quote operator is the way we distinguish between them
-
-- Reflexion mucho mas sencilla
-
-- Lisp functions can be manipulated, altered or even created within a Lisp program without lower-level manipulations
-
-- Extensibilidad mucho mas facil
-
-- List of lists ??? Tree!
-
-- And how do we deal with trees? Recursion!
-
-- El abstract syntax tree de una funcion se puede manipualr como una estructura de datos y luego evaluar
-
-- s-expressions can represent arbitrary tree expressions, much like the usual abstract syntax tree
-
-- anything that Lisp can do to a data structure, Lisp macros can do to code
-
-This feature makes it easy to develop efficient languages within languages. For example, the Common Lisp Object System can be implemented cleanly as a language extension using macros. This means that if an application needs a different inheritance mechanism, it can use a different object system. This is in stark contrast to most other languages; for example, Java does not support multiple inheritance and there is no reasonable way to add it.
-
-- Las s-expresiones son binary trees porque son o atomos o (x y) siendo (x . y) un dotted pair (x hijo izq, y hijo der)
-
-- (hoy por hoy se usa el sintacic sugar LIST, que es nada mas concatenar mil dotted pairs. (x y z) es (x . (y . (z . null))))
-
-- foto binary tree
-
-- Dualidad entre el codigo y la data.
-
-- Todo es una lista por ende tanto el código, como la data se escriben de la misma forma
-
-- Toda expresión se puede interpretar de las dos maneras. - Se interpreta como data usando `quote` - Se interpreta como code usando `eval`
-
-- Misma expresión que se puede leer de ambas formas y permite swapear dependiendo que necesite.
-
-[Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
-
 # Desglosando `eval`
 
 [The Roots of LISP ~ Paul Graham](http://www.paulgraham.com/rootsoflisp.html)
@@ -822,15 +919,19 @@ This feature makes it easy to develop efficient languages within languages. For 
 
 - La magía de LISP es el **read–eval–print loop**: un entorno donde se toma lo escrito por el programador, se lee, se evalua, se imprime, y luego se vuelve a pedir input
 
-- Este self-interpreter es un **evaluador meta-circular**, esta escrito en LISP y puede evaluar código de LISP.
+- Este self-interpreter es un **evaluador meta-circular:** esta escrito en LISP y puede evaluar código de LISP.
 
 - ¿Cómo? Gracias a la función `eval`, definida por McCarthy en base a 7 operadores que toma como axiomas: `quote`, `atom`, `eq`, `car`, `cdr`, `cons` y `cond`
+
+[solo mencionar]The average person who writes a C compiler or interpreter requires about 20,000 lines of C to do so, and must be (or become) moderately expert about compilers or interpreters.
 
 ##
 
 > That was the big revelation to me when I was in graduate school—when I finally understood that the half page of code on the bottom of page 13 of the Lisp 1.5 manual was Lisp in itself. These were "Maxwell's Equations of Software!" This is the whole world of programming in a few lines that I can put my hand over.
 
 ~ Alan Kay, [A Conversation with Alan Kay](https://queue.acm.org/detail.cfm?id=1039523)
+
+##
 
 ![](img/eval.png)
 
