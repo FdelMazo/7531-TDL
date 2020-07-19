@@ -25,9 +25,9 @@ author: |
 
 ![](img/mccarthy.png)
 
-"Programming is the problem of describing procedures or algorithms to an electronic calculator."
+> "Programming is the problem of describing procedures or algorithms to an electronic calculator."
 
-~ \~ John McCarthy, The Programming Problem
+~ John McCarthy, The Programming Problem
 
 ## ¿Por qué nace LISP?
 
@@ -712,13 +712,11 @@ A partir de esto, se pueden usar macros para simplificar y reutilizar código, o
 
 ##
 
+![](img/eval.png)
+
 > That was the big revelation to me when I was in graduate school—when I finally understood that the half page of code on the bottom of page 13 of the Lisp 1.5 manual was Lisp in itself. These were "Maxwell's Equations of Software!" This is the whole world of programming in a few lines that I can put my hand over.
 
 ~ Alan Kay, [A Conversation with Alan Kay](https://queue.acm.org/detail.cfm?id=1039523)
-
-##
-
-![](img/eval.png)
 
 ##
 
