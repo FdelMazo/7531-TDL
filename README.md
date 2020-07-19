@@ -243,16 +243,9 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 ## Crear una tabla de hash en Common Lisp
 
 - función `make-hash-table`
-- No requiere ningún argumento.
+- No requiere ningún argumento, pero el opcional más usado es `:TEST` (testear claves iguales)
 
 Ejemplo:
-
-```lisp
-(defvar tabla)
-(setq tabla (make-hash-table))
-```
-
-Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la función utilizada para testear claves iguales.
 
 ```lisp
 (defvar tabla)
@@ -272,28 +265,9 @@ Sin embargo, el argumento opcional más usado es `:TEST`, que especifica la func
 
 - función `gethash` toma dos argumentos obligatorios: una clave y una tabla de hash
 
-Ejemplo:
-
 ```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
 * (setf (gethash "clave1" tabla) 3)
 3
-* (gethash "clave1" tabla)
-3
-T
-```
-
-En el siguiente ejemplo, guardamos NIL en el hash:
-
-```lisp
-* (setf (gethash "clave2" tabla) nil)
-NIL
-* (gethash "clave2" tabla)
-NIL
-T ; T indica True, existe la clave.
 ```
 
 ## Borrar de la tabla de hash
@@ -303,13 +277,6 @@ T ; T indica True, existe la clave.
 ```lisp
 * (remhash "clave1" tabla) ; elimino el par: "clave"-3
 T
-* (remhash "clave2" tabla) ; elimino el par: "clave2"-nil
-T
-* (gethash "clave1" tabla) ; trato de obtener el valor de algo que fue eliminado
-NIL
-NIL
-* (remhash "clave3" tabla) ; trato de borrar una clave que no existe
-NIL
 ```
 
 ## Contar entradas
@@ -317,23 +284,13 @@ NIL
 - función `hash-table-count`
 
 ```lisp
-* (setf (gethash "clave1" tabla) 3)
-3
-* (setf (gethash "clave2" tabla) "estoesunstring")
-"estoesunstring"
-* (setf (gethash "clave3" tabla) 2)
-2
 * (hash-table-count tabla)
 3 ; 3 elementos en mi hash.
 ```
 
 ## El tamaño del hash
 
-- función `make-hash-table`
-
 ```lisp
-* (defvar tabla)
-TABLA
 * (setq tabla (make-hash-table :test 'equal))
 #<HASH-TABLE :TEST EQUAL :COUNT 0 {10058B8553}>
 *(hash-table-size tabla)
@@ -342,9 +299,7 @@ TABLA
 1.5 ; indica que la tabla se agrandará en un 50% cada vez que necesite crecer.
 ```
 
-- Los valores para `hash-table-size` y `hash-table-rehash-size` dependen de la implementación. En este caso, la implementación de Common Lisp con la cual contamos, elige un tamaño inicial de 16, y aumentará el tamaño en un 50% (1.5) cada vez que el hash necesite crecer.
-
-- Ejemplo: agregar un total de un millón\* de pares clave-valor al hash:
+- Ejemplo: agregar un total de un millón\* de pares clave-valor al hash y ver como se redimensiona
 
 ```lisp
 * (time (dotimes (n 1000000) (setf (gethash n tabla) n))) ; le tomo el tiempo que tarda
@@ -364,122 +319,14 @@ NIL
 
 \*_Se eligió un millón para resaltar los tiempos que tardan_
 
-- Y si piso todas las claves y tomo el tiempo nuevamente:
-
-```lisp
-* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
-Evaluation took:
-  0.088 seconds of real time
-  0.088449 seconds of total run time (0.088449 user, 0.000000 system)
-  100.00% CPU
-  194,161,741 processor cycles
-  0 bytes consed
-NIL
-```
-
-- Veamos cuantas veces temenos que redimensionar para llegar al tamaño final:
-
-```lisp
-* (log (/ 1000000 16) 1.5)
-27.235197
-* (let ((size 16)) (dotimes (n 29) (print (list n size)) (setq size (* 1.5 size))))
-(0 16)
-(1 24.0)
-(2 36.0)
-(3 54.0)
-(4 81.0)
-(5 121.5)
-(6 182.25)
-(7 273.375)
-(8 410.0625)
-(9 615.09375)
-(10 922.6406)
-(11 1383.9609)
-(12 2075.9414)
-(13 3113.912)
-(14 4670.868)
-(15 7006.3022)
-(16 10509.453)
-(17 15764.18)
-(18 23646.27)
-(19 35469.406)
-(20 53204.11)
-(21 79806.164)
-(22 119709.25)
-(23 179563.88)
-(24 269345.8)
-(25 404018.72)
-(26 606028.06)
-(27 909042.1)
-(28 1363563.3)
-NIL
-```
-
-- Se redimensiona 28 veces hasta que sea lo suficientemente grande para contener 1,000,000 de claves con sus respectivos valores.
-
-- Una manera de hacerlo más rápido: Si ya sabemos con anticipación que tan grande nuestro hash será, podemos comenzar con el tamaño correcto desde el vamos:
-
-```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal :size 1000000))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {10039B0043}>
-* (hash-table-size tabla)
-1000000
-* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
-Evaluation took:
-  0.086 seconds of real time
-  0.085881 seconds of total run time (0.085881 user, 0.000000 system)
-  100.00% CPU
-  188,651,959 processor cycles
-  0 bytes consed
-NIL
-```
-
-- Se prueba que tarda considerablemente menos tiempo.
-- No hubo alocamientos involucrados ya que no hubo que redimensionar en absoluto
-- Se puede anticipar el comportamiento de crecimiento que tendrá el hash: parámetro `:rehash-size` en la función `make-hash-table`
-
-```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal :rehash-size 1000000))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D563}>
-* (hash-table-size tabla)
-16
-* (hash-table-rehash-size tabla)
-1000000
-* (time (dotimes (n 1000000) (setf (gethash n tabla) n)))
-Evaluation took:
-  0.120 seconds of real time
-  0.120026 seconds of total run time (0.116221 user, 0.003805 system)
-  [ Run times consist of 0.017 seconds GC time, and 0.104 seconds non-GC time. ]
-  100.00% CPU
-  263,851,583 processor cycles
-  41,943,104 bytes consed
-NIL
-```
-
-- Solamente necesitamos una redimensión, pero mucho màs realocamiento (41,943,107 bytes consed) porque casi toda la tabla (menos los 16 elementos iniciales) tuvieron que se construídos durante la iteración.
+(Ver más sobre esto en informe.md)
 
 ## Fun stuff e iteradores del hash
 
-Si se quiere realizar una acción sobre cada par clave-valor en la tabla de hash, existen múltiples opciones:
-
-- `maphash`: itera sobre todas las claves de la tabla. Su primer argumento debe ser una función que acepte dos parámetros: la clave y el valor. Muy importante notar y recordar que, dado la naturaleza de las tablas de hash, uno no puede controlar el orden en el cual las claves son devueltas. `maphash` devuelve siemple `NIL`.
+- `maphash`: itera sobre todas las claves de la tabla. Devuelve siempre `NIL`.
 
 ```lisp
-* (defvar tabla)
-TABLA
-* (setq tabla (make-hash-table :test 'equal))
-#<HASH-TABLE :TEST EQUAL :COUNT 0 {100589D0E3}>
-* (setf (gethash "clave1" tabla) 1)
-1
-* (setf (gethash "clave2" tabla) 2)
-2
-* (setf (gethash "clave3" tabla) 3)
-3
-* (defun imprimir-entrada (clave valor) (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
+* (defun imprimir-entrada (clave valor) (format t "El valor asociado a la clave ~S es ~S~%" clave valor)) ; partimos de un hash con 3 claves
 IMPRIMIR-ENTRADA
 * (maphash #'imprimir-entrada tabla)
 El valor asociado a la clave "clave1" es 1
@@ -489,7 +336,7 @@ NIL
 *
 ```
 
-- `with-hash-table-iterator`: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve tres valores cada clave-valor del hash: un booleano generalizado que es `true` si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve `NIL`
+- `with-hash-table-iterator`: es una macro que convierte el primer argumento en un iterador que en cada invocación devuelve un booleano generalizado que es `true` si alguna entrada es devuelta, la clave, y el valor. Si no encuentra más claves, devuelve `NIL`
 
 ```lisp
 * (with-hash-table-iterator (iterador tabla)
@@ -504,45 +351,15 @@ El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
 NIL
 ```
+Otra opción para it
 
-- `loop`: ~~la vieja confiable~~
+- `loop`: es otra opción para iterar
 
 ```lisp
   * (loop for clave being the hash-keys of tabla do (print clave))
 "clave1"
 "clave2"
 "clave3"
-NIL
-```
-
-Formateado clave-valor:
-
-```lisp
-* (loop for clave being the hash-keys of tabla using (hash-value valor)
-    do (format t "El valor asociado a la clave ~S es ~S~%" clave valor))
-El valor asociado a la clave "clave1" es 1
-El valor asociado a la clave "clave2" es 2
-El valor asociado a la clave "clave3" es 3
-NIL
-```
-
-Solo el valor:
-
-```lisp
-* (loop for valor being the hash-values of tabla do (print valor))
-1
-2
-3
-NIL
-```
-
-Clave y valor:
-
-```lisp
-* (loop for valor being the hash-values of tabla using (hash-key clave) do (format t "~&~S -> ~S" clave valor))
-"clave1" -> 1
-"clave2" -> 2
-"clave3" -> 3
 NIL
 ```
 
