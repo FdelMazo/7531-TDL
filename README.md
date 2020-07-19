@@ -25,9 +25,9 @@ author: |
 
 ![](img/mccarthy.png)
 
-> "Programming is the problem of describing procedures or algorithms to an electronic calculator."
+"Programming is the problem of describing procedures or algorithms to an electronic calculator."
 
-~ John McCarthy, The Programming Problem
+~ \~ John McCarthy, The Programming Problem
 
 ## ¿Por qué nace LISP?
 
@@ -528,45 +528,21 @@ b	; => 15
 
 ## Extensibilidad del lenguaje
 
-- anything that Lisp can do to a data structure, Lisp macros can do to code
+En vez de crear un software para satisfacer todas las necesidades del usuario, podemos crear un software que sea extensible. Es decir, cambiar nuestro programa para que sea un lenguaje de programación, y usuarios avanzados pueden agregar funcionalidad extra si la necesitan.
 
-This feature makes it easy to develop efficient languages within languages. For example, the Common Lisp Object System can be implemented cleanly as a language extension using macros. This means that if an application needs a different inheritance mechanism, it can use a different object system. This is in stark contrast to most other languages; for example, Java does not support multiple inheritance and there is no reasonable way to add it.
+Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje mismo es extensible: _permite escribir código que genera código_. En particular las macros permiten extender el lenguaje, cambiar el orden de evaluación y hasta cambiar la sintaxis. Con otros lenguajes no tenemos esta libertad, y cualquier extensión cambio en la sintaxis debería ser implementado de forma oficial por los desarrolladores del lenguaje.
 
-https://en.wikipedia.org/wiki/Domain-specific_language
+- Crear módulos completos para extender la funcionalidad del lenguaje: 
+  - Common Lisp Object System [CLOS]: agrega un sistema de objetos a Lisp, completo con enlaces dinámicos múltiples y herencia múltiple. Provee las macros `defclass`, `defgeneric`, `defmethod`.
+  - lparallel: agrega funcionalidad para la creación de hilos. Incluye comunicación entre hilos, promesas, implementaciones de `map`, `reduce`, `sort` y `remove` que corren de forma concurrente, y más.
 
-https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
+- Crear lenguajes de dominio específico cambiando la sintaxis:
+  - `CL-INTERPOL`: para interpolación de strings.
+  - `infix`: para escribir ecuaciones matemáticas en notación de infijo.
 
-cahpter 4 de practical common lisp
+- ¿Aún más? Racket, undialecto de Scheme y parte de la familia de Lisp, está orientado específicamente a crear lenguajes nuevos agregando funcionalidad para convertir código fuente en S-Expressions.
 
-Further, because Lisp code has the same structure as lists, macros can be built with any of the list-processing functions in the language. In short, anything that Lisp can do to a data structure, Lisp macros can do to code. In contrast, in most other languages, the parser's output is purely internal to the language implementation and cannot be manipulated by the programmer.
-
-The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.
-
-https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_vmsLq
-
-https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_pwJR1
-
-"language-oriented program­ming"
-
-- comparar como se extiende python o C normalmente https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s6-extensibility y http://www.gigamonkeys.com/book/macros-standard-control-constructs.html
-
-- Hablar de extensiones "populares" (importantes) del lenguaje
-
-  - Darle mucha bola a CLOS! que es importantisimo en la historia de lisp (chusmear relacion con smalltalk!!!) (chusmear como CLOS es de lo mas "puro" en cuanto a Object Oriented)
-
-  - Concurrencia
-
-  - String interpolation
-
-Solo en librerías.
-
-- [Bordeaux Threads](https://common-lisp.net/project/bordeaux-threads/) para la creación de hilos.
-
-- [lparallel](https://github.com/lmj/lparallel) para una implementación más compleja que incluye comunicación entre hilos (colas, promesas, etc).
-
-- [Blackbird](https://github.com/orthecreedence/blackbird) implementación de promesas (la dejo porque no la encontré en cl-awesole).
-
-* "los macros son **parte** de lo que es la extensibilidad de list" --> pie para entrar a la siguiente seccion
+- TODO: Comparar con otros lenguajesss
 
 ## Macros
 
