@@ -89,15 +89,15 @@ author: |
 
 **λx . x+y**
 
-["An Unsolvable Problem Of Elementary Number Theory" (1936) ~ Alonzo Church](https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf)
-
-["Can Programming Be Liberated from the von Neumann Style? A Functional Style and Its Algebra of Programs" (1977) ~ John Backus](http://www.csc.villanova.edu/~beck/csc8310/BackusFP.pdf)
-
 [Lambda calculus ~ Computerphile](https://youtu.be/eis11j_iGMs)
 
 [Whiteboard problems in pure Lambda calculus](https://www.jtolio.com/2017/03/whiteboard-problems-in-pure-lambda-calculus/)
 
 [The Awesome Power of Theory, Explorations in the untyped lambda calculus ~ Ron Garret](http://www.flownet.com/ron/lambda-calculus.html)
+
+["An Unsolvable Problem Of Elementary Number Theory" (1936) ~ Alonzo Church](https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf)
+
+["Can Programming Be Liberated from the von Neumann Style?" (1977) ~ John Backus](http://www.csc.villanova.edu/~beck/csc8310/BackusFP.pdf)
 
 - No hay estado interno
 
@@ -351,6 +351,7 @@ El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
 NIL
 ```
+
 Otra opción para it
 
 - `loop`: es otra opción para iterar
@@ -424,9 +425,9 @@ HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutoria
 
 ## Orientado a expresiones
 
-[Why Racket? Why Lisp?; Everything is an expression ~ Beautiful Racket](https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_CU5IP)
-
 [Expression-oriented programming language](https://en.wikipedia.org/wiki/Expression-oriented_programming_language)
+
+[Why Racket? Why Lisp? Everything is an expression ~ Beautiful Racket](https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_CU5IP)
 
 - La mayoria de los los lenguajes distinguen entre `expresiones` y `sentencias` (statements)
 
@@ -532,11 +533,13 @@ En vez de crear un software para satisfacer todas las necesidades del usuario, p
 
 Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje mismo es extensible: _permite escribir código que genera código_. En particular las macros permiten extender el lenguaje, cambiar el orden de evaluación y hasta cambiar la sintaxis. Con otros lenguajes no tenemos esta libertad, y cualquier extensión cambio en la sintaxis debería ser implementado de forma oficial por los desarrolladores del lenguaje.
 
-- Crear módulos completos para extender la funcionalidad del lenguaje: 
+- Crear módulos completos para extender la funcionalidad del lenguaje:
+
   - Common Lisp Object System [CLOS]: agrega un sistema de objetos a Lisp, completo con enlaces dinámicos múltiples y herencia múltiple. Provee las macros `defclass`, `defgeneric`, `defmethod`.
   - lparallel: agrega funcionalidad para la creación de hilos. Incluye comunicación entre hilos, promesas, implementaciones de `map`, `reduce`, `sort` y `remove` que corren de forma concurrente, y más.
 
 - Crear lenguajes de dominio específico cambiando la sintaxis:
+
   - `CL-INTERPOL`: para interpolación de strings.
   - `infix`: para escribir ecuaciones matemáticas en notación de infijo.
 

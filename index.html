@@ -10,75 +10,74 @@
   <link rel="stylesheet" href="./reveal.js/css/reset.css">
   <link rel="stylesheet" href="./reveal.js/css/reveal.css">
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style>
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme">
   <!-- Printing and PDF exports -->
@@ -109,19 +108,24 @@ Secchi, Anita - 99131</div></p>
 
 <p><a href="https://github.com/FdelMazo/7531-TDL"><img data-src="img/byte.png" /></a></p>
 </section>
-<section><section id="historia" class="title-slide slide level1"><h1>Historia</h1><p><a href="https://campus.hesge.ch/Daehne/2004-2005/Langages/Lisp.htm">Early LISP History (1956 - 1959) ~ Herbert Stoyan</a></p>
+<section>
+<section id="historia" class="title-slide slide level1">
+<h1>Historia</h1>
+<p><a href="https://campus.hesge.ch/Daehne/2004-2005/Langages/Lisp.htm">Early LISP History (1956 - 1959) ~ Herbert Stoyan</a></p>
 <p><a href="http://www-formal.stanford.edu/jmc/history/lisp/lisp.html">History of Lisp ~ John McCarthy</a></p>
 <p><a href="http://www.paulgraham.com/icad.html">Revenge of the Nerds ~ Paul Graham</a></p>
 <p><a href="https://youtu.be/hGY3uBHVVr4">Lets LISP like it’s 1959</a> // <a href="https://lwn.net/Articles/778550/">LISP and the foundations of computing</a></p>
-<p><a href="https://wiki.c2.com/?WhyLisp">Why Lisp ~ WikiWikiWeb</a></p></section><section id="section" class="slide level2">
+<p><a href="https://wiki.c2.com/?WhyLisp">Why Lisp ~ WikiWikiWeb</a></p>
+</section>
+<section id="section" class="slide level2">
 <h2></h2>
 <p><img data-src="img/mccarthy.png" /></p>
-<dl>
-<dt>“Programming is the problem of describing procedures or algorithms to an electronic calculator.”</dt>
-<dd><p>~ John McCarthy, The Programming Problem</p>
-</dd>
-</dl>
-</section><section id="por-qué-nace-lisp" class="slide level2">
+<blockquote>
+<p>“Programming is the problem of describing procedures or algorithms to an electronic calculator.”</p>
+</blockquote>
+<p>~ John McCarthy, The Programming Problem</p>
+</section>
+<section id="por-qué-nace-lisp" class="slide level2">
 <h2>¿Por qué nace LISP?</h2>
 <ul>
 <li><p>Un lenguaje de programación para Inteligencia Artificial Simbólica.</p>
@@ -131,7 +135,8 @@ Secchi, Anita - 99131</div></p>
 <li><p>McCarthy busca un lenguaje: Explicito, universal, conciso.</p></li>
 <li><p>Una respuesta al modelo secuencial (la máquina de Turing) y al paradigma imperativo (FORTRAN).</p></li>
 </ul>
-</section><section id="cómo-nace-lisp" class="slide level2">
+</section>
+<section id="cómo-nace-lisp" class="slide level2">
 <h2>¿Cómo nace LISP?</h2>
 <p><strong>Idea</strong></p>
 <ul>
@@ -143,7 +148,8 @@ Secchi, Anita - 99131</div></p>
 <li><p>La notación del cálculo Lambda de Alonzo Church.</p></li>
 </ul></li>
 </ul>
-</section><section id="cómo-nace-lisp-1" class="slide level2">
+</section>
+<section id="cómo-nace-lisp-1" class="slide level2">
 <h2>¿Cómo nace LISP?</h2>
 <p><strong>Definición</strong></p>
 <ul>
@@ -159,7 +165,8 @@ Secchi, Anita - 99131</div></p>
 <li><p>Para demostrar que es Turing-Completo, define una “función universal de LISP”, que luego llegaría a ser <code>eval</code>.</p></li>
 </ul></li>
 </ul>
-</section><section id="cómo-nace-lisp-2" class="slide level2">
+</section>
+<section id="cómo-nace-lisp-2" class="slide level2">
 <h2>¿Cómo nace LISP?</h2>
 <p><strong>Implementación</strong></p>
 <ul>
@@ -173,14 +180,15 @@ Secchi, Anita - 99131</div></p>
 <li><p>Funciones compiladas e interpretadas pueden ser intercambiadas libremente.</p></li>
 </ul></li>
 </ul>
-</section><section id="cálculo-lambda" class="slide level2">
+</section>
+<section id="cálculo-lambda" class="slide level2">
 <h2>Cálculo Lambda</h2>
 <p><strong>λx . x+y</strong></p>
-<p><a href="https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf">“An Unsolvable Problem Of Elementary Number Theory” (1936) ~ Alonzo Church</a></p>
-<p><a href="http://www.csc.villanova.edu/~beck/csc8310/BackusFP.pdf">“Can Programming Be Liberated from the von Neumann Style? A Functional Style and Its Algebra of Programs” (1977) ~ John Backus</a></p>
 <p><a href="https://youtu.be/eis11j_iGMs">Lambda calculus ~ Computerphile</a></p>
 <p><a href="https://www.jtolio.com/2017/03/whiteboard-problems-in-pure-lambda-calculus/">Whiteboard problems in pure Lambda calculus</a></p>
 <p><a href="http://www.flownet.com/ron/lambda-calculus.html">The Awesome Power of Theory, Explorations in the untyped lambda calculus ~ Ron Garret</a></p>
+<p><a href="https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf">“An Unsolvable Problem Of Elementary Number Theory” (1936) ~ Alonzo Church</a></p>
+<p><a href="http://www.csc.villanova.edu/~beck/csc8310/BackusFP.pdf">“Can Programming Be Liberated from the von Neumann Style?” (1977) ~ John Backus</a></p>
 <ul>
 <li><p>No hay estado interno</p></li>
 <li><p>Solo tiene:</p>
@@ -192,7 +200,8 @@ Secchi, Anita - 99131</div></p>
 </ul></li>
 <li><p>Church–Turing thesis: la notación Lambda es formalmente equivalente a una máquina de Turing</p></li>
 </ul>
-</section><section id="pionero" class="slide level2">
+</section>
+<section id="pionero" class="slide level2">
 <h2>Pionero</h2>
 <p><a href="http://www.paulgraham.com/diff.html">What Made Lisp Different ~ Paul Graham</a></p>
 <p><a href="https://www.informit.com/articles/article.aspx?p=1671639">Influential Programming Languages, Lisp ~ David Chisnall</a></p>
@@ -208,9 +217,14 @@ Secchi, Anita - 99131</div></p>
 <li><p><strong>Map y Reduce</strong>: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.</p></li>
 </ul>
 </section></section>
-<section><section id="sintaxis" class="title-slide slide level1"><h1>Sintaxis</h1><p><a href="http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf">LISP 1.5 Programmer’s Manual</a></p>
+<section>
+<section id="sintaxis" class="title-slide slide level1">
+<h1>Sintaxis</h1>
+<p><a href="http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf">LISP 1.5 Programmer’s Manual</a></p>
 <p><a href="http://clhs.lisp.se/Front/index.htm">Common Lisp HyperSpec</a></p>
-<p><a href="https://learnxinyminutes.com/docs/common-lisp/">Learn X in Y minutes, Where X=Common Lisp</a></p></section><section id="expresiones---átomos-y-listas" class="slide level2">
+<p><a href="https://learnxinyminutes.com/docs/common-lisp/">Learn X in Y minutes, Where X=Common Lisp</a></p>
+</section>
+<section id="expresiones---átomos-y-listas" class="slide level2">
 <h2>Expresiones -&gt; átomos y listas</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">;; Todo en LISP se compone de symbolic expressions</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="dv">1</span> <span class="co">; Una s-expression puede ser un átomo -&gt; irreducible</span></span>
@@ -223,7 +237,8 @@ Secchi, Anita - 99131</div></p>
 <span id="cb1-9"><a href="#cb1-9"></a></span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="co">;; Acá comienza la dualidad entre código (la lista) y data (el átomo)</span></span>
 <span id="cb1-11"><a href="#cb1-11"></a><span class="co">;; Ambos son S-expressions</span></span></code></pre></div>
-</section><section id="code-data---eval-quote" class="slide level2">
+</section>
+<section id="code-data---eval-quote" class="slide level2">
 <h2>Code &amp; Data -&gt; <code>eval</code>, <code>quote</code></h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">;; El operador quote toma una s-expression y devuelve el código</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>) <span class="co">; evalua a 2</span></span>
@@ -238,7 +253,8 @@ Secchi, Anita - 99131</div></p>
 <span id="cb2-11"><a href="#cb2-11"></a><span class="co">;; 1 + 1 es 2</span></span>
 <span id="cb2-12"><a href="#cb2-12"></a><span class="co">;; &quot;1 + 1&quot; es el código 1 + 1</span></span></code></pre></div>
 <p>Puedo hacer un programa entero, ponerle un <code>'</code> adelante, y estoy tratando con el <strong>código</strong> de mi programa.</p>
-</section><section id="chequeando-valores---atom-listp" class="slide level2">
+</section>
+<section id="chequeando-valores---atom-listp" class="slide level2">
 <h2>Chequeando Valores -&gt; <code>atom</code>, <code>listp</code></h2>
 <p>¿Es código o data?</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">;; atom devuelve si algo es un átomo o no</span></span>
@@ -250,7 +266,8 @@ Secchi, Anita - 99131</div></p>
 <span id="cb3-7"><a href="#cb3-7"></a>(<span class="kw">listp</span> <span class="dv">1</span>) <span class="co">; Nil (1 no es una lista)</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a>(<span class="kw">listp</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; Nil (la expresion evalua a 3, no es una lista)</span></span>
 <span id="cb3-9"><a href="#cb3-9"></a>(<span class="kw">listp</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; True (estoy hablando del código de la expresion, la lista)</span></span></code></pre></div>
-</section><section id="procesar-listas---car-cdr-cons-y-list" class="slide level2">
+</section>
+<section id="procesar-listas---car-cdr-cons-y-list" class="slide level2">
 <h2>Procesar listas -&gt; <code>car</code>, <code>cdr</code>, <code>cons</code> y <code>list</code></h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">;; car recibe una lista y devuelve su primer elemento</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>(<span class="kw">car</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) <span class="co">; explota, no recibio una lista</span></span>
@@ -268,7 +285,8 @@ Secchi, Anita - 99131</div></p>
 <span id="cb4-14"><a href="#cb4-14"></a>(<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (1 2 3)</span></span>
 <span id="cb4-15"><a href="#cb4-15"></a>(<span class="kw">list</span> &#39;+ <span class="dv">2</span> <span class="dv">3</span>) <span class="co">; devuelve (+ 2 3)</span></span>
 <span id="cb4-16"><a href="#cb4-16"></a><span class="co">;; si tan solo hubiese una manera de ejecutar esta expresion!</span></span></code></pre></div>
-</section><section id="procesar-una-s-expression---programming-bottom-up" class="slide level2">
+</section>
+<section id="procesar-una-s-expression---programming-bottom-up" class="slide level2">
 <h2>Procesar una s-expression -&gt; Programming Bottom Up</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">;; Partimos de la expresion (+ 1 2)</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)</span>
@@ -283,10 +301,15 @@ Secchi, Anita - 99131</div></p>
 <span id="cb5-11"><a href="#cb5-11"></a><span class="co">;; Evaluamos la expresion</span></span>
 <span id="cb5-12"><a href="#cb5-12"></a>(<span class="kw">eval</span> (<span class="kw">cons</span> (<span class="kw">car</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>)) (<span class="kw">cdr</span> &#39;(<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))))</span></code></pre></div>
 </section></section>
-<section><section id="ejemplo-de-tda-tablas-de-hash" class="title-slide slide level1"><h1>Ejemplo de TDA: Tablas de hash</h1><ul>
+<section>
+<section id="ejemplo-de-tda-tablas-de-hash" class="title-slide slide level1">
+<h1>Ejemplo de TDA: Tablas de hash</h1>
+<ul>
 <li><p>Poner sources (al menos el cap de structs de ansi common lisp)</p></li>
 <li><p>Dar ejemplo de que es un struct en lisp, que son los make-struct, struct-tabla, etc</p></li>
-</ul></section><section id="crear-una-tabla-de-hash-en-common-lisp" class="slide level2">
+</ul>
+</section>
+<section id="crear-una-tabla-de-hash-en-common-lisp" class="slide level2">
 <h2>Crear una tabla de hash en Common Lisp</h2>
 <ul>
 <li>función <code>make-hash-table</code></li>
@@ -295,35 +318,40 @@ Secchi, Anita - 99131</div></p>
 <p>Ejemplo:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1"></a>(<span class="kw">defvar</span><span class="fu"> tabla</span>)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>(<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal))</span></code></pre></div>
-</section><section id="agregar-un-elemento-a-la-tabla" class="slide level2">
+</section>
+<section id="agregar-un-elemento-a-la-tabla" class="slide level2">
 <h2>Agregar un elemento a la tabla</h2>
 <ul>
 <li>función <code>gethash</code> en conjunto con la función <code>setf</code></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="dv">3</span>) <span class="co">; gethash recibe dos argumentos: la clave y el hash</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="dv">3</span></span></code></pre></div>
-</section><section id="obtener-un-valor" class="slide level2">
+</section>
+<section id="obtener-un-valor" class="slide level2">
 <h2>Obtener un valor</h2>
 <ul>
 <li>función <code>gethash</code> toma dos argumentos obligatorios: una clave y una tabla de hash</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1"></a><span class="op">*</span> (<span class="kw">setf</span> (<span class="kw">gethash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="dv">3</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="dv">3</span></span></code></pre></div>
-</section><section id="borrar-de-la-tabla-de-hash" class="slide level2">
+</section>
+<section id="borrar-de-la-tabla-de-hash" class="slide level2">
 <h2>Borrar de la tabla de hash</h2>
 <ul>
 <li>función <code>remhash</code> para eliminar el par clave-valor</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1"></a><span class="op">*</span> (<span class="kw">remhash</span> <span class="st">&quot;clave1&quot;</span> tabla) <span class="co">; elimino el par: &quot;clave&quot;-3</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>T</span></code></pre></div>
-</section><section id="contar-entradas" class="slide level2">
+</section>
+<section id="contar-entradas" class="slide level2">
 <h2>Contar entradas</h2>
 <ul>
 <li>función <code>hash-table-count</code></li>
 </ul>
 <div class="sourceCode" id="cb10"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb10-1"><a href="#cb10-1"></a><span class="op">*</span> (<span class="kw">hash-table-count</span> tabla)</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="dv">3</span> <span class="co">; 3 elementos en mi hash.</span></span></code></pre></div>
-</section><section id="el-tamaño-del-hash" class="slide level2">
+</section>
+<section id="el-tamaño-del-hash" class="slide level2">
 <h2>El tamaño del hash</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb11-1"><a href="#cb11-1"></a><span class="op">*</span> (<span class="kw">setq</span> tabla (<span class="kw">make-hash-table</span> <span class="bu">:test</span> &#39;equal))</span>
 <span id="cb11-2"><a href="#cb11-2"></a>#&lt;HASH-TABLE :TEST EQUAL :COUNT <span class="dv">0</span> {10058B8553}<span class="op">&gt;</span></span>
@@ -349,7 +377,8 @@ Secchi, Anita - 99131</div></p>
 <span id="cb12-13"><a href="#cb12-13"></a><span class="dv">1048576</span></span></code></pre></div>
 <p>*<em>Se eligió un millón para resaltar los tiempos que tardan</em></p>
 <p>(Ver más sobre esto en informe.md)</p>
-</section><section id="fun-stuff-e-iteradores-del-hash" class="slide level2">
+</section>
+<section id="fun-stuff-e-iteradores-del-hash" class="slide level2">
 <h2>Fun stuff e iteradores del hash</h2>
 <ul>
 <li><code>maphash</code>: itera sobre todas las claves de la tabla. Devuelve siempre <code>NIL</code>.</li>
@@ -387,7 +416,9 @@ Secchi, Anita - 99131</div></p>
 <span id="cb15-5"><a href="#cb15-5"></a>NIL</span></code></pre></div>
 <p>HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm</p>
 </section></section>
-<section id="fractales-en-common-lisp" class="title-slide slide level1"><h1>Fractales, en Common LISP</h1><p><a href="https://github.com/FdelMazo/cl-aristid">cl-aristid</a></p>
+<section id="fractales-en-common-lisp" class="title-slide slide level1">
+<h1>Fractales, en Common LISP</h1>
+<p><a href="https://github.com/FdelMazo/cl-aristid">cl-aristid</a></p>
 <ul>
 <li><p>En las implementaciones más comunes, es compilado (pero no JIT necesariamente)</p></li>
 <li><p>LISP es un lenguaje interactivo y dinámico</p></li>
@@ -401,8 +432,13 @@ Secchi, Anita - 99131</div></p>
 <li><p>Manejo de memoria</p></li>
 <li><p>Manejo de errores</p></li>
 <li><p>Macros</p></li>
-</ul></section>
-<section><section id="metaprogramming" class="title-slide slide level1"><h1>Metaprogramming</h1><p><a href="https://youtu.be/dw-y3vNDRWk">Code vs Data (Metaprogramming) ~ Computerphile</a></p>
+</ul>
+</section>
+
+<section>
+<section id="metaprogramming" class="title-slide slide level1">
+<h1>Metaprogramming</h1>
+<p><a href="https://youtu.be/dw-y3vNDRWk">Code vs Data (Metaprogramming) ~ Computerphile</a></p>
 <p><a href="http://mnielsen.github.io/notes/parentheses/index.html">Why are there so many parentheses in Lisp?</a></p>
 <div class="container">
 <div class="col">
@@ -425,10 +461,12 @@ Secchi, Anita - 99131</div></p>
 </ul></li>
 </ul>
 </div>
-</div></section><section id="orientado-a-expresiones" class="slide level2">
+</div>
+</section>
+<section id="orientado-a-expresiones" class="slide level2">
 <h2>Orientado a expresiones</h2>
-<p><a href="https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_CU5IP">Why Racket? Why Lisp?; Everything is an expression ~ Beautiful Racket</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Expression-oriented_programming_language">Expression-oriented programming language</a></p>
+<p><a href="https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_CU5IP">Why Racket? Why Lisp? Everything is an expression ~ Beautiful Racket</a></p>
 <ul>
 <li><p>La mayoria de los los lenguajes distinguen entre <code>expresiones</code> y <code>sentencias</code> (statements)</p>
 <ul>
@@ -451,7 +489,8 @@ Secchi, Anita - 99131</div></p>
 </ul></li>
 <li><p>Transparencia referencial: equals can be replaced by equals</p></li>
 </ul>
-</section><section id="symbolic-expression" class="slide level2">
+</section>
+<section id="symbolic-expression" class="slide level2">
 <h2>Symbolic expression</h2>
 <div class="container">
 <div class="col">
@@ -465,26 +504,31 @@ Secchi, Anita - 99131</div></p>
 <p><code>(x . y)</code></p>
 </div>
 </div>
-</section><section id="list" class="slide level2">
+</section>
+<section id="list" class="slide level2">
 <h2>list</h2>
 <p><img data-src="img/list.png" /></p>
 <p><code>(x . (y . (z . NIL)))</code> === <code>(x y z)</code></p>
-</section><section id="tree" class="slide level2">
+</section>
+<section id="tree" class="slide level2">
 <h2>tree</h2>
 <p><img data-src="img/tree.png" /></p>
 <p><code>(x y z)</code></p>
-</section><section id="s-expressions" class="slide level2">
+</section>
+<section id="s-expressions" class="slide level2">
 <h2>s-expressions</h2>
 <p><img data-src="img/sexp.png" /></p>
 <p><code>(* (+ 1 2) (- 5 3) )</code></p>
-</section><section id="conclusión" class="slide level2">
+</section>
+<section id="conclusión" class="slide level2">
 <h2>Conclusión</h2>
 <ul>
 <li><p>¿Cómo se representá mi código escrito? <strong>árbol de s-expressions</strong></p></li>
 <li><p>¿Cómo se representá mi programa compilado? <strong>árbol de sintaxis abstracta (AST)</strong></p></li>
 </ul>
 <p><strong>La representación interna de mi código es muy parecida a mi código escrito</strong></p>
-</section><section id="homoiconicidad" class="slide level2">
+</section>
+<section id="homoiconicidad" class="slide level2">
 <h2>Homoiconicidad</h2>
 <p><a href="https://en.wikipedia.org/wiki/Symbolic_programming">Symbolic programming</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Homoiconicity">Homoiconicity</a></p>
@@ -504,7 +548,8 @@ Secchi, Anita - 99131</div></p>
 <span id="cb16-4"><a href="#cb16-4"></a>a <span class="co">; =&gt; (SETF B 15)</span></span>
 <span id="cb16-5"><a href="#cb16-5"></a>(<span class="kw">eval</span> a)</span>
 <span id="cb16-6"><a href="#cb16-6"></a>b   <span class="co">; =&gt; 15</span></span></code></pre></div>
-</section><section id="extensibilidad-del-lenguaje" class="slide level2">
+</section>
+<section id="extensibilidad-del-lenguaje" class="slide level2">
 <h2>Extensibilidad del lenguaje</h2>
 <p>En vez de crear un software para satisfacer todas las necesidades del usuario, podemos crear un software que sea extensible. Es decir, cambiar nuestro programa para que sea un lenguaje de programación, y usuarios avanzados pueden agregar funcionalidad extra si la necesitan.</p>
 <p>Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje mismo es extensible: <em>permite escribir código que genera código</em>. En particular las macros permiten extender el lenguaje, cambiar el orden de evaluación y hasta cambiar la sintaxis. Con otros lenguajes no tenemos esta libertad, y cualquier extensión cambio en la sintaxis debería ser implementado de forma oficial por los desarrolladores del lenguaje.</p>
@@ -522,7 +567,8 @@ Secchi, Anita - 99131</div></p>
 <li><p>¿Aún más? Racket, undialecto de Scheme y parte de la familia de Lisp, está orientado específicamente a crear lenguajes nuevos agregando funcionalidad para convertir código fuente en S-Expressions.</p></li>
 <li><p>TODO: Comparar con otros lenguajesss</p></li>
 </ul>
-</section><section id="macros" class="slide level2">
+</section>
+<section id="macros" class="slide level2">
 <h2>Macros</h2>
 <ul>
 <li><p>Despues de la teoria, Volver a cl-aristid y al REPL. Expandir macros, compararlos con las versiones canonicas, mostrar los macros definidos, como se definen, como cambian la sintaxis</p></li>
@@ -651,23 +697,27 @@ Secchi, Anita - 99131</div></p>
 <span id="cb28-5"><a href="#cb28-5"></a>         ((<span class="op">&gt;</span> ,var ,gstop))</span>
 <span id="cb28-6"><a href="#cb28-6"></a>       ,@body)))</span></code></pre></div>
 </section></section>
-<section><section id="desglosando-eval" class="title-slide slide level1"><h1>Desglosando <code>eval</code></h1><p><a href="http://www.paulgraham.com/rootsoflisp.html">The Roots of LISP ~ Paul Graham</a></p>
+<section>
+<section id="desglosando-eval" class="title-slide slide level1">
+<h1>Desglosando <code>eval</code></h1>
+<p><a href="http://www.paulgraham.com/rootsoflisp.html">The Roots of LISP ~ Paul Graham</a></p>
 <p><a href="https://youtu.be/OyfBQmvr2Hc">The Most Beautiful Program Ever Written ~ William Byrd</a></p>
 <ul>
 <li><p>La magía de LISP es el <strong>read–eval–print loop</strong>: un entorno donde se toma lo escrito por el programador, se lee, se evalua, se imprime, y luego se vuelve a pedir input</p></li>
 <li><p>Este self-interpreter es un <strong>evaluador meta-circular:</strong> esta escrito en LISP y puede evaluar código de LISP.</p></li>
 <li><p>¿Cómo? Gracias a la función <code>eval</code>, definida por McCarthy en base a 7 operadores que toma como axiomas: <code>quote</code>, <code>atom</code>, <code>eq</code>, <code>car</code>, <code>cdr</code>, <code>cons</code> y <code>cond</code></p></li>
 </ul>
-<p>[solo mencionar]The average person who writes a C compiler or interpreter requires about 20,000 lines of C to do so, and must be (or become) moderately expert about compilers or interpreters.</p></section><section id="section-1" class="slide level2">
+<p>[solo mencionar]The average person who writes a C compiler or interpreter requires about 20,000 lines of C to do so, and must be (or become) moderately expert about compilers or interpreters.</p>
+</section>
+<section id="section-1" class="slide level2">
 <h2></h2>
+<p><img data-src="img/eval.png" /></p>
 <blockquote>
 <p>That was the big revelation to me when I was in graduate school—when I finally understood that the half page of code on the bottom of page 13 of the Lisp 1.5 manual was Lisp in itself. These were “Maxwell’s Equations of Software!” This is the whole world of programming in a few lines that I can put my hand over.</p>
 </blockquote>
 <p>~ Alan Kay, <a href="https://queue.acm.org/detail.cfm?id=1039523">A Conversation with Alan Kay</a></p>
-</section><section id="section-2" class="slide level2">
-<h2></h2>
-<p><img data-src="img/eval.png" /></p>
-</section><section id="section-3" class="slide level2">
+</section>
+<section id="section-2" class="slide level2">
 <h2></h2>
 <div class="sourceCode" id="cb29"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">;; Anotaciones sobre el código de Paul Graham en Roots of Lisp</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a><span class="co">; The Lisp defined in McCarthy&#39;s 1960 paper, translated into Common Lisp.</span></span>
@@ -715,14 +765,20 @@ Secchi, Anita - 99131</div></p>
 <span id="cb29-44"><a href="#cb29-44"></a>            (<span class="kw">append</span> (pair (<span class="kw">cadar</span> e) (evlis  (<span class="kw">cdr</span> e) a))</span>
 <span id="cb29-45"><a href="#cb29-45"></a>                     a)))))</span></code></pre></div>
 </section></section>
-<section><section id="lisp-en-la-practica" class="title-slide slide level1"><h1>LISP en la practica</h1></section><section id="estadisticas" class="slide level2">
+<section>
+<section id="lisp-en-la-practica" class="title-slide slide level1">
+<h1>LISP en la practica</h1>
+
+</section>
+<section id="estadisticas" class="slide level2">
 <h2>Estadisticas</h2>
 <ul>
 <li>repos de github</li>
 </ul>
 <p><em>Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en los últimos años. Para lenguajes antiguos se incluye información sobre qué lenguajes o técnicas se vieron influenciadas por este lenguaje</em></p>
 <p>http://blockml.awwapps.com/example/example/document.html#sec-6</p>
-</section><section id="comparaciones" class="slide level2">
+</section>
+<section id="comparaciones" class="slide level2">
 <h2>Comparaciones</h2>
 <ul>
 <li>repetir tema de la influencia y de como todo lenguaje se ve tocado por lisp</li>
@@ -732,7 +788,8 @@ Secchi, Anita - 99131</div></p>
 <li>con dialectos de lisp como scheme y racket</li>
 <li>con javascript para decir como se influencia por shcem</li>
 </ul>
-</section><section id="familias-de-lisp" class="slide level2">
+</section>
+<section id="familias-de-lisp" class="slide level2">
 <h2>Familias de Lisp</h2>
 <ul>
 <li>Más usados: Scheme (1975),Emacs Lisp (1985) y Clojure (2007).</li>
@@ -760,7 +817,8 @@ Secchi, Anita - 99131</div></p>
 <li>Sintaxis para el compilado de un archivo <code>M-x byte-compile-file</code></li>
 <li>No tiene closures</li>
 </ul>
-</section><section id="otros-lenguajes" class="slide level2">
+</section>
+<section id="otros-lenguajes" class="slide level2">
 <h2>Otros lenguajes</h2>
 <h3 id="python">Python</h3>
 <ul>
@@ -782,7 +840,8 @@ Secchi, Anita - 99131</div></p>
 <li>Manejo de memoria con punteros</li>
 <li>Sintaxis más detallada y restrictiva</li>
 </ul>
-</section><section id="casos-de-estudio" class="slide level2">
+</section>
+<section id="casos-de-estudio" class="slide level2">
 <h2>Casos de estudio</h2>
 <p><em>Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje</em></p>
 <p>emacs</p>
