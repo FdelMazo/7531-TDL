@@ -53,6 +53,34 @@ author: |
 
   - La notación del cálculo Lambda de Alonzo Church.
 
+## Cálculo Lambda
+
+**λx . x+y**
+
+[Lambda calculus ~ Computerphile](https://youtu.be/eis11j_iGMs)
+
+[Whiteboard problems in pure Lambda calculus](https://www.jtolio.com/2017/03/whiteboard-problems-in-pure-lambda-calculus/)
+
+[The Awesome Power of Theory, Explorations in the untyped lambda calculus ~ Ron Garret](http://www.flownet.com/ron/lambda-calculus.html)
+
+["An Unsolvable Problem Of Elementary Number Theory" (1936) ~ Alonzo Church](https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf)
+
+["Can Programming Be Liberated from the von Neumann Style?" (1977) ~ John Backus](http://www.csc.villanova.edu/~beck/csc8310/BackusFP.pdf)
+
+- No hay estado interno
+
+- Solo tiene:
+
+  - Identificadores (variables)
+
+  - Expresiones lambda (construcción de funciones)
+
+  - Aplicación de funciones
+
+  - Variables
+
+- Church–Turing thesis: la notación Lambda es formalmente equivalente a una máquina de Turing
+
 ## ¿Cómo nace LISP?
 
 **Definición**
@@ -84,34 +112,6 @@ author: |
   - Lo más cercano al LISP que conocemos hoy en día.
 
   - Funciones compiladas e interpretadas pueden ser intercambiadas libremente.
-
-## Cálculo Lambda
-
-**λx . x+y**
-
-[Lambda calculus ~ Computerphile](https://youtu.be/eis11j_iGMs)
-
-[Whiteboard problems in pure Lambda calculus](https://www.jtolio.com/2017/03/whiteboard-problems-in-pure-lambda-calculus/)
-
-[The Awesome Power of Theory, Explorations in the untyped lambda calculus ~ Ron Garret](http://www.flownet.com/ron/lambda-calculus.html)
-
-["An Unsolvable Problem Of Elementary Number Theory" (1936) ~ Alonzo Church](https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf)
-
-["Can Programming Be Liberated from the von Neumann Style?" (1977) ~ John Backus](http://www.csc.villanova.edu/~beck/csc8310/BackusFP.pdf)
-
-- No hay estado interno
-
-- Solo tiene:
-
-  - Identificadores (variables)
-
-  - Expresiones lambda (construcción de funciones)
-
-  - Aplicación de funciones
-
-  - Variables
-
-- Church–Turing thesis: la notación Lambda es formalmente equivalente a una máquina de Turing
 
 ## Pionero
 
