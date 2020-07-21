@@ -77,8 +77,6 @@ author: |
 
   - Aplicación de funciones
 
-  - Variables
-
 - Church–Turing thesis: la notación Lambda es formalmente equivalente a una máquina de Turing
 
 ## ¿Cómo nace LISP?
