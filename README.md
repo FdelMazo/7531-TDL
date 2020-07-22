@@ -117,24 +117,26 @@ author: |
 
 [Influential Programming Languages, Lisp ~ David Chisnall](https://www.informit.com/articles/article.aspx?p=1671639)
 
-- **if-then-else**: Las expresiones condicionales fueron definidas en el paper de 1960, con `cond`. Un condicional es un una construcción if-then-else; hoy en día los damos por hecho. Fueron inventados por McCarthy en el transcurso de desarrollo de Lisp.
+- **if then else**
 
-- **Funciones**: Las funciones son objectos de primera clase, son un tipo de dato como lo son los enteros, cadenas, etc. Tienen una representación literal, pueden ser asignadas a variables, pasadas como argumentos (parámetros)...
+- **Funciones** como objetos de primera clase
 
-- **Recursión**: Ya existía matemáticamente, pero nunca en un lenguaje de programación
+- **Recursión**
 
-- **Un nuevo concepto en variables**: Todas las variables son efectivamente punteros. Los valores son aquellos que _tienen tipos_, no variables. Asignar variables significa copiar punteros, y no aquello a lo que apuntan.
+- Todas las variables son **punteros**
 
-- **Garbarge Collection**: Con un diseño primitivo (no era concurrente), LISP fue el primer lenguaje en utilizar garbage collection automático.
+- **Garbarge Collection automático**
 
-- **Tipado dinámico**: No hay que explicitar si algo es un átomo o una lista.
+- **Tipado dinámico**
 
-- **Interactividad**: Gracias al interprete REPL se tiene feedback inmediato y se puede programar desde abajo para arriba, compilando incrementalmente.
+- **Interactividad** gracias al interprete **REPL**
 
-- **El lenguaje completo está siempre disponible**: No hay una distinción real entre tiempo de lectura, tiempo de compilación y tiempo de ejecución. Uno puede compilar o ejecutar mientras lee, leer o ejecutar código mientras compila, leer o compilar mientras se ejecuta el código.
+- Programas compuestos por **expresiones**
 
-- **Map y Reduce**: LISP fue el primer lenguaje en implementar dos funciones muy importantes en la programación funcional.
+- El lenguaje completo está siempre disponible
 
+- **Map y Reduce**
+  
 # Sintaxis
 
 [LISP 1.5 Programmer's Manual](http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf)
@@ -522,7 +524,7 @@ b ; => 3
 (setf a '(setf b 15))
 a ; => (SETF B 15)
 (eval a)
-b	; => 15
+b    ; => 15
 ```
 
 ## Extensibilidad del lenguaje
@@ -797,22 +799,21 @@ Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son S
 ### Scheme
 
 - Minimalista, solamente define el inner core del lenguaje
-- Sistema de macros limpio y trnasparente
+- Sistema de macros limpio y transparente
 - Lexical scoping
-- Garbage collection.
+- Garbage collection
 - Ocupa mucha menos memoria
 
 ### Clojure
 
 - Sistema de macros similar al de Common Lisp
 - Secuencias lazy (`seq`)
-- El sistema de macros de Clojure es muy similar al de Common Lisp con la excepción de que la versión de Clojure de la comilla inversa (llamada "comilla sintáctica") cualifica los símbolos con el espacio de nombres al que pertenece.
 - Sistema integrado de estructuras de datos persistentes e inmutables.
 - Compilado con Java
 
 ### Emacs Lisp
 
-- Emacs Lisp trabaja con dynamic scoping por default.
+- Dynamic scoping por default.
 - Sintaxis para el compilado de un archivo `M-x byte-compile-file`
 - No tiene closures
 
