@@ -55,7 +55,7 @@ author: |
 
 ## Cálculo Lambda
 
-**λx . x+y**
+**λx . x+x**
 
 [Lambda calculus ~ Computerphile](https://youtu.be/eis11j_iGMs)
 
