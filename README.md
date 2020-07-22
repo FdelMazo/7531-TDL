@@ -425,7 +425,7 @@ HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutoria
 
 [Expression-oriented programming language](https://en.wikipedia.org/wiki/Expression-oriented_programming_language)
 
-[Why Racket? Why Lisp? Everything is an expression ~ Beautiful Racket](https://beautifulracket.com/appendix/why-racket-why-lisp.html#a_CU5IP)
+[Why Racket? Why Lisp? ~ Beautiful Racket](https://beautifulracket.com/appendix/why-racket-why-lisp.html)
 
 - La mayoria de los los lenguajes distinguen entre `expresiones` y `sentencias` (statements)
 
