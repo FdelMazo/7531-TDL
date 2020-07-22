@@ -459,7 +459,7 @@ HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutoria
 
 ![](img/atom.png)
 
-`(x)`
+`x`
 
 </div>
 <div class="col">
