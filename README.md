@@ -215,6 +215,34 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 (eval (cons (car '(+ 1 2)) (cdr '(+ 1 2))))
 ```
 
+# Fractales, en Common LISP
+
+[cl-aristid](https://github.com/FdelMazo/cl-aristid)
+
+- En las implementaciones más comunes, es compilado (pero no JIT necesariamente)
+
+- LISP es un lenguaje interactivo y dinámico
+
+- Tipado fuerte y dinámico
+
+- Manifest typing
+
+- Funciones y estructuras: `defun`, `defstruct`, `let`
+
+- Control de flujo: `if`, `loop`
+
+- Static (lexical) Scoping
+
+- Closures
+
+- Namespaces
+
+- Manejo de memoria
+
+- Manejo de errores
+
+- Macros
+
 # Ejemplo de TDA: Tablas de hash
 
 - Poner sources (al menos el cap de structs de ansi common lisp)
@@ -346,34 +374,6 @@ NIL
 ```
 
 HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
-
-# Fractales, en Common LISP
-
-[cl-aristid](https://github.com/FdelMazo/cl-aristid)
-
-- En las implementaciones más comunes, es compilado (pero no JIT necesariamente)
-
-- LISP es un lenguaje interactivo y dinámico
-
-- Tipado fuerte y dinámico
-
-- Manifest typing
-
-- Funciones y estructuras: `defun`, `defstruct`, `let`
-
-- Control de flujo: `if`, `loop`
-
-- Static (lexical) Scoping
-
-- Closures
-
-- Namespaces
-
-- Manejo de memoria
-
-- Manejo de errores
-
-- Macros
 
 # Metaprogramming
 
