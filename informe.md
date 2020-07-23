@@ -258,16 +258,6 @@ Por otro lado, se puede resolver de forma iterativa de esta forma:
 
 ## Metaprogramming / Extensibilidad / Macros
 
-https://sep.yimg.com/ty/cdn/paulgraham/onlisp.pdf?t=1564708198&
-
-cahpter 4 de practical common lisp
-
-Further, because Lisp code has the same structure as lists, macros can be built with any of the list-processing functions in the language. In short, anything that Lisp can do to a data structure, Lisp macros can do to code. In contrast, in most other languages, the parser's output is purely internal to the language implementation and cannot be manipulated by the programmer.
-
-https://youtu.be/dw-y3vNDRWk
-
-The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++.
-
 ## Expression oriented / Simbolico
 
 Usa S-Expressions: Simbolic expression
@@ -311,6 +301,188 @@ This feature makes it easy to develop efficient languages within languages. For 
 - (hoy por hoy se usa el sintacic sugar LIST, que es nada mas concatenar mil dotted pairs. (x y z) es (x . (y . (z . null))))
 
 - foto binary tree
+
+
+## Macros
+
+- Despues de la teoria, Volver a cl-aristid y al REPL. Expandir macros, compararlos con las versiones canonicas, mostrar los macros definidos, como se definen, como cambian la sintaxis
+
+- En Lisp, una macro genera y devuelve código. La forma más sencilla de pensarlo sería como una transformación de código. Cuando se llama a una macro:
+
+1. Se arma el código en base a la definición `defmacro` de la misma.
+2. Se evalúa el nuevo código en el lugar de la llamada a la macro.
+
+Si queremos analizar el código que generaría la macro, existe la función `macroexpand` que devuelve el código generado.
+
+A partir de esto, se pueden usar macros para simplificar y reutilizar código, cambiar el orden de evaluación, agregar más argumentos en el medio o hasta manipular la sintaxis del lenguaje.
+
+Las macros de Lisp son macros sintácticas, y funciona al nivel del árbol de sintaxis abstracta, preservando la estructura léxica del programa original. En otras palabras, las macros en Lisp se escriben en el mismo lenguaje de Lisp, donde está disponible toda la funcionalidad del lenguaje.
+
+En contraste, las macros de _C_ se expanden en el preprocesador y funciona como substitución de texto.
+
+- Algunos operadores:
+  - `` Backquote ` ``: Funciona similar a `quote`.
+
+```lisp
+`(a, b, c)
+; equivalente a escribir
+'(a b c)
+(list 'a 'b 'c)
+```
+
+- `Comma ,`: Combinado con `backquote` sirve para "activar y desactivar" el efecto de `backquote`. Es útil al escribir macros:
+
+```lisp
+`(a ,b c ,d)
+; equivalente a escribir
+(list 'a b 'c d)
+```
+
+- `Comma-at ,@`: Dada una expresión que resuelve una lista, se puede utilizar `,@` para reemplazar esta lista por la secuencia de sus mismos elementos (elimina el paréntesis):
+
+```lisp
+`(a b c)    ->  (A (1 2 3) C)
+`(a ,@b c)  ->  (A 1 2 3 C)
+```
+
+- `(nil! x)`: Cambiar el valor de la variable `x` a `nil`.
+  En el ejemplo se puede observar que `var` se expande al valor que corresponde (por el operador `,`), mientras que `setq` y `nil` no se evalúan.
+
+```lisp
+(defmacro nil! (var)
+  `(setq ,var nil))
+
+; se llama de la forma
+(nil! x)
+
+; genera el código
+(setq x nil)
+```
+
+- `(if test then else)`: Ya se encuentra definida en Lisp. Tiene que ser una macro para evaluar la expresión solo cuando corresponda. Una posible implementación utilizaría la macro `cond`, que evalúa solo la primer expresión cuya condición sea true:
+
+```lisp
+(defmacro if (condition then else)
+  `(cond (,condition ,then)
+         (t ,else)))
+```
+
+- `(when test do1 do2 ...)`: Cuando la expresión `test` devuelve `true`, se ejecutan todas las expresiones `do`, devolviendo el valor de la última. Para que se expandan todas las expresiones `do` se las combina en una lista `&rest body` y luego se utiliza el operador `,@`:
+
+```lisp
+(defmacro our-when (test &rest body)
+  `(if ,test
+    (progn
+      ,@body)))
+
+; se llama de la forma
+(when test do1 do2 do3)
+
+; genera el código
+(if (eligible obj)
+  (progn do1
+    do2
+    do3
+    obj))
+```
+
+- `infix`: Las macros permiten cambiar el orden de las expresiones sin evaluarlas. Entonces, se podría hacer una macro `infix` para tener operadores matemáticos en notación de infijo en vez de la notación polaca de Lisp. Existen implementaciones completas de esta macro para que funcione con más de una operación, pero para mostrar la más simple:
+
+```lisp
+(defmacro infix (arg1 op arg2)
+  `(,op ,arg1 ,arg2))
+
+; se llama de la forma
+(infix 2 + 3)
+
+; genera el código
+(+ 2 3)
+```
+
+- `lcomp`: Replicar la sintaxis de compresión de listas de Python.
+
+```lisp
+(defmacro lcomp (expression for var in list conditional conditional-test)
+  (let ((result (gensym)))
+    `(let ((,result nil))
+       (loop for ,var in ,list
+            ,conditional ,conditional-test
+            do (setq ,result (append ,result (list ,expression))))
+       ,result)))
+
+; se llama de la forma
+(lcomp x for x in (1 2 3 4 5 6 7) if (= (mod x 2) 0))
+
+; una vez generado y ejecutado el código devuelve
+(2 4 6)
+```
+
+- `let`:
+
+```lisp
+(defmacro let (binds &body body)
+  '((lambda ,(mapcar #'(lambda (x)
+                         (if (consp x) (car x) x))
+                        binds)
+      ,@body)
+    ,@(mapcar #'(lambda (x)
+                  (if (consp x) (cadr x) nil))
+              binds)))
+```
+
+- `while`:
+
+```lisp
+(defmacro while (test &body body)
+  '(do ()
+       ((not ,test))
+       ,@body))
+```
+
+- `till`:
+
+```lisp
+(defmacro till (test &body body)
+  '(do ()
+       (,test)
+       ,@body))
+```
+
+- `for`:
+
+```lisp
+(defmacro for ((var start stop) &body body)
+  (let ((gstop (gensym)))
+    '(do ((,var ,start (1+ ,var))
+          (,gstop ,stop))
+         ((> ,var ,gstop))
+       ,@body)))
+```
+
+
+## Extensibilidad del lenguaje
+
+Macros llevan a la extensibilidad del lenguaje.
+
+Hacer que un programa sea extensible significa que el programa permite a usuarios avanzados agregar funcionalidad extra si el programa no la tiene. Es una opción a que desarrollar un software que satisfaga todas las necesidades de todos los usuarios.
+
+Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje mismo es extensible: _permite escribir código que genera código_, como vimos con las macros. Con otros lenguajes no tenemos esta libertad, y cualquier extensión cambio en la sintaxis debería ser implementado de forma oficial por los desarrolladores del lenguaje.
+
+¿Qué podemos hacer?
+
+- Crear módulos completos para extender la funcionalidad del lenguaje:
+
+  - Common Lisp Object System [CLOS]: agrega un sistema de objetos a Lisp, completo con enlaces dinámicos múltiples y herencia múltiple. Provee las macros `defclass`, `defgeneric`, `defmethod`.
+  - bordeaux-threads: agrega funcionalidad para la creación de hilos.
+  - lparallel: extiende funcionalidad de bordeaux-threads, con comunicación entre hilos, promesas, implementaciones de `map`, `reduce`, `sort` y `remove` que corren de forma concurrente, y más.
+
+- Crear lenguajes de dominio específico cambiando la sintaxis:
+
+  - `CL-INTERPOL`: para interpolación de strings.
+  - `infix`: para escribir ecuaciones matemáticas en notación de infijo.
+
+- ¿Aún más? Racket, undialecto de Scheme y parte de la familia de Lisp, está orientado específicamente a crear lenguajes nuevos agregando funcionalidad para convertir código fuente en S-Expressions.
+
 
 ## Manejo de memoria [Anita]
 
