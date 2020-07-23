@@ -136,7 +136,7 @@ author: |
 - El lenguaje completo está siempre disponible
 
 - **Map y Reduce**
-  
+
 # Sintaxis
 
 [LISP 1.5 Programmer's Manual](http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf)
@@ -156,15 +156,12 @@ author: |
 2 ; evalua a 2
 (+ 2 3) ; evalua a 5
 (+ (+ 2 3) 2) ; (+ 2 3) evalua a 5 -> todo evalua a 7
-
-;; Acá comienza la dualidad entre código (la lista) y data (el átomo)
-;; Ambos son S-expressions
 ```
 
 ## Code & Data -> `eval`, `quote`
 
 ```lisp
-;; El operador quote toma una s-expression y devuelve el código
+;; El operador quote toma una s-expression y devuelve el código que la genera
 (+ 1 1) ; evalua a 2
 (quote (+ 1 1)) ; evalua a (+ 1 1)
 ('(+ 1 1)) ; quote se abrevia a '
@@ -179,22 +176,6 @@ author: |
 ```
 
 Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el **código** de mi programa.
-
-## Chequeando Valores -> `atom`, `listp`
-
-¿Es código o data?
-
-```lisp
-;; atom devuelve si algo es un átomo o no
-(atom 1) ; True (el valor de la expresion 1 es un átomo)
-(atom (+ 1 2)) ; True (el valor de la expresion (+ 1 2) es un átomo)
-(atom '(+ 1 2)) ; Nil (la expresion (+ 1 2) es una lista)
-
-;; listp devuelve si algo es una lista o no
-(listp 1) ; Nil (1 no es una lista)
-(listp (+ 1 2)) ; Nil (la expresion evalua a 3, no es una lista)
-(listp '(+ 1 2)) ; True (estoy hablando del código de la expresion, la lista)
-```
 
 ## Procesar listas -> `car`, `cdr`, `cons` y `list`
 
