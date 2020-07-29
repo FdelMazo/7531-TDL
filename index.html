@@ -504,8 +504,8 @@ Secchi, Anita - 99131</div></p>
 </section><section id="motivación-de-macros" class="slide level2">
 <h2>Motivación de macros</h2>
 <ul>
+<li><p>Poder elegir cuándo y cómo se evaluan los argumentos.</p></li>
 <li><p>Cambiar orden de evaluación.</p></li>
-<li><p>Simplificar y reutilizar código.</p></li>
 <li><p>Manipular sintaxis del lenguaje.</p></li>
 </ul>
 </section><section id="a-diferencia-de-otros-lenguajes" class="slide level2">
@@ -536,22 +536,18 @@ Secchi, Anita - 99131</div></p>
 <li><p>Programa extensible: permite al usuario agregar funcionalidad.</p></li>
 <li><p>Macros permiten que Lisp sea un lenguaje extensible.</p></li>
 </ul>
-</section><section id="agregando-funcionalidad-módulos" class="slide level2">
-<h2>Agregando funcionalidad, módulos</h2>
+</section><section id="módulos-y-lenguajes-de-dominio-específico-dsl" class="slide level2">
+<h2>Módulos y lenguajes de dominio específico [DSL]</h2>
 <ul>
-<li><p><strong>Common Lisp Object System [CLOS]</strong>: agrega un sistema de objetos a Lisp, completo con enlaces dinámicos múltiples y herencia múltiple. Provee las macros <code>defclass</code>, <code>defgeneric</code>, <code>defmethod</code>.</p></li>
-<li><p><strong>lparallel</strong>: agrega funcionalidad para la creación de hilos. Incluye comunicación entre hilos, promesas, implementaciones de <code>map</code>, <code>reduce</code>, <code>sort</code> y <code>remove</code> que corren de forma concurrente, y más.</p></li>
-<li><p>Colección de librerías destacadas, awesome-cl.</p></li>
-</ul>
-</section><section id="crear-lenguajes-de-dominio-específico-dsl" class="slide level2">
-<h2>Crear lenguajes de dominio específico [DSL]</h2>
-<ul>
+<li><p><strong>Common Lisp Object System [CLOS]</strong>: agrega un sistema de objetos a Lisp.</p></li>
+<li><p><strong>lparallel</strong>: agrega funcionalidad para la creación de hilos.</p></li>
 <li><p><strong>CL-INTERPOL</strong>: para interpolación de strings.</p></li>
-<li><p><strong>infix</strong>: para escribir ecuaciones matemáticas en notación de infijo.</p></li>
+<li><p>Colección de librerías destacadas en <strong>awesome-cl</strong>.</p></li>
 </ul>
 </section><section id="aún-más" class="slide level2">
 <h2>¿Aún más?</h2>
-<p><strong>Racket</strong>, dialecto de Scheme y parte de la familia de Lisp, está orientado específicamente a crear lenguajes nuevos agregando funcionalidad para convertir código fuente en S-Expressions.</p>
+<p><strong>Racket</strong> es un dialecto de Scheme y parte de la familia de Lisp.</p>
+<p>Está orientado específicamente a crear lenguajes nuevos.</p>
 </section></section>
 <section><section id="desglosando-eval" class="title-slide slide level1"><h1>Desglosando <code>eval</code></h1><p><a href="http://www.paulgraham.com/rootsoflisp.html">The Roots of LISP ~ Paul Graham</a></p>
 <p><a href="https://youtu.be/OyfBQmvr2Hc">The Most Beautiful Program Ever Written ~ William Byrd</a></p>

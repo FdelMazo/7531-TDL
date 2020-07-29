@@ -403,12 +403,11 @@ En contraste, las macros de _C_ se expanden en el preprocesador y funciona como 
 
 ```lisp
 (defmacro lcomp (expression for var in list conditional conditional-test)
-  (let ((result (gensym)))
-    `(let ((,result nil))
-       (loop for ,var in ,list
-            ,conditional ,conditional-test
-            do (setq ,result (append ,result (list ,expression))))
-       ,result)))
+  `(let ((result nil))
+     (loop for ,var in ,list
+          ,conditional ,conditional-test
+          do (setq result (append result (list ,expression))))
+     result))
 
 ; se llama de la forma
 (lcomp x for x in (1 2 3 4 5 6 7) if (= (mod x 2) 0))
@@ -475,6 +474,8 @@ Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje m
   - Common Lisp Object System [CLOS]: agrega un sistema de objetos a Lisp, completo con enlaces dinámicos múltiples y herencia múltiple. Provee las macros `defclass`, `defgeneric`, `defmethod`.
   - bordeaux-threads: agrega funcionalidad para la creación de hilos.
   - lparallel: extiende funcionalidad de bordeaux-threads, con comunicación entre hilos, promesas, implementaciones de `map`, `reduce`, `sort` y `remove` que corren de forma concurrente, y más.
+  - quicklisp: sistema de gestión de paquetes.
+  - awesome-cl: Colección de librerías destacadas que incluye pero no está limitado a: conexión a base de datos, sistemas gráficos, sistemas matemático, unit testing.
 
 - Crear lenguajes de dominio específico cambiando la sintaxis:
 

@@ -523,9 +523,9 @@ b    ; => 15
 
 ## Motivación de macros
 
-- Cambiar orden de evaluación.
+- Poder elegir cuándo y cómo se evaluan los argumentos.
 
-- Simplificar y reutilizar código.
+- Cambiar orden de evaluación.
 
 - Manipular sintaxis del lenguaje.
 
@@ -565,23 +565,21 @@ b    ; => 15
 
 - Macros permiten que Lisp sea un lenguaje extensible.
 
-## Agregando funcionalidad, módulos
+## Módulos y lenguajes de dominio específico [DSL]
 
-  - **Common Lisp Object System [CLOS]**: agrega un sistema de objetos a Lisp, completo con enlaces dinámicos múltiples y herencia múltiple. Provee las macros `defclass`, `defgeneric`, `defmethod`.
+  - **Common Lisp Object System [CLOS]**: agrega un sistema de objetos a Lisp.
 
-  - **lparallel**: agrega funcionalidad para la creación de hilos. Incluye comunicación entre hilos, promesas, implementaciones de `map`, `reduce`, `sort` y `remove` que corren de forma concurrente, y más.
-
-  - Colección de librerías destacadas, awesome-cl.
-
-## Crear lenguajes de dominio específico [DSL]
+  - **lparallel**: agrega funcionalidad para la creación de hilos.
 
   - **CL-INTERPOL**: para interpolación de strings.
 
-  - **infix**: para escribir ecuaciones matemáticas en notación de infijo.
+  - Colección de librerías destacadas en **awesome-cl**.
 
 ## ¿Aún más? 
 
-**Racket**, dialecto de Scheme y parte de la familia de Lisp, está orientado específicamente a crear lenguajes nuevos agregando funcionalidad para convertir código fuente en S-Expressions.
+**Racket** es un dialecto de Scheme y parte de la familia de Lisp. 
+
+Está orientado específicamente a crear lenguajes nuevos.
 
 # Desglosando `eval`
 
