@@ -219,29 +219,15 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 
 [cl-aristid](https://github.com/FdelMazo/cl-aristid)
 
-- En las implementaciones más comunes, es compilado (pero no JIT necesariamente)
+Lindenmayer system
 
-- LISP es un lenguaje interactivo y dinámico
+- Alfabeto: F, LEFT, RIGHT
+- Axioma: F X
+- Reglas de producción:
+  - X -> (X RIGHT Y F RIGHT)
+  - Y -> (LEFT F X LEFT Y)
 
-- Tipado fuerte y dinámico
-
-- Manifest typing
-
-- Funciones y estructuras: `defun`, `defstruct`, `let`
-
-- Control de flujo: `if`, `loop`
-
-- Static (lexical) Scoping
-
-- Closures
-
-- Namespaces
-
-- Manejo de memoria
-
-- Manejo de errores
-
-- Macros
+![](img/dragon_010_animated.svg)
 
 # Ejemplo de TDA: Tablas de hash
 
@@ -510,7 +496,7 @@ b    ; => 15
 
 ## Macros
 
-- En Lisp, una macro genera y devuelve código. 
+- En Lisp, una macro genera y devuelve código.
 
 - Cuando se llama a una macro:
 
@@ -519,7 +505,6 @@ b    ; => 15
 2. Se evalúa el nuevo código en el lugar de la llamada a la macro.
 
 - `macroexpand` devuelve el código generado por una macro.
-
 
 ## Motivación de macros
 
@@ -534,7 +519,6 @@ b    ; => 15
 - Macros en Lisp? Se escriben sobre Lisp!
 
 - Macros en C? En el preprocesador de C
-
 
 ## Code & Data (Part 2) -> Backquote & Comma
 
@@ -558,7 +542,6 @@ b    ; => 15
 `(a ,@b c)  ->  (A 1 2 3 C)
 ```
 
-
 ## Extensibilidad del lenguaje
 
 - Programa extensible: permite al usuario agregar funcionalidad.
@@ -567,17 +550,17 @@ b    ; => 15
 
 ## Módulos y lenguajes de dominio específico [DSL]
 
-  - **Common Lisp Object System [CLOS]**: agrega un sistema de objetos a Lisp.
+- **Common Lisp Object System [CLOS]**: agrega un sistema de objetos a Lisp.
 
-  - **lparallel**: agrega funcionalidad para la creación de hilos.
+- **lparallel**: agrega funcionalidad para la creación de hilos.
 
-  - **CL-INTERPOL**: para interpolación de strings.
+- **CL-INTERPOL**: para interpolación de strings.
 
-  - Colección de librerías destacadas en **awesome-cl**.
+- Colección de librerías destacadas en **awesome-cl**.
 
-## ¿Aún más? 
+## ¿Aún más?
 
-**Racket** es un dialecto de Scheme y parte de la familia de Lisp. 
+**Racket** es un dialecto de Scheme y parte de la familia de Lisp.
 
 Está orientado específicamente a crear lenguajes nuevos.
 

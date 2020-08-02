@@ -288,20 +288,17 @@ Secchi, Anita - 99131</div></p>
 <section id="fractales-en-common-lisp" class="title-slide slide level1">
 <h1>Fractales, en Common LISP</h1>
 <p><a href="https://github.com/FdelMazo/cl-aristid">cl-aristid</a></p>
+<p>Lindenmayer system</p>
 <ul>
-<li><p>En las implementaciones más comunes, es compilado (pero no JIT necesariamente)</p></li>
-<li><p>LISP es un lenguaje interactivo y dinámico</p></li>
-<li><p>Tipado fuerte y dinámico</p></li>
-<li><p>Manifest typing</p></li>
-<li><p>Funciones y estructuras: <code>defun</code>, <code>defstruct</code>, <code>let</code></p></li>
-<li><p>Control de flujo: <code>if</code>, <code>loop</code></p></li>
-<li><p>Static (lexical) Scoping</p></li>
-<li><p>Closures</p></li>
-<li><p>Namespaces</p></li>
-<li><p>Manejo de memoria</p></li>
-<li><p>Manejo de errores</p></li>
-<li><p>Macros</p></li>
+<li>Alfabeto: F, LEFT, RIGHT</li>
+<li>Axioma: F X</li>
+<li>Reglas de producción:
+<ul>
+<li>X -&gt; (X RIGHT Y F RIGHT)</li>
+<li>Y -&gt; (LEFT F X LEFT Y)</li>
+</ul></li>
 </ul>
+<p><img data-src="img/dragon_010_animated.svg" /></p>
 </section>
 
 <section>
