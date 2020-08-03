@@ -231,9 +231,9 @@ Lindenmayer system
 
 # Ejemplo de TDA: Tablas de hash
 
-- Poner sources (al menos el cap de structs de ansi common lisp)
+[ANSI Common Lisp, Chapter 4: Specialized Data Structures ~ Paul Graham](<https://github.com/muditbac/Reading/blob/master/programming/(Prentice%20Hall%20series%20in%20artificial%20intelligence)%20Paul%20Graham-ANSI%20Common%20LISP-Prentice%20Hall%20(1996).pdf>)
 
-- Dar ejemplo de que es un struct en lisp, que son los make-struct, struct-tabla, etc
+[The Common Lisp Cookbook - Hash Tables](http://cl-cookbook.sourceforge.net/hashes.html)
 
 ## Crear una tabla de hash en Common Lisp
 
@@ -314,8 +314,6 @@ NIL
 
 \*_Se eligió un millón para resaltar los tiempos que tardan_
 
-(Ver más sobre esto en informe.md)
-
 ## Fun stuff e iteradores del hash
 
 - `maphash`: itera sobre todas las claves de la tabla. Devuelve siempre `NIL`.
@@ -346,20 +344,6 @@ El valor asociado a la clave "clave2" es 2
 El valor asociado a la clave "clave3" es 3
 NIL
 ```
-
-Otra opción para it
-
-- `loop`: es otra opción para iterar
-
-```lisp
-  * (loop for clave being the hash-keys of tabla do (print clave))
-"clave1"
-"clave2"
-"clave3"
-NIL
-```
-
-HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
 
 # Metaprogramming
 
@@ -638,33 +622,27 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 ## Estadisticas
 
+[Recap of John McCarthy's Recursive Functions ~ Judith Lindemann](http://blockml.awwapps.com/example/example/document.html)
+
 - repos de github
 
 _Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en los últimos años. Para lenguajes antiguos se incluye información sobre qué lenguajes o técnicas se vieron influenciadas por este lenguaje_
 
-http://blockml.awwapps.com/example/example/document.html#sec-6
-
 ## Comparaciones
 
-http://blockml.awwapps.com/example/example/document.html#sec-6
+**Contra otros lenguajes, y contra otros dialectos de la familia LISP**
 
-https://wiki.c2.com/?LispSchemeDifferences
+[Lisp Scheme Differences ~ WikiWikiWeb](https://wiki.c2.com/?LispSchemeDifferences)
 
-https://norvig.com/python-lisp.html
+[Python for Lisp Programmers ~ Peter Norvig](https://norvig.com/python-lisp.html)
 
-## Familias de Lisp
-
-- Más usados: Scheme (1975),Emacs Lisp (1985) y Clojure (2007).
-
-### Scheme
+## Scheme
 
 - Minimalista, solamente define el inner core del lenguaje
 - Sistema de macros limpio y transparente
 - Lexical scoping
 - Garbage collection
 - Ocupa mucha menos memoria
-
-## Otros lenguajes
 
 ## Python
 
