@@ -657,8 +657,6 @@ http://blockml.awwapps.com/example/example/document.html#sec-6
 
 - Más usados: Scheme (1975),Emacs Lisp (1985) y Clojure (2007).
 
-Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son Scheme (1975),Emacs Lisp (1985) y Clojure (2007).
-
 ### Scheme
 
 - Minimalista, solamente define el inner core del lenguaje
@@ -667,34 +665,16 @@ Hoy, los dialectos de Lisp más ampliamente usados, ademas de Common Lisp, son S
 - Garbage collection
 - Ocupa mucha menos memoria
 
-### Clojure
-
-- Sistema de macros similar al de Common Lisp
-- Secuencias lazy (`seq`)
-- Sistema integrado de estructuras de datos persistentes e inmutables.
-- Compilado con Java
-
-### Emacs Lisp
-
-- Dynamic scoping por default.
-- Sintaxis para el compilado de un archivo `M-x byte-compile-file`
-- No tiene closures
-
 ## Otros lenguajes
 
-### Python
+## Python
 
-- Python admite todas las caracteristicas esenciales de Lisp, exeptuando las macros.
 - Sintaxis más sencilla de leer,
 - Tiempo de compilacion más rápido
 - Tiempo de ejecución mucho más lento
 - Más dinámico, python realiza menos chequeos de erorres.
-- Similitudes:
-  - Lenguaje de alto nivel interpretado y compiladom orientado a objetos con semántica dinámica.
-  - Admiten modulos y paquetes, fomentando la modularidad del programa.
-  - Debuggear es sencillo
 
-### C++
+## C++
 
 - Lisp es una o dos veces más lento que C++
 - Manejo de memoria con punteros
