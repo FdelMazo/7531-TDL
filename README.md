@@ -646,12 +646,11 @@ http://blockml.awwapps.com/example/example/document.html#sec-6
 
 ## Comparaciones
 
-- repetir tema de la influencia y de como todo lenguaje se ve tocado por lisp
-- comparar con python
-- con C performance
-- con oz, scala, haskell
-- con dialectos de lisp como scheme y racket
-- con javascript para decir como se influencia por shcem
+http://blockml.awwapps.com/example/example/document.html#sec-6
+
+https://wiki.c2.com/?LispSchemeDifferences
+
+https://norvig.com/python-lisp.html
 
 ## Familias de Lisp
 
