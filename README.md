@@ -622,11 +622,20 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 ## Estadisticas
 
-[Recap of John McCarthy's Recursive Functions ~ Judith Lindemann](http://blockml.awwapps.com/example/example/document.html)
+- [Who Cares About Functional Programming?](https://thomasbandt.com/who-cares-about-functional-programming)
 
-- repos de github
+## GitHub
 
-_Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en los últimos años. Para lenguajes antiguos se incluye información sobre qué lenguajes o técnicas se vieron influenciadas por este lenguaje_
+- [GitHut 2.0: A SMALL PLACE TO DISCOVER LANGUAGES IN GITHUB](https://madnight.github.io/githut/#/pull_requests/2020/2)
+
+## Stack Overflow
+- [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=lisp%2Chaskell)
+- [Popularity of LISP](http://blockml.awwapps.com/example/example/document.html#id-DIALECTS)
+
+## Hacker News
+
+- [Hacker News Front Page Trends](https://toddwschneider.com/dashboards/hacker-news-trends/?q=lisp%2C+haskell&f=title&s=text&m=items_score&t=year)
+
 
 ## Comparaciones
 
@@ -659,14 +668,13 @@ _Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en lo
 
 ## Casos de estudio
 
-_Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje_
+- [Beating the Averages ~ Paul Graham](http://www.paulgraham.com/avg.html)
 
-emacs
+Aplicaciones
 
-crash bandicoot
+- [GNU Emacs](https://www.gnu.org/software/emacs/)
+- [AutoCAD](https://knowledge.autodesk.com/support/autocad/learn?_ga=2.6340402.1217927362.1596648823-1356888131.1596140511&sort=score)
+- [Crash Bandicoot](https://www.crashbandicoot.com/hub)
+- [Reddit](https://www.reddit.com/)
 
-beating the averages!!!! (http://www.paulgraham.com/avg.html)
 
-Reddit
-
-https://github.com/CodyReichert/awesome-cl
