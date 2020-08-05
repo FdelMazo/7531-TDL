@@ -624,14 +624,14 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 [Who Cares About Functional Programming?](https://thomasbandt.com/who-cares-about-functional-programming)
 
-## GitHub
-
-[GitHut 2.0: A SMALL PLACE TO DISCOVER LANGUAGES IN GITHUB](https://madnight.github.io/githut/#/pull_requests/2020/2)
-
 ## Stack Overflow
 
 [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=lisp%2Chaskell)
 [Popularity of LISP](http://blockml.awwapps.com/example/example/document.html#id-DIALECTS)
+
+## GitHub
+
+[GitHut 2.0: A SMALL PLACE TO DISCOVER LANGUAGES IN GITHUB](https://madnight.github.io/githut/#/pull_requests/2020/2)
 
 ## Hacker News
 
