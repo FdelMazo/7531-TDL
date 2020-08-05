@@ -622,20 +622,20 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 ## Estadisticas
 
-- [Who Cares About Functional Programming?](https://thomasbandt.com/who-cares-about-functional-programming)
+[Who Cares About Functional Programming?](https://thomasbandt.com/who-cares-about-functional-programming)
 
 ## GitHub
 
-- [GitHut 2.0: A SMALL PLACE TO DISCOVER LANGUAGES IN GITHUB](https://madnight.github.io/githut/#/pull_requests/2020/2)
+[GitHut 2.0: A SMALL PLACE TO DISCOVER LANGUAGES IN GITHUB](https://madnight.github.io/githut/#/pull_requests/2020/2)
 
 ## Stack Overflow
-- [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=lisp%2Chaskell)
-- [Popularity of LISP](http://blockml.awwapps.com/example/example/document.html#id-DIALECTS)
+
+[Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=lisp%2Chaskell)
+[Popularity of LISP](http://blockml.awwapps.com/example/example/document.html#id-DIALECTS)
 
 ## Hacker News
 
-- [Hacker News Front Page Trends](https://toddwschneider.com/dashboards/hacker-news-trends/?q=lisp%2C+haskell&f=title&s=text&m=items_score&t=year)
-
+[Hacker News Front Page Trends](https://toddwschneider.com/dashboards/hacker-news-trends/?q=lisp%2C+haskell&f=title&s=text&m=items_score&t=year)
 
 ## Comparaciones
 
@@ -676,5 +676,3 @@ Aplicaciones
 - [AutoCAD](https://knowledge.autodesk.com/support/autocad/learn?_ga=2.6340402.1217927362.1596648823-1356888131.1596140511&sort=score)
 - [Crash Bandicoot](https://www.crashbandicoot.com/hub)
 - [Reddit](https://www.reddit.com/)
-
-
