@@ -618,9 +618,9 @@ Está orientado específicamente a crear lenguajes nuevos.
                      a)))))
 ```
 
-# LISP en la practica
+# LISP en la práctica
 
-## Estadisticas
+## Estadísticas
 
 [Who Cares About Functional Programming?](https://thomasbandt.com/who-cares-about-functional-programming)
 
