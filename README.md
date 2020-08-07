@@ -672,7 +672,14 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 Aplicaciones
 
-- [GNU Emacs](https://www.gnu.org/software/emacs/)
-- [AutoCAD](https://knowledge.autodesk.com/support/autocad/learn?_ga=2.6340402.1217927362.1596648823-1356888131.1596140511&sort=score)
 - [Crash Bandicoot](https://www.crashbandicoot.com/hub)
 - [Reddit](https://www.reddit.com/)
+- [GNU Emacs](https://www.gnu.org/software/emacs/)
+- [AutoCAD](https://knowledge.autodesk.com/support/autocad/learn?_ga=2.6340402.1217927362.1596648823-1356888131.1596140511&sort=score)
+
+## Crash Bandicoot
+
+[Lispings ala John McCarthy ~ Andy Gavin](https://all-things-andy-gavin.com/2011/10/25/lispings-ala-john-mccarthy/)
+
+[Making Crash Bandicoot – GOOL ~ Andy Gavin](https://all-things-andy-gavin.com/2011/03/12/making-crash-bandicoot-gool-part-9/)
+
