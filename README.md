@@ -679,6 +679,8 @@ Aplicaciones
 
 ## Crash Bandicoot
 
+[Naughty Dog](https://www.naughtydog.com/)
+
 [Lispings ala John McCarthy ~ Andy Gavin](https://all-things-andy-gavin.com/2011/10/25/lispings-ala-john-mccarthy/)
 
 [Making Crash Bandicoot – GOOL ~ Andy Gavin](https://all-things-andy-gavin.com/2011/03/12/making-crash-bandicoot-gool-part-9/)
