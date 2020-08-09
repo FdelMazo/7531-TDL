@@ -620,22 +620,45 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 # LISP en la práctica
 
-## Estadísticas
-
 [Who Cares About Functional Programming?](https://thomasbandt.com/who-cares-about-functional-programming)
 
 ## Stack Overflow
 
 [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=lisp%2Chaskell)
+
 [Popularity of LISP](http://blockml.awwapps.com/example/example/document.html#id-DIALECTS)
+
+<div class="container">
+<div class="col">
+![](img/lispvsdialects.svg)
+
+</div>
+<div class="col">
+
+![](img/lispvslanguages.svg)
+
+</div>
+</div>
+
+> En cuanto a popularidad de LISP en preguntas dentro de stackoverflow, vemos que Common Lisp compite contra otros dialectos, pero Clojure es el más utilizado.
+
+> De todas formas, toda la familia de LISP es un porcentaje muy chico, en comparación a otros lenguajes.
 
 ## GitHub
 
-[GitHut 2.0: A SMALL PLACE TO DISCOVER LANGUAGES IN GITHUB](https://madnight.github.io/githut/#/pull_requests/2020/2)
+[GitHut 2.0: A Small Place To Discover Languages In Github](https://madnight.github.io/githut/#/pull_requests/2020/2)
+
+![](img/githut.png)
+
+> Podemos ver que la cantidad de pull requests de Common Lisp anuales son muy bajos, incluso contra otros dialectos y lenguajes
 
 ## Hacker News
 
-[Hacker News Front Page Trends](https://toddwschneider.com/dashboards/hacker-news-trends/?q=lisp%2C+haskell&f=title&s=text&m=items_score&t=year)
+[Hacker News Front Page Trends](https://toddwschneider.com/dashboards/hacker-news-trends/?q=lisp%2C+haskell%2C+java&f=title&s=text&m=items_count&t=year)
+
+![](img/hackernews.png)
+
+> Aunque Lisp no es un lenguaje que se usa mucho en la práctica, si hay un gran interés teórico por este (hay que tener en cuenta que este foro nos da una idea de que _blogs_ o _artículos_ se comparten de una tecnología, en vez de usos practicos y código productivo).
 
 ## Comparaciones
 
@@ -668,20 +691,20 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 ## Casos de estudio
 
-- [Beating the Averages ~ Paul Graham](http://www.paulgraham.com/avg.html)
+[Beating the Averages ~ Paul Graham](http://www.paulgraham.com/avg.html)
 
-Aplicaciones
+[On Lisp ~ Reddit](https://redditblog.com/2005/12/05/on-lisp/)
 
-- [Crash Bandicoot](https://www.crashbandicoot.com/hub)
-- [Reddit](https://www.reddit.com/)
-- [GNU Emacs](https://www.gnu.org/software/emacs/)
-- [AutoCAD](https://knowledge.autodesk.com/support/autocad/learn?_ga=2.6340402.1217927362.1596648823-1356888131.1596140511&sort=score)
-
-## Crash Bandicoot
-
-[Naughty Dog](https://www.naughtydog.com/)
+[Rewriting Reddit ~ Aaron Swartz](http://www.aaronsw.com/weblog/rewritingreddit)
 
 [Lispings ala John McCarthy ~ Andy Gavin](https://all-things-andy-gavin.com/2011/10/25/lispings-ala-john-mccarthy/)
 
 [Making Crash Bandicoot – GOOL ~ Andy Gavin](https://all-things-andy-gavin.com/2011/03/12/making-crash-bandicoot-gool-part-9/)
 
+# ¿Y ahora?
+
+**¿Cómo aprendo LISP?**
+
+[Structure and Interpretation of Computer Programs](http://sarabander.github.io/sicp/html/)
+
+[A Road to Common Lisp ~ Steve Losh](https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/)
