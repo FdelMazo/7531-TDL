@@ -850,20 +850,6 @@ NIL
 
 HASH TABLE: http://cl-cookbook.sourceforge.net/hashes.html - https://www.tutorialspoint.com/lisp/lisp_hash_table.htm
 
-## Parámetros
-
-## Transparencia referencial: equals can be replaced by equals
-
-## Manejo de memoria
-
-## Recursividad
-
-> Recursive computations are at the heart of declarative programming.
-
-~ Peter Van-Roy, Concepts, Techniques, and Models of Computer Programming
-
-## Manejo de concurrencia
-
 ## Cálculo Lambda
 
 https://youtu.be/eis11j_iGMs
@@ -899,7 +885,7 @@ Los errores puede ser señalizados por una amplia variedad de razones. Muchas fu
 
 [Code vs Data (Metaprogramming) ~ Computerphile](https://youtu.be/dw-y3vNDRWk)
 
-# Sintaxis
+# Sintáxis
 
 [LISP 1.5 Programmer's Manual](http://web.cse.ohio-state.edu/~rountev.1/6341/pdf/Manual.pdf)
 
@@ -1004,7 +990,7 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 (eval (cons (car '(+ 1 2)) (cdr '(+ 1 2))))
 ```
 
-## Control de flujo [Tal vez sacarlo?][o convertirlo en buenos ejemplos de codigo de whiles/fors/ifs/conds]
+## Control de flujo
 
 - Estructuras para organizar programas: formas especiales(flet, etiquetas) o macros(macrolet).
 
@@ -1020,7 +1006,7 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 
 - Condicionales multidireccionales `cond` y `case`.
 
-## Namespaces [Fede -> Se liga un poco a la comparacion con scheme]
+## Namespaces
 
 - Un simbolo puede referirse a:
 
