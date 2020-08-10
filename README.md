@@ -678,10 +678,10 @@ Está orientado específicamente a crear lenguajes nuevos.
 
 ## Python
 
-- Sintaxis más sencilla de leer,
+- Sintaxis más sencilla de leer
 - Tiempo de compilacion más rápido
 - Tiempo de ejecución mucho más lento
-- Más dinámico, python realiza menos chequeos de erorres.
+- Más dinámico, realiza menos chequeos de erorres
 
 ## C++
 
