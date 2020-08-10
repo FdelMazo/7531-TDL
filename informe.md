@@ -499,14 +499,8 @@ Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje m
 
 - Excepto que se declare lo contrario, se podrá almacenar cualquier tipo de objeto en cualquier estructura de datos (incluyendo la estructura misma).
 
-- Si o Si hablar de garbage collection aca!!!
+- Garbage collector
 
-## Manejo de errores
-
-Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.
-
-
-[Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
 
 - Las variables de Lisp apuntan a sus valores.
 - La razon por la cual Lisp no tiene punteros es que todos los valores son conceptualmente un puntero.
