@@ -7,7 +7,18 @@ author: |
   | Secchi, Anita - 99131
 ---
 
-[![](img/byte.png)](https://github.com/FdelMazo/7531-TDL)
+![](img/byte.png)
+
+<div class="container">
+<div class="col">
+[**Código fuente**](https://github.com/FdelMazo/7531-TDL)
+
+</div>
+<div class="col">
+[**Video de la presentación**](https://youtu.be/XOIZSVf_iMY)
+
+</div>
+</div>
 
 # Historia
 
