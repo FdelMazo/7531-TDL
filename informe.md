@@ -485,7 +485,7 @@ Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje m
 - ¿Aún más? Racket, undialecto de Scheme y parte de la familia de Lisp, está orientado específicamente a crear lenguajes nuevos agregando funcionalidad para convertir código fuente en S-Expressions.
 
 
-## Manejo de memoria [Anita]
+## Manejo de memoria
 
 - Las variables de Lisp apuntan a sus valores.
 
@@ -501,11 +501,10 @@ Lisp es un muy buen lenguaje para crear software extensible porque el lenguaje m
 
 - Si o Si hablar de garbage collection aca!!!
 
-## Manejo de errores [Anita]
+## Manejo de errores
 
 Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.
 
--Work in progress, pls do not touch
 
 [Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
 
@@ -897,7 +896,6 @@ Lisp is usually evaluated eagerly. In Common Lisp, arguments are evaluated in ap
 
 Los errores puede ser señalizados por una amplia variedad de razones. Muchas funciones intregradas en Common Lisp, dan señal de error cuando se le da un parámetro incorrecto. Otras funciones, son llamadas por programas del usuario con el propósito de señalizar el error.
 
--Work in progress, pls do not touch
 
 [Common Lisp the Language - Errors](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node219.html#SECTION002800000000000000000)
 
@@ -1141,9 +1139,47 @@ https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/#s30-modern-common-lisp
 
 # Estadísticas
 
-_Se incluyen estadísticas de uso del lenguaje, frameworks y la evolución en los últimos años. Para lenguajes antiguos se incluye información sobre qué lenguajes o técnicas se vieron influenciadas por este lenguaje_
+# LISP en la práctica
 
-http://blockml.awwapps.com/example/example/document.html#sec-6
+[Who Cares About Functional Programming?](https://thomasbandt.com/who-cares-about-functional-programming)
+
+## Stack Overflow
+
+[Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=lisp%2Chaskell)
+
+[Popularity of LISP](http://blockml.awwapps.com/example/example/document.html#id-DIALECTS)
+
+<div class="container">
+<div class="col">
+![](img/lispvsdialects.svg)
+
+</div>
+<div class="col">
+
+![](img/lispvslanguages.svg)
+
+</div>
+</div>
+
+> En cuanto a popularidad de LISP en preguntas dentro de stackoverflow, vemos que Common Lisp compite contra otros dialectos, pero Clojure es el más utilizado.
+
+> De todas formas, toda la familia de LISP es un porcentaje muy chico, en comparación a otros lenguajes.
+
+## GitHub
+
+[GitHut 2.0: A Small Place To Discover Languages In Github](https://madnight.github.io/githut/#/pull_requests/2020/2)
+
+![](img/githut.png)
+
+> Podemos ver que la cantidad de pull requests de Common Lisp anuales son muy bajos, incluso contra otros dialectos y lenguajes
+
+## Hacker News
+
+[Hacker News Front Page Trends](https://toddwschneider.com/dashboards/hacker-news-trends/?q=lisp%2C+haskell%2C+java&f=title&s=text&m=items_count&t=year)
+
+![](img/hackernews.png)
+
+> Aunque Lisp no es un lenguaje que se usa mucho en la práctica, si hay un gran interés teórico por este (hay que tener en cuenta que este foro nos da una idea de que _blogs_ o _artículos_ se comparten de una tecnología, en vez de usos practicos y código productivo).
 
 # Comparaciones
 
@@ -1188,6 +1224,12 @@ Más allá de estas diferencias, son lenguajes de alto nivel interpretado y comp
 
 # Casos de estudio
 
-_Se mencionan casos reales indicando el motivo por el cual se sabe o se cree que se usa el lenguaje_
+### Crash Bandicoot
 
-https://github.com/CodyReichert/awesome-cl
+El siguiente caso de estudio y como es que tener buenos fundamentos de la programación es una muy buena ventaja:
+Crash Bandicoot fue originalmente creado en 1996 por la desarrolladora de videojuegos Naughty Dog, fundada en 1984 por Andy Gavin y Jason Rubin. 
+Gavin explica como, por casi dos décadas, era un fan devoto de Lisp. Incluso admite como forzó a sus programadores a codear Crash, en un dialecto de Lisp personlizado, GOOL
+(Game Oriented Object LISP). 
+Gavin diseño GOOL usando Common Lisp, lo cual facilita mucho porque desde el comienzo, ya contaba con el garbage collector, listas, arboles, tabla de hash y macros. Usando GOOL, el equipo pudo producir cientos de objetos de juegos diferentes con comportamiento y animación sofisticada, en tiempo real.
+Eventualmente Lisp perdió su impulso y  Gavin le empezaró a soltar lentamente la mano. Comenzó a desarrollar en otros lenguajes, como Ruby, que venia con mejores librerias y la rompia con el sistema de macros que tenia. Pero siempre teniendo en cuenta a Lisp, que te da una buena calidad técnica y eso se transfiere a la modernidad: Codear Lisp, pero en Ruby.
+
