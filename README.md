@@ -495,9 +495,9 @@ b    ; => 15
 
 - Cuando se llama a una macro:
 
-1. Se arma el código en base a la definición `defmacro` de la misma.
+  1. Se arma el código en base a la definición `defmacro` de la misma.
 
-2. Se evalúa el nuevo código en el lugar de la llamada a la macro.
+  1. Se evalúa el nuevo código en el lugar de la llamada a la macro.
 
 - `macroexpand` devuelve el código generado por una macro.
 
