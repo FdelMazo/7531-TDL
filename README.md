@@ -232,6 +232,8 @@ Puedo hacer un programa entero, ponerle un `'` adelante, y estoy tratando con el
 
 [cl-aristid](https://github.com/FdelMazo/cl-aristid)
 
+[Video: Fractales](https://youtu.be/TibZVTKYzm0)
+
 Lindenmayer system
 
 - Alfabeto: F, LEFT, RIGHT
