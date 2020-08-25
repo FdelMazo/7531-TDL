@@ -409,7 +409,7 @@ NIL
 
     - Se ejecutan solamente por sus efectos secundarios
 
-- En LISP, todo es una expresiónn
+- En LISP, todo es una expresión
 
   - Facil de testear
 
