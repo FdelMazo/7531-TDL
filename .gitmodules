@@ -1,0 +1,3 @@
+[submodule "cl-aristid"]
+	path = cl-aristid
+	url = git@github.com:FdelMazo/cl-aristid.git
